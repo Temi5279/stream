@@ -1,123 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>s t r ▶ e a m</title>
+  <title>Stream – Movies You Can't Find Anywhere</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       margin: 0;
-      background-color: #121212;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-
-    header {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #000;
+      color: #fff;
+    }
+    header {
+      background: rgba(0, 0, 0, 0.6);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 999;
     }
-
     .logo {
       font-size: 1.5rem;
       font-weight: bold;
     }
-
     .logo span {
       color: red;
-      font-size: 1.6rem;
     }
-
-    .nav {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .nav a {
-      color: white;
-      text-decoration: none;
-    }
-
     .hero {
-      padding: 4rem 2rem;
+      background: url('https://images.unsplash.com/photo-1581905764498-fec8b6e20f04?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       text-align: center;
+      padding: 0 1rem;
     }
-
     .hero h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
-
-    .plans {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      padding: 2rem;
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
     }
-
-    .plan {
-      background-color: #1e1e1e;
-      padding: 2rem;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .plan h2 {
-      margin-bottom: 0.5rem;
-    }
-
-    .plan button {
-      background-color: red;
-      color: white;
+    .hero button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background: red;
+      color: #fff;
       border: none;
-      padding: 0.7rem 1.5rem;
-      border-radius: 4px;
+      border-radius: 5px;
       cursor: pointer;
     }
-
-    footer {
+    .scroll-section {
+      margin-top: 2rem;
+      padding: 2rem 1rem;
+    }
+    .scroll-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .scroll-wrapper {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+    }
+    .scroll-wrapper img {
+      height: 200px;
+      border-radius: 10px;
+      flex: 0 0 auto;
+    }
+    .faq {
+      padding: 2rem 1rem;
+      background-color: #111;
+    }
+    .faq h2 {
+      margin-bottom: 1rem;
+    }
+    .faq p {
+      margin-bottom: 0.5rem;
+    }
+    .footer {
       text-align: center;
       padding: 1rem;
-      background-color: #000;
-      margin-top: 2rem;
+      background: #000;
+    }
+    .socials img {
+      width: 30px;
+      margin: 0 0.5rem;
+      vertical-align: middle;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">s t r<span>▶</span>e a m</div>
-    <div class="nav">
-      <a href="#">Home</a>
-      <a href="#">Live TV</a>
-      <a href="#">Movies</a>
-      <a href="#">Login</a>
+    <div class="logo"><span>▶</span> Stream</div>
+  </header>  <section class="hero">
+    <h1>Unlimited Movies, Shows, and More</h1>
+    <p>Movies you can't find anywhere else. All in one place.</p>
+    <button onclick="window.location.href='subscribe.html'">Start Free Trial</button>
+  </section>  <section class="scroll-section">
+    <h2>Exclusive Picks</h2>
+    <div class="scroll-wrapper">
+      <img src="https://via.placeholder.com/300x200?text=Movie+1" alt="Movie 1" />
+      <img src="https://via.placeholder.com/300x200?text=Movie+2" alt="Movie 2" />
+      <img src="https://via.placeholder.com/300x200?text=Movie+3" alt="Movie 3" />
+      <img src="https://via.placeholder.com/300x200?text=Movie+4" alt="Movie 4" />
+      <img src="https://via.placeholder.com/300x200?text=Movie+5" alt="Movie 5" />
     </div>
-  </header>
-
-  <div class="hero">
-    <h1>Welcome to s t r ▶ e a m</h1>
-    <p>Watch movies, series and Live TV anytime, anywhere. Start with a free trial!</p>
+  </section>  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>Q:</strong> Can I cancel anytime?<br /><strong>A:</strong> Yes, cancel anytime during or after your trial.</p>
+    <p><strong>Q:</strong> What devices can I watch on?<br /><strong>A:</strong> Stream works on phones, tablets, laptops, and smart TVs.</p>
+    <p><strong>Q:</strong> Do you have Live Sports?<br /><strong>A:</strong> Yes, on Premium Plan only.</p>
+  </section>  <div class="footer">
+    <div class="socials">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook--v1.png" alt="Facebook" />
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram" />
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/twitter--v1.png" alt="Twitter" />
+    </div>
+    <p>&copy; 2025 Stream. All rights reserved.</p>
   </div>
-
-  <section class="plans">
-    <div class="plan">
-      <h2>Basic Plan</h2>
-      <p>SD Quality • No Live TV</p>
-      <p>₦1000 / $1.99 monthly</p>
-      <a href="index.html"><button>Start Free Trial</button></a>
-    </div>
-    <div class="plan">
-      <h2>Premium Plan</h2>
-      <p>HD Quality • Live TV Access</p>
-      <p>₦2500 / $4.99 monthly</p>
-      <a href="index.html"><button>Start Free Trial</button></a>
-    </div>
-  </section>
-
-  <footer>
-    &copy; 2025 s t r ▶ e a m. All rights reserved.
-  </footer>
 </body>
-  </html>
+        </html>
