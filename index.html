@@ -1,9 +1,9 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stream - Watch Everything</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stream</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -12,170 +12,173 @@
       font-family: 'Montserrat', sans-serif;
     }
     body {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1608403890643-4d4a8d5e7c64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+      background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.7)), url('https://i.ibb.co/4wrTLND/image.png') no-repeat center center fixed;
       background-size: cover;
-      background-position: center;
       color: #fff;
+      overflow-x: hidden;
     }
     header {
+      padding: 2rem;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 1rem 2rem;
-      background-color: rgba(0, 0, 0, 0.6);
+      align-items: center;
+      background: rgba(0, 0, 0, 0.6);
     }
     .logo {
       font-size: 2rem;
-      font-weight: 700;
-      color: red;
-    }
-    .nav-actions {
-      display: flex;
-      gap: 1rem;
-    }
-    .btn {
-      background-color: red;
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
       font-weight: 600;
+      display: flex;
+      align-items: center;
     }
-    .hero {
+    .logo::after {
+      content: '\25B6';
+      color: red;
+      margin-left: 0.5rem;
+    }
+    .tagline {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-top: 0.5rem;
       text-align: center;
-      padding: 5rem 1rem 3rem;
     }
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    .signin-btn {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      background: red;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
     }
     .section {
-      padding: 2rem;
+      padding: 3rem 2rem;
     }
     .section h2 {
       margin-bottom: 1rem;
+      font-size: 1.8rem;
     }
-    .cards {
+    .scroll-section {
       display: flex;
       overflow-x: auto;
       gap: 1rem;
     }
-    .card {
-      min-width: 200px;
-      height: 300px;
-      background-size: cover;
-      background-position: center;
-      border-radius: 10px;
-      position: relative;
-    }
-    .reason {
-      text-align: center;
-      padding: 2rem;
-      background-color: rgba(255, 255, 255, 0.1);
-      margin: 2rem;
-      border-radius: 10px;
-    }
-    .subscribe {
-      text-align: center;
-      padding: 2rem;
-    }
-    .subscribe input {
-      padding: 0.7rem;
+    .scroll-section img {
       width: 300px;
-      border: none;
-      border-radius: 5px 0 0 5px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 12px;
     }
-    .subscribe button {
-      padding: 0.7rem;
+    .reasons, .faq, .footer {
+      background: rgba(0, 0, 0, 0.6);
+      margin-top: 2rem;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .reason-item {
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .reason-item:hover {
+      transform: scale(1.05);
+    }
+    .footer div {
+      margin-bottom: 1rem;
+    }
+    .email-section {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .email-section input {
+      padding: 0.6rem;
+      border-radius: 6px;
+      border: none;
+      width: 60%;
+      max-width: 400px;
+    }
+    .email-section button {
+      margin-left: 1rem;
+      padding: 0.6rem 1.2rem;
       border: none;
       background: red;
-      color: #fff;
-      border-radius: 0 5px 5px 0;
-    }
-    .faq {
-      padding: 2rem;
-    }
-    .faq-item {
-      background-color: rgba(255, 255, 255, 0.05);
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
       cursor: pointer;
-    }
-    .faq-answer {
-      display: none;
-      padding-top: 0.5rem;
-    }
-    .footer {
-      background-color: rgba(0, 0, 0, 0.7);
-      text-align: center;
-      padding: 2rem 1rem;
-      display: grid;
-      gap: 0.7rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">▶</div>
-    <div class="nav-actions">
-      <button class="btn">Sign In</button>
+    <div class="logo">Stream</div>
+    <button class="signin-btn">Sign In</button>
+  </header>
+  <section class="tagline">
+    <h1>Movies. Shows. And More You Can’t Find Anywhere Else.</h1>
+  </section>
+  <section class="section">
+    <h2>Trending</h2>
+    <div class="scroll-section">
+      <img src="https://i.ibb.co/nM6NCYfK/image.png" alt="Trending" />
+      <img src="https://i.ibb.co/xKLm3Sws/image.png" alt="Trending" />
+      <img src="https://i.ibb.co/8nWJdBqC/image.png" alt="Trending" />
     </div>
-  </header>  <section class="hero">
-    <h1>Movies, Shows, and More You Can’t Find Anywhere Else</h1>
-  </section>  <section class="section">
-    <h2>Trending Now</h2>
-    <div class="cards">
-      <div class="card" style="background-image: url('https://image.tmdb.org/t/p/w500/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg');"></div>
-      <div class="card" style="background-image: url('https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg');"></div>
-      <div class="card" style="background-image: url('https://image.tmdb.org/t/p/w500/6KErczPBROQty7QoIsaa6wJYXZi.jpg');"></div>
+  </section>
+  <section class="section">
+    <h2>Movies</h2>
+    <div class="scroll-section">
+      <img src="https://i.ibb.co/LdsYBD7t/image.png" alt="Movie" />
+      <img src="https://i.ibb.co/zTXVdP5K/image.png" alt="Movie" />
+      <img src="https://i.ibb.co/nMjbWwtc/image.png" alt="Movie" />
     </div>
-  </section>  <section class="section">
+  </section>
+  <section class="section">
     <h2>Shows</h2>
-    <div class="cards">
-      <div class="card" style="background-image: url('https://image.tmdb.org/t/p/w500/6kbAMLteGO8yyewYau6bJ683sw7.jpg');"></div>
+    <div class="scroll-section">
+      <img src="https://i.ibb.co/v6DLF8M6/image.png" alt="Show" />
+      <img src="https://i.ibb.co/RkcQ7cKW/image.png" alt="Show" />
+      <img src="https://i.ibb.co/ymcfzNny/image.png" alt="Show" />
     </div>
-  </section>  <section class="section">
-    <h2>Live TV</h2>
-    <div class="cards">
-      <div class="card" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Al_Jazeera_English_logo.svg/1280px-Al_Jazeera_English_logo.svg.png'); background-color: white;"></div>
-      <div class="card" style="background-image: url('https://1000logos.net/wp-content/uploads/2017/03/CNN-Logo.png'); background-color: white;"></div>
-      <div class="card" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/69/BBC_World_News_2022.svg'); background-color: white;"></div>
-      <div class="card" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1c/TV5Monde_Logo_2011.svg'); background-color: white;"></div>
+  </section>
+  <section class="section">
+    <h2>Live TV Events</h2>
+    <div class="scroll-section">
+      <img src="https://i.ibb.co/b5ttX3Td/image.png" alt="Premier League" />
+      <img src="https://i.ibb.co/RktmG5nd/image.png" alt="VMAs" />
+      <img src="https://i.ibb.co/WNPmtVy7/image.png" alt="KCA" />
     </div>
-  </section>  <section class="section">
+  </section>
+  <section class="section">
     <h2>Kids</h2>
-    <div class="cards">
-      <div class="card" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7a/Nickelodeon_logo.svg'); background-color: white;"></div>
+    <div class="scroll-section">
+      <img src="https://i.ibb.co/8gzGq6NC/image.png" alt="Kids" />
+      <img src="https://i.ibb.co/00YDQyV/image.png" alt="Kids" />
+      <img src="https://i.ibb.co/LXHgNRmq/image.png" alt="Kids" />
     </div>
-  </section>  <div class="reason">
-    <h2>Top 5 Reasons to Join Stream</h2>
-    <p>Unlimited content, HD streaming, ad-free experience, early access to premieres, and exclusive content you won’t find anywhere else.</p>
-  </div>  <div class="subscribe">
-    <h3>Want to stay updated with Stream?</h3>
-    <input type="email" placeholder="Enter your email">
+  </section>
+  <section class="reasons">
+    <h2>Reasons to Join Stream</h2>
+    <div class="reason-item">High-quality streaming in HD and 4K</div>
+    <div class="reason-item">Exclusive original content</div>
+    <div class="reason-item">No ads, just pure entertainment</div>
+  </section>
+  <section class="email-section">
+    <h2>Want to stay updated with Stream?</h2>
+    <input type="email" placeholder="Enter your email address" />
     <button>Subscribe</button>
-  </div>  <div class="faq">
-    <div class="faq-item" onclick="toggleFaq(this)">
-      What is Stream?
-      <div class="faq-answer">Stream is your home of exclusive content and live channels.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      How much does it cost?
-      <div class="faq-answer">We have plans starting as low as $3.99/month.</div>
-    </div>
-  </div>  <div class="footer">
-    <div>Legal & Compliance</div>
+  </section>
+  <section class="faq">
+    <h2>FAQs</h2>
+    <div>Can I cancel anytime? – Yes, you’re in full control.</div>
+    <div>Do I need a credit card? – You can use multiple payment methods.</div>
+    <div>Where is Stream available? – Stream is available globally.</div>
+  </section>
+  <section class="footer">
+    <div>Legal and Compliance</div>
     <div>Help</div>
     <div>Privacy Policy</div>
     <div>Terms of Use</div>
     <div>Contact</div>
-    <div>How We Use Other Media</div>
-  </div>  <script>
-    function toggleFaq(element) {
-      const answer = element.querySelector('.faq-answer');
-      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
-    }
-  </script></body>
+    <div>Legal: How we use other media</div>
+  </section>
+</body>
   </html>
