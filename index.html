@@ -1,144 +1,192 @@
-<!DOCTYPE html><html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stream ▶</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Stream</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
     body {
       margin: 0;
-      background-color: #0d0d0d;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(30, 30, 30, 0.9)), url('your-background.jpg') center/cover no-repeat fixed;
       color: white;
-    }
-    header {
-      background: rgba(0, 0, 0, 0.85);
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: white;
-    }
-    .logo span {
-      color: red;
-    }
-    .hero {
-      background-image: url("https://images.unsplash.com/photo-1589561084283-930aa7b1bebb?auto=format&fit=crop&w=1500&q=80");
-      background-size: cover;
-      background-position: center;
-      height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 1rem;
-      border-radius: 1rem;
-    }
-    .section-title {
-      font-size: 1.5rem;
-      margin: 1.5rem;
-    }
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding: 0 1.5rem 1.5rem;
-    }
-    .carousel img {
-      width: 200px;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 0.75rem;
-    }
-    .faq {
-      padding: 2rem;
-    }
-    .faq-item {
-      margin-bottom: 1rem;
-    }
-    .faq-item button {
-      width: 100%;
-      background: #1a1a1a;
-      border: none;
-      color: white;
-      text-align: left;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-    }
-    .faq-answer {
-      display: none;
-      padding: 1rem;
-      background: #262626;
-      border-radius: 0.5rem;
-    }
-    footer {
-      background: #1a1a1a;
-      padding: 2rem;
-      text-align: center;
-    }
-    .socials img {
-      width: 30px;
-      margin: 0 10px;
-    }
+      backdrop-filter: blur(10px);
+    }header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+}
+
+.logo span {
+  color: white;
+}
+
+.logo .play {
+  width: 20px;
+  height: 20px;
+  margin: 0 8px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/7/7e/Video_Play_Button.png') no-repeat center/contain;
+  display: inline-block;
+}
+
+.section {
+  padding: 3rem 2rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.carousel img {
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.faq {
+  max-width: 800px;
+  margin: auto;
+}
+
+.faq-item {
+  background: rgba(255, 255, 255, 0.05);
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.faq-item h4 {
+  margin: 0;
+}
+
+.faq-item p {
+  display: none;
+  margin-top: 0.5rem;
+}
+
+.footer {
+  padding: 2rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.footer a {
+  margin: 0 0.5rem;
+  color: white;
+  text-decoration: none;
+}
+
+.social-icons img {
+  width: 30px;
+  margin: 0 10px;
+}
+
   </style>
-</head>
-<body>
+</head><body>
   <header>
-    <div class="logo">St<span>▶</span>ream</div>
-    <a href="subscribe.html" style="color: white;">Start Free Trial</a>
-  </header>  <section class="hero">
-    <h1>Movies you can't find anywhere else</h1>
-  </section>  <h2 class="section-title">🔥 New Shows Added</h2>
-  <div class="carousel">
-    <img src="https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg" alt="Movie 1">
-    <img src="https://image.tmdb.org/t/p/w500/fYzpM9GmpBlIC893fNjoWCwE24H.jpg" alt="Movie 2">
-    <img src="https://image.tmdb.org/t/p/w500/tcNniniS4rfqrLH0oORikJfnIwY.jpg" alt="Movie 3">
-    <img src="https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg" alt="Movie 4">
-    <img src="https://image.tmdb.org/t/p/w500/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg" alt="Movie 5">
-  </div>  <h2 class="section-title">📺 Live TV Channels</h2>
-  <div class="carousel">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/ESPN_wordmark.svg" alt="ESPN">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/CNN_International_logo.svg" alt="CNN">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/BBC_World_News.svg" alt="BBC">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Cartoon_Network_logo.svg" alt="CN">
-  </div>  <h2 class="section-title">👶 Kids Profiles</h2>
-  <div class="carousel">
-    <img src="https://image.tmdb.org/t/p/w500/aQvJ5WPzZgYVDrxLX4R6cLJCEaQ.jpg" alt="Kids 1">
-    <img src="https://image.tmdb.org/t/p/w500/5P8SmMzSNYikXpxil6BYzJ16611.jpg" alt="Kids 2">
-    <img src="https://image.tmdb.org/t/p/w500/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg" alt="Kids 3">
-  </div>  <section style="text-align: center; padding: 2rem;">
-    <h2>Still not sure?</h2>
-    <a href="subscribe.html" style="padding: 1rem 2rem; background: red; color: white; border-radius: 0.5rem; font-weight: bold;">Start a Free Trial</a>
-  </section>  <section class="faq">
-    <h2 class="section-title">❓ Frequently Asked Questions</h2>
-    <div class="faq-item">
-      <button onclick="toggleFAQ(this)">How does the free trial work?</button>
-      <div class="faq-answer">You get full access to all content for 7 days. No charge if you cancel before it ends.</div>
+    <div class="logo">
+      <span>St</span>
+      <span class="play"></span>
+      <span>ream</span>
     </div>
-    <div class="faq-item">
-      <button onclick="toggleFAQ(this)">Can I cancel anytime?</button>
-      <div class="faq-answer">Yes. Go to your profile and cancel anytime before your next billing cycle.</div>
+    <a href="#" style="color:white;text-decoration:none;font-weight:600;">Start Free Trial</a>
+  </header>  <section class="section">
+    <h2 class="section-title">Movies You Can't Find Anywhere Else</h2>
+    <div class="carousel">
+      <img src="your-image-1.jpg" alt="Movie 1">
+      <img src="your-image-2.jpg" alt="Movie 2">
+      <img src="your-image-3.jpg" alt="Movie 3">
+      <img src="your-image-4.jpg" alt="Movie 4">
+      <img src="your-image-5.jpg" alt="Movie 5">
     </div>
-  </section>  <footer>
-    <div class="socials">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Twitter">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733614.png" alt="Instagram">
+  </section>  <section class="section">
+    <h2 class="section-title">New Shows Added</h2>
+    <div class="carousel">
+      <img src="show1.jpg" alt="Show 1">
+      <img src="show2.jpg" alt="Show 2">
+      <img src="show3.jpg" alt="Show 3">
+      <img src="show4.jpg" alt="Show 4">
+      <img src="show5.jpg" alt="Show 5">
     </div>
-    <p>&copy; 2025 Stream ▶. All rights reserved.</p>
-  </footer>  <script>
-    function toggleFAQ(button) {
-      const answer = button.nextElementSibling;
-      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+  </section>  <section class="section">
+    <h2 class="section-title">Live TV Channels</h2>
+    <div class="carousel">
+      <img src="channel1.jpg" alt="Channel 1">
+      <img src="channel2.jpg" alt="Channel 2">
+      <img src="channel3.jpg" alt="Channel 3">
+    </div>
+  </section>  <section class="section">
+    <h2 class="section-title">Profile for Kids</h2>
+    <div class="carousel">
+      <img src="kids1.jpg" alt="Kids 1">
+      <img src="kids2.jpg" alt="Kids 2">
+      <img src="kids3.jpg" alt="Kids 3">
+    </div>
+  </section>  <section class="section" style="text-align:center;">
+    <h2 class="section-title">Having Doubts?</h2>
+    <p><a href="#" style="color:white;font-weight:600;">Start a Free Trial</a></p>
+  </section>  <section class="section faq">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>How does the free trial work?</h4>
+      <p>Enjoy full access for 7 days. Cancel anytime without being charged.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Who can join?</h4>
+      <p>Anyone with internet access and a valid email.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>How many profiles can I have?</h4>
+      <p>You can create up to 6 different profiles per account.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Can I cancel anytime?</h4>
+      <p>Yes, you can cancel anytime with no penalties.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Do you update shows regularly?</h4>
+      <p>Yes, new shows and movies are added every week.</p>
+    </div>
+  </section>  <div class="footer">
+    <div class="social-icons">
+      <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+      <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+      <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+    </div>
+    <p>
+      <a href="#">Contact Us</a> |
+      <a href="#">Legal & Compliance</a> |
+      <a href="#">How Licensing Works</a> |
+      <a href="#">Use of Other Media Content</a>
+    </p>
+    <p style="font-size: 0.9rem; opacity: 0.6;">&copy; 2025 Stream. All rights reserved.</p>
+  </div>  <script>
+    function toggleFaq(el) {
+      const p = el.querySelector('p');
+      p.style.display = p.style.display === 'block' ? 'none' : 'block';
     }
-  </script></body>
-</html>
+  </script></body></html>
