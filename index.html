@@ -1,131 +1,144 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>StreamFlix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stream ▶</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       margin: 0;
-      background-color: #0c0c0c;
-      font-family: Arial, sans-serif;
+      background-color: #0d0d0d;
+      font-family: 'Segoe UI', sans-serif;
       color: white;
     }
     header {
-      background-color: #0c0c0c;
-      padding: 20px;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 1rem 2rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
     .logo {
-      font-size: 26px;
+      font-size: 1.8rem;
       font-weight: bold;
+      color: white;
+    }
+    .logo span {
+      color: red;
     }
     .hero {
-      background-image: url('https://i.imgur.com/NhO3vDU.jpeg'); /* Temporary sports/movie style image */
+      background-image: url("https://images.unsplash.com/photo-1589561084283-930aa7b1bebb?auto=format&fit=crop&w=1500&q=80");
       background-size: cover;
       background-position: center;
-      height: 400px;
+      height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 0 20px;
     }
     .hero h1 {
-      font-size: 38px;
-      color: white;
-      text-shadow: 2px 2px 5px black;
+      font-size: 3rem;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1rem;
+      border-radius: 1rem;
     }
-    .section {
-      padding: 20px;
+    .section-title {
+      font-size: 1.5rem;
+      margin: 1.5rem;
     }
     .carousel {
       display: flex;
       overflow-x: auto;
-      gap: 15px;
+      gap: 1rem;
+      padding: 0 1.5rem 1.5rem;
     }
     .carousel img {
-      height: 200px;
-      border-radius: 10px;
-      flex-shrink: 0;
-    }
-    h2 {
-      margin-bottom: 10px;
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 0.75rem;
     }
     .faq {
-      padding: 20px;
-      background: #111;
+      padding: 2rem;
     }
-    .faq h3 {
-      margin-top: 0;
+    .faq-item {
+      margin-bottom: 1rem;
     }
-    .faq p {
-      margin-bottom: 10px;
+    .faq-item button {
+      width: 100%;
+      background: #1a1a1a;
+      border: none;
+      color: white;
+      text-align: left;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+    .faq-answer {
+      display: none;
+      padding: 1rem;
+      background: #262626;
+      border-radius: 0.5rem;
     }
     footer {
-      background: #111;
-      padding: 20px;
+      background: #1a1a1a;
+      padding: 2rem;
       text-align: center;
     }
-    footer img {
-      width: 25px;
+    .socials img {
+      width: 30px;
       margin: 0 10px;
-      filter: brightness(0) invert(1);
     }
   </style>
 </head>
 <body>
-
-<header>
-  <div class="logo">▶ StreamFlix</div>
-  <nav>
-    <a href="signup.html" style="color:white; margin-right: 20px;">Sign Up</a>
-    <a href="subscribe.html" style="color:white;">Subscribe</a>
-  </nav>
-</header>
-
-<div class="hero">
-  <h1>Movies you can't find anywhere else</h1>
-</div>
-
-<div class="section">
-  <h2>Featured Movies</h2>
+  <header>
+    <div class="logo">St<span>▶</span>ream</div>
+    <a href="subscribe.html" style="color: white;">Start Free Trial</a>
+  </header>  <section class="hero">
+    <h1>Movies you can't find anywhere else</h1>
+  </section>  <h2 class="section-title">🔥 New Shows Added</h2>
   <div class="carousel">
-    <img src="https://i.imgur.com/JN3cyQq.jpeg" alt="Movie 1" />
-    <img src="https://i.imgur.com/UQYfO2I.jpeg" alt="Movie 2" />
-    <img src="https://i.imgur.com/4dMZtZK.jpeg" alt="Movie 3" />
-    <img src="https://i.imgur.com/wUwLSNP.jpeg" alt="Movie 4" />
-  </div>
-</div>
-
-<div class="section">
-  <h2>Trending Now</h2>
+    <img src="https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg" alt="Movie 1">
+    <img src="https://image.tmdb.org/t/p/w500/fYzpM9GmpBlIC893fNjoWCwE24H.jpg" alt="Movie 2">
+    <img src="https://image.tmdb.org/t/p/w500/tcNniniS4rfqrLH0oORikJfnIwY.jpg" alt="Movie 3">
+    <img src="https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg" alt="Movie 4">
+    <img src="https://image.tmdb.org/t/p/w500/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg" alt="Movie 5">
+  </div>  <h2 class="section-title">📺 Live TV Channels</h2>
   <div class="carousel">
-    <img src="https://i.imgur.com/ODT66cJ.jpeg" alt="Trending 1" />
-    <img src="https://i.imgur.com/4f6aEJS.jpeg" alt="Trending 2" />
-    <img src="https://i.imgur.com/fQjVaeo.jpeg" alt="Trending 3" />
-  </div>
-</div>
-
-<div class="faq">
-  <h2>Frequently Asked Questions</h2>
-  <h3>Can I cancel anytime?</h3>
-  <p>Yes, you can cancel your subscription at any time from your account settings.</p>
-  <h3>Is there a free trial?</h3>
-  <p>Yes, all plans start with a 7-day free trial.</p>
-  <h3>Do I need a credit card?</h3>
-  <p>Yes, a valid card is required to activate your free trial.</p>
-</div>
-
-<footer>
-  <p>Follow Us</p>
-  <img src="https://i.imgur.com/zvWTUVu.png" alt="Facebook" />
-  <img src="https://i.imgur.com/7kQEsHU.png" alt="Twitter" />
-  <img src="https://i.imgur.com/5GfHozX.png" alt="Instagram" />
-  <p style="margin-top:10px;">&copy; 2025 StreamFlix</p>
-</footer>
-
-</body>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/ESPN_wordmark.svg" alt="ESPN">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/CNN_International_logo.svg" alt="CNN">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/BBC_World_News.svg" alt="BBC">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Cartoon_Network_logo.svg" alt="CN">
+  </div>  <h2 class="section-title">👶 Kids Profiles</h2>
+  <div class="carousel">
+    <img src="https://image.tmdb.org/t/p/w500/aQvJ5WPzZgYVDrxLX4R6cLJCEaQ.jpg" alt="Kids 1">
+    <img src="https://image.tmdb.org/t/p/w500/5P8SmMzSNYikXpxil6BYzJ16611.jpg" alt="Kids 2">
+    <img src="https://image.tmdb.org/t/p/w500/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg" alt="Kids 3">
+  </div>  <section style="text-align: center; padding: 2rem;">
+    <h2>Still not sure?</h2>
+    <a href="subscribe.html" style="padding: 1rem 2rem; background: red; color: white; border-radius: 0.5rem; font-weight: bold;">Start a Free Trial</a>
+  </section>  <section class="faq">
+    <h2 class="section-title">❓ Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <button onclick="toggleFAQ(this)">How does the free trial work?</button>
+      <div class="faq-answer">You get full access to all content for 7 days. No charge if you cancel before it ends.</div>
+    </div>
+    <div class="faq-item">
+      <button onclick="toggleFAQ(this)">Can I cancel anytime?</button>
+      <div class="faq-answer">Yes. Go to your profile and cancel anytime before your next billing cycle.</div>
+    </div>
+  </section>  <footer>
+    <div class="socials">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Twitter">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733614.png" alt="Instagram">
+    </div>
+    <p>&copy; 2025 Stream ▶. All rights reserved.</p>
+  </footer>  <script>
+    function toggleFAQ(button) {
+      const answer = button.nextElementSibling;
+      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+    }
+  </script></body>
 </html>
