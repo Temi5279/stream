@@ -1,184 +1,196 @@
 <!DOCTYPE html><html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stream</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
-    }
-    body {
-      background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.7)), url('https://i.ibb.co/4wrTLND/image.png') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      overflow-x: hidden;
-    }
-    header {
-      padding: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.6);
-    }
-    .logo {
-      font-size: 2rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-    }
-    .logo::after {
-      content: '\25B6';
-      color: red;
-      margin-left: 0.5rem;
-    }
-    .tagline {
-      font-size: 1rem;
-      font-weight: 400;
-      margin-top: 0.5rem;
-      text-align: center;
-    }
-    .signin-btn {
-      padding: 0.6rem 1.2rem;
-      border: none;
-      border-radius: 6px;
-      background: red;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .section {
-      padding: 3rem 2rem;
-    }
-    .section h2 {
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
-    }
-    .scroll-section {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-    }
-    .scroll-section img {
-      width: 300px;
-      height: 170px;
-      object-fit: cover;
-      border-radius: 12px;
-    }
-    .reasons, .faq, .footer {
-      background: rgba(0, 0, 0, 0.6);
-      margin-top: 2rem;
-      border-radius: 12px;
-      padding: 2rem;
-    }
-    .reason-item {
-      margin-bottom: 1rem;
-      transition: transform 0.3s ease;
-    }
-    .reason-item:hover {
-      transform: scale(1.05);
-    }
-    .footer div {
-      margin-bottom: 1rem;
-    }
-    .email-section {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .email-section input {
-      padding: 0.6rem;
-      border-radius: 6px;
-      border: none;
-      width: 60%;
-      max-width: 400px;
-    }
-    .email-section button {
-      margin-left: 1rem;
-      padding: 0.6rem 1.2rem;
-      border: none;
-      background: red;
-      color: white;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="logo">Stream</div>
-    <button class="signin-btn">Sign In</button>
-  </header>
-  <section class="tagline">
-    <h1>Movies. Shows. And More You Can’t Find Anywhere Else.</h1>
-  </section>
-  <section class="section">
-    <h2>Trending</h2>
-    <div class="scroll-section">
-      <img src="https://i.ibb.co/nM6NCYfK/image.png" alt="Trending" />
-      <img src="https://i.ibb.co/xKLm3Sws/image.png" alt="Trending" />
-      <img src="https://i.ibb.co/8nWJdBqC/image.png" alt="Trending" />
-    </div>
-  </section>
-  <section class="section">
-    <h2>Movies</h2>
-    <div class="scroll-section">
-      <img src="https://i.ibb.co/LdsYBD7t/image.png" alt="Movie" />
-      <img src="https://i.ibb.co/zTXVdP5K/image.png" alt="Movie" />
-      <img src="https://i.ibb.co/nMjbWwtc/image.png" alt="Movie" />
-    </div>
-  </section>
-  <section class="section">
-    <h2>Shows</h2>
-    <div class="scroll-section">
-      <img src="https://i.ibb.co/v6DLF8M6/image.png" alt="Show" />
-      <img src="https://i.ibb.co/RkcQ7cKW/image.png" alt="Show" />
-      <img src="https://i.ibb.co/ymcfzNny/image.png" alt="Show" />
-    </div>
-  </section>
-  <section class="section">
-    <h2>Live TV Events</h2>
-    <div class="scroll-section">
-      <img src="https://i.ibb.co/b5ttX3Td/image.png" alt="Premier League" />
-      <img src="https://i.ibb.co/RktmG5nd/image.png" alt="VMAs" />
-      <img src="https://i.ibb.co/WNPmtVy7/image.png" alt="KCA" />
-    </div>
-  </section>
-  <section class="section">
-    <h2>Kids</h2>
-    <div class="scroll-section">
-      <img src="https://i.ibb.co/8gzGq6NC/image.png" alt="Kids" />
-      <img src="https://i.ibb.co/00YDQyV/image.png" alt="Kids" />
-      <img src="https://i.ibb.co/LXHgNRmq/image.png" alt="Kids" />
-    </div>
-  </section>
-  <section class="reasons">
-    <h2>Reasons to Join Stream</h2>
-    <div class="reason-item">High-quality streaming in HD and 4K</div>
-    <div class="reason-item">Exclusive original content</div>
-    <div class="reason-item">No ads, just pure entertainment</div>
-  </section>
-  <section class="email-section">
-    <h2>Want to stay updated with Stream?</h2>
-    <input type="email" placeholder="Enter your email address" />
-    <button>Subscribe</button>
-  </section>
-  <section class="faq">
-    <h2>FAQs</h2>
-    <div>Can I cancel anytime? – Yes, you’re in full control.</div>
-    <div>Do I need a credit card? – You can use multiple payment methods.</div>
-    <div>Where is Stream available? – Stream is available globally.</div>
-  </section>
-  <section class="footer">
-    <div>Legal and Compliance</div>
-    <div>Help</div>
-    <div>Privacy Policy</div>
-    <div>Terms of Use</div>
-    <div>Contact</div>
-    <div>Legal: How we use other media</div>
-  </section>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stream</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+      }
+      body {
+        background-color: #0d0d0d;
+        color: #fff;
+        overflow-x: hidden;
+      }
+      header {
+        background: url('https://images.unsplash.com/photo-1598899134739-24c46f58c2a3') center/cover no-repeat;
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 2rem;
+        position: relative;
+      }
+      header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 0;
+      }
+      .logo {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #00bcd4;
+        z-index: 1;
+      }
+      .logo i {
+        font-size: 3rem;
+      }
+      .signin {
+        z-index: 1;
+        color: white;
+        font-weight: bold;
+      }
+      .hero-text {
+        z-index: 1;
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .hero-text h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      .section-title {
+        font-size: 2rem;
+        margin: 3rem 1rem 1rem;
+        border-left: 4px solid #00bcd4;
+        padding-left: 1rem;
+      }
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+      }
+      .content-grid img {
+        width: 100%;
+        border-radius: 10px;
+        transition: transform 0.3s;
+      }
+      .content-grid img:hover {
+        transform: scale(1.05);
+      }
+      .reasons-section {
+        background: url('https://images.unsplash.com/photo-1603791440384-56cd371ee9a7') center/cover no-repeat;
+        padding: 3rem 1rem;
+        text-align: center;
+      }
+      .reasons-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+      }
+      .subscribe {
+        padding: 3rem 1rem;
+        background-color: #111;
+        text-align: center;
+      }
+      .subscribe input {
+        padding: 0.75rem;
+        width: 250px;
+        border: none;
+        border-radius: 8px 0 0 8px;
+      }
+      .subscribe button {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0 8px 8px 0;
+        background-color: #00bcd4;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .faq {
+        padding: 3rem 1rem;
+      }
+      .faq summary {
+        font-weight: bold;
+        margin: 1rem 0;
+        cursor: pointer;
+      }
+      footer {
+        padding: 2rem;
+        background-color: #111;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        font-size: 0.9rem;
+        color: #bbb;
+      }
+      footer .socials a {
+        color: #00bcd4;
+        margin-right: 1rem;
+        text-decoration: none;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo"><i class="fas fa-play"></i></div>
+      <div class="signin">Sign In</div>
+      <div class="hero-text">
+        <h1>Unlimited Movies, Shows & More</h1>
+        <p>Watch anywhere. Cancel anytime. Start your free trial now.</p>
+      </div>
+    </header><section>
+  <h2 class="section-title">Trending Now</h2>
+  <div class="content-grid">
+    <img src="https://i.ibb.co/xKLm3ws/vmas.jpg" alt="VMAs" />
+    <img src="https://i.ibb.co/nMjbWwt/kca.jpg" alt="KCA" />
+    <img src="https://i.ibb.co/00YDQyV/planet-of-apes.jpg" alt="Planet of the Apes" />
+    <img src="https://i.ibb.co/LdsYBD7/football.jpg" alt="Premier League" />
+    <img src="https://i.ibb.co/LXHgNRm/kids-show.jpg" alt="Kids" />
+  </div>
+</section>
+
+<section class="reasons-section">
+  <h2>Why Join Stream?</h2>
+  <p>Stream anywhere, anytime. HD/SD quality. Live events. Affordable plans.</p>
+</section>
+
+<section class="subscribe">
+  <h2>Stay Updated with Stream</h2>
+  <input type="email" placeholder="Enter your email" />
+  <button>Subscribe</button>
+</section>
+
+<section class="faq">
+  <h2 class="section-title">FAQs</h2>
+  <details>
+    <summary>Can I cancel anytime?</summary>
+    <p>Yes. You can cancel your subscription anytime from your account settings.</p>
+  </details>
+  <details>
+    <summary>Do I need a credit card to start the free trial?</summary>
+    <p>Yes, but you won't be charged until the trial ends.</p>
+  </details>
+  <details>
+    <summary>Do you offer mobile apps?</summary>
+    <p>Yes! Android and iOS versions coming soon.</p>
+  </details>
+</section>
+
+<footer>
+  <div class="socials">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+  </div>
+  <div>
+    &copy; 2025 Stream. All rights reserved.
+    <br />Legal | Terms | Privacy | Accessibility
+  </div>
+</footer>
+
+  </body>
   </html>
