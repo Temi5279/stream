@@ -2,94 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Search - Stream App</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Search - Stream</title>
   <style>
     body {
       background-color: #111;
-      color: white;
+      color: #fff;
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding-bottom: 70px;
-    }
-    .search-bar {
-      padding: 15px;
-      background-color: #222;
-    }
-    .search-bar input {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-    }
-    h2 {
-      margin: 20px 15px 10px;
-      font-size: 20px;
-    }
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      padding: 0 15px;
-    }
-    .category-box {
-      background-color: #333;
       padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
     }
-    .category-box:hover {
-      background-color: #444;
-    }
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
+    input[type="text"] {
       width: 100%;
-      background-color: #000;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      border-top: 1px solid #333;
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 18px;
     }
-    .bottom-nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-      text-align: center;
+    .movie {
+      background: #222;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .movie img {
+      width: 80px;
+      height: 120px;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+    .movie h3 {
+      margin: 0;
+    }
+    .no-results {
+      color: #888;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
+  <h1>Search Movies</h1>
+  <input type="text" id="searchInput" placeholder="Search for a movie..." />
 
-  <div class="search-bar">
-    <input type="text" placeholder="Search for movies or shows..." />
-  </div>
+  <div id="results"></div>
 
-  <h2>Categories</h2>
-  <div class="categories">
-    <div class="category-box">Action</div>
-    <div class="category-box">Thriller</div>
-    <div class="category-box">Drama</div>
-    <div class="category-box">Comedy</div>
-    <div class="category-box">Horror</div>
-    <div class="category-box">Sci-Fi</div>
-    <div class="category-box">Romance</div>
-    <div class="category-box">Family</div>
-    <div class="category-box">Fantasy</div>
-    <div class="category-box">Crime</div>
-  </div>
+  <script>
+    const movies = [
+      {
+        title: "Fast X",
+        image: "https://image.tmdb.org/t/p/w300/1.jpg",
+        link: "#"
+      },
+      {
+        title: "Spider-Man: No Way Home",
+        image: "https://image.tmdb.org/t/p/w300/2.jpg",
+        link: "#"
+      },
+      {
+        title: "Oppenheimer",
+        image: "https://image.tmdb.org/t/p/w300/3.jpg",
+        link: "#"
+      }
+    ];
 
-  <div class="bottom-nav">
-    <a href="dashboard.html">🏠<br>Home</a>
-    <a href="search.html">🔍<br>Search</a>
-    <a href="livetv.html">📺<br>Live TV</a>
-    <a href="settings.html">⚙️<br>Settings</a>
-  </div>
+    const searchInput = document.getElementById("searchInput");
+    const resultsDiv = document.getElementById("results");
 
+    searchInput.addEventListener("input", function () {
+      const keyword = this.value.toLowerCase();
+      resultsDiv.innerHTML = "";
+
+      const filtered = movies.filter(movie =>
+        movie.title.toLowerCase().includes(keyword)
+      );
+
+      if (filtered.length === 0) {
+        resultsDiv.innerHTML = "<div class='no-results'>No results found.</div>";
+        return;
+      }
+
+      filtered.forEach(movie => {
+        const movieDiv = document.createElement("div");
+        movieDiv.classList.add("movie");
+
+        movieDiv.innerHTML = `
+          <img src="${movie.image}" alt="${movie.title}" />
+          <div>
+            <h3>${movie.title}</h3>
+            <a href="${movie.link}" style="color: #0bf;">Watch</a>
+          </div>
+        `;
+        resultsDiv.appendChild(movieDiv);
+      });
+    });
+  </script>
 </body>
 </html>
