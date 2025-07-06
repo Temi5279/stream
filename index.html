@@ -1,61 +1,72 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stream</title>
+  <title>Stream App</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <div class="logo">▶ Stream</div>
+    <div class="logo">Stream<span class="play">&#9658;</span></div>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Genres</a>
-      <a href="#">Pricing</a>
-      <a href="#">Login</a>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#genres">Genres</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <h1>You're in the right place</h1>
-      <p>Stream the best sports, series, and entertainment content.</p>
-    </section>
+  <section id="home">
+    <div class="hero">
+      <h1>Unlimited Streaming</h1>
+      <p>Watch movies, shows, and live sports anytime, anywhere.</p>
+      <a href="#pricing" class="cta-btn">Start Free Trial</a>
+    </div>
+  </section>
 
-    <section class="genres">
-      <h2>Browse by Genre</h2>
-      <div class="genre-list">
-        <button>Action</button>
-        <button>Drama</button>
-        <button>Comedy</button>
-        <button>Sports</button>
-      </div>
-    </section>
+  <section id="genres">
+    <h2>Browse by Genre</h2>
+    <div class="genre-grid">
+      <div class="genre-card">Action</div>
+      <div class="genre-card">Drama</div>
+      <div class="genre-card">Romance</div>
+      <div class="genre-card">Comedy</div>
+      <div class="genre-card">Horror</div>
+      <div class="genre-card">Sports</div>
+    </div>
+  </section>
 
-    <section class="pricing">
-      <h2>Choose Your Plan</h2>
-      <div class="plans">
-        <div class="plan">
-          <h3>Free Trial</h3>
-          <p>7 days</p>
-        </div>
-        <div class="plan">
-          <h3>Basic</h3>
-          <p>$3/month (SD)</p>
-        </div>
-        <div class="plan">
-          <h3>Premium</h3>
-          <p>$6/month (HD)</p>
-        </div>
+  <section id="pricing">
+    <h2>Choose Your Plan</h2>
+    <div class="pricing-grid">
+      <div class="plan">
+        <h3>Basic</h3>
+        <p class="price">₦1500 / month</p>
+        <ul>
+          <li>SD Quality</li>
+          <li>1 Device</li>
+          <li>7-day Free Trial</li>
+        </ul>
+        <a href="#" class="select-btn">Select</a>
       </div>
-    </section>
-  </main>
+      <div class="plan">
+        <h3>Premium</h3>
+        <p class="price">₦3000 / month</p>
+        <ul>
+          <li>HD Quality</li>
+          <li>3 Devices</li>
+          <li>7-day Free Trial</li>
+        </ul>
+        <a href="#" class="select-btn">Select</a>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <p>&copy; 2025 Stream. All rights reserved.</p>
   </footer>
-
-  <script src="app.js"></script>
 </body>
 </html>
