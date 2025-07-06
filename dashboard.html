@@ -1,94 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stream App - Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #111;
-      color: #fff;
-    }
-
-    .content {
-      padding-bottom: 80px; /* so it doesn’t hide behind bottom nav */
-      padding: 20px;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #222;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 10px 0;
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
-      z-index: 999;
-    }
-
-    .bottom-nav a {
-      color: #aaa;
-      text-decoration: none;
-      font-size: 13px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: 0.3s;
-    }
-
-    .bottom-nav a:hover {
-      color: #fff;
-    }
-
-    .bottom-nav a.active {
-      color: #1db954;
-    }
-
-    .bottom-nav i {
-      font-size: 20px;
-      margin-bottom: 4px;
-    }
-
-    .section-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-  </style>
   <script src="https://kit.fontawesome.com/0f4b9cd9f0.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-  <div class="content">
-    <h2 class="section-title">Welcome to Stream</h2>
-    <p>Your movies, shows, and live TV all in one place.</p>
-    <!-- Later we go add banners and carousels here -->
+  <div class="main-content">
+    <!-- Discover Section -->
+    <section class="discover">
+      <h2>Discover</h2>
+      <div class="scroll-row">
+        <!-- 10 scrollable movies -->
+        <div class="movie-card" onclick="window.location.href='watch.html'">
+          <img src="movie1.jpg" alt="Movie 1">
+        </div>
+        <!-- Add 9 more movie-card divs like this with different image paths -->
+      </div>
+    </section><!-- Top Ten Worldwide Section -->
+<section class="top-ten">
+  <h2>Top 10 Worldwide</h2>
+  <div class="scroll-row">
+    <div class="top-movie">
+      <span class="rank">1</span>
+      <img src="top1.jpg" alt="Top 1" onclick="window.location.href='watch.html'">
+    </div>
+    <!-- Add 9 more top-movie divs with ranks 2-10 -->
   </div>
+</section>
 
-  <div class="bottom-nav">
-    <a href="#" class="active">
-      <i class="fas fa-film"></i>
-      <span>Home</span>
-    </a>
-    <a href="#">
-      <i class="fas fa-search"></i>
-      <span>Search</span>
-    </a>
-    <a href="#">
-      <i class="fas fa-tv"></i>
-      <span>Live TV</span>
-    </a>
-    <a href="#">
-      <i class="fas fa-cog"></i>
-      <span>Settings</span>
-    </a>
+<!-- Discover Movies (2 per row) -->
+<section class="all-movies">
+  <h2>All Movies</h2>
+  <div class="movie-grid">
+    <div class="movie-card" onclick="window.location.href='watch.html'">
+      <img src="movieA.jpg" alt="Movie A">
+    </div>
+    <div class="movie-card" onclick="window.location.href='watch.html'">
+      <img src="movieB.jpg" alt="Movie B">
+    </div>
+    <!-- Add more in pairs -->
   </div>
+</section>
 
+  </div>  <!-- Bottom Navigation Bar -->  <nav class="bottom-nav">
+    <a href="dashboard.html"><i class="fas fa-compass"></i><span>Discover</span></a>
+    <a href="search.html"><i class="fas fa-search"></i><span>Search</span></a>
+    <a href="livetv.html"><i class="fas fa-tv"></i><span>Live TV</span></a>
+    <a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
+  </nav>
 </body>
-</html>
+                                            </html>
