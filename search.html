@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search - Stream App</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-bottom: 70px;
+    }
+    .search-bar {
+      padding: 15px;
+      background-color: #222;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+    }
+    h2 {
+      margin: 20px 15px 10px;
+      font-size: 20px;
+    }
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 0 15px;
+    }
+    .category-box {
+      background-color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .category-box:hover {
+      background-color: #444;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #000;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #333;
+    }
+    .bottom-nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Search for movies or shows..." />
+  </div>
+
+  <h2>Categories</h2>
+  <div class="categories">
+    <div class="category-box">Action</div>
+    <div class="category-box">Thriller</div>
+    <div class="category-box">Drama</div>
+    <div class="category-box">Comedy</div>
+    <div class="category-box">Horror</div>
+    <div class="category-box">Sci-Fi</div>
+    <div class="category-box">Romance</div>
+    <div class="category-box">Family</div>
+    <div class="category-box">Fantasy</div>
+    <div class="category-box">Crime</div>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="dashboard.html">🏠<br>Home</a>
+    <a href="search.html">🔍<br>Search</a>
+    <a href="livetv.html">📺<br>Live TV</a>
+    <a href="settings.html">⚙️<br>Settings</a>
+  </div>
+
+</body>
+</html>
