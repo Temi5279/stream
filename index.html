@@ -1,177 +1,61 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stream - Watch Movies & Live TV</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      background-color: #111;
-    }
-    .logo {
-      font-size: 24px;
-      display: flex;
-      align-items: center;
-    }
-    .logo-icon {
-      font-size: 28px;
-      color: red;
-      margin-right: 8px;
-    }
-    .sign-in {
-      background-color: red;
-      color: #fff;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    section {
-      padding: 40px 20px;
-    }
-    .hero {
-      background-image: url('https://i.imgur.com/MJ9FfHa.jpeg');
-      background-size: cover;
-      background-position: center;
-      height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 48px;
-      max-width: 800px;
-      line-height: 1.2;
-    }
-    .section-title {
-      font-size: 32px;
-      margin-bottom: 20px;
-      border-left: 5px solid red;
-      padding-left: 10px;
-    }
-    .scrolling-row {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-    }
-    .scrolling-row img {
-      width: 300px;
-      height: 170px;
-      border-radius: 10px;
-      flex-shrink: 0;
-    }
-    .reason-join-images {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .reason-join-images img {
-      width: 200px;
-      height: 120px;
-      border-radius: 10px;
-    }
-    footer {
-      padding: 40px 20px;
-      background-color: #111;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: space-between;
-    }
-    footer div {
-      flex: 1 1 200px;
-    }
-    a {
-      color: #aaa;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 8px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stream</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <div class="logo">
-      <span class="logo-icon">▶</span>
-    </div>
-    <button class="sign-in">Sign In</button>
-  </header>  <section class="hero">
-    <h1>Unlimited Movies, Series, Kids Shows, and Live TV</h1>
-  </section>  <section>
-    <div class="section-title">Trending</div>
-    <div class="scrolling-row">
-      <img src="https://i.imgur.com/yrZfI4k.jpeg" alt="Trending 1">
-      <img src="https://i.imgur.com/t52TrcX.jpeg" alt="Trending 2">
-      <img src="https://i.imgur.com/XBzzU4q.jpeg" alt="Trending 3">
-      <img src="https://i.imgur.com/OODgLTD.jpeg" alt="Trending 4">
-      <img src="https://i.imgur.com/qWkksUs.jpeg" alt="Trending 5">
-    </div>
-  </section>  <section>
-    <div class="section-title">Live TV</div>
-    <div class="scrolling-row">
-      <img src="https://i.imgur.com/z1qheKZ.jpeg" alt="BBC">
-      <img src="https://i.imgur.com/YbpN1ZX.jpeg" alt="CNN">
-      <img src="https://i.imgur.com/3kLZspw.jpeg" alt="ESPN">
-    </div>
-  </section>  <section>
-    <div class="section-title">Kids</div>
-    <div class="scrolling-row">
-      <img src="https://i.imgur.com/6fIfFTn.jpeg" alt="Kids 1">
-      <img src="https://i.imgur.com/nAoNRAk.jpeg" alt="Kids 2">
-      <img src="https://i.imgur.com/bU4Dg5B.jpeg" alt="Kids 3">
-    </div>
-  </section>  <section>
-    <div class="section-title">Reasons to Join Stream</div>
-    <div class="reason-join-images">
-      <img src="https://i.imgur.com/MJ9FfHa.jpeg" alt="Reason 1">
-      <img src="https://i.imgur.com/hVFF8QT.jpeg" alt="Reason 2">
-      <img src="https://i.imgur.com/6fIfFTn.jpeg" alt="Reason 3">
-      <img src="https://i.imgur.com/OODgLTD.jpeg" alt="Reason 4">
-      <img src="https://i.imgur.com/t52TrcX.jpeg" alt="Reason 5">
-    </div>
-  </section>  <section>
-    <div class="section-title">Stream Anywhere, Anytime</div>
-    <img src="https://i.imgur.com/Z6RM29J.jpeg" alt="Stream Laptop" style="width:100%; border-radius:10px;">
-  </section>  <section>
-    <div class="section-title">Want to Stay Updated with Stream?</div>
-    <input type="email" placeholder="Enter your email" style="padding:10px; width:100%; max-width:400px;">
-  </section>  <section>
-    <div class="section-title">FAQs</div>
-    <ul>
-      <li>How do I sign up?</li>
-      <li>What devices are supported?</li>
-      <li>Is there a free trial?</li>
-      <li>Can I cancel anytime?</li>
-    </ul>
-  </section>  <footer>
-    <div>
-      <h4>Legal</h4>
-      <a href="#">Terms of Use</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Cookies</a>
-    </div>
-    <div>
-      <h4>Company</h4>
-      <a href="#">About Stream</a>
-      <a href="#">Contact Us</a>
-      <a href="#">Help Center</a>
-    </div>
-    <div>
-      <h4>Social</h4>
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">YouTube</a>
-    </div>
+    <div class="logo">▶ Stream</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Genres</a>
+      <a href="#">Pricing</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>You're in the right place</h1>
+      <p>Stream the best sports, series, and entertainment content.</p>
+    </section>
+
+    <section class="genres">
+      <h2>Browse by Genre</h2>
+      <div class="genre-list">
+        <button>Action</button>
+        <button>Drama</button>
+        <button>Comedy</button>
+        <button>Sports</button>
+      </div>
+    </section>
+
+    <section class="pricing">
+      <h2>Choose Your Plan</h2>
+      <div class="plans">
+        <div class="plan">
+          <h3>Free Trial</h3>
+          <p>7 days</p>
+        </div>
+        <div class="plan">
+          <h3>Basic</h3>
+          <p>$3/month (SD)</p>
+        </div>
+        <div class="plan">
+          <h3>Premium</h3>
+          <p>$6/month (HD)</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Stream. All rights reserved.</p>
   </footer>
+
+  <script src="app.js"></script>
 </body>
-  </html>
+</html>
