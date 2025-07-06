@@ -5,54 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stream App - Dashboard</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #111;
+      color: #fff;
+    }
+
+    .content {
+      padding-bottom: 80px; /* so it doesn’t hide behind bottom nav */
+      padding: 20px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #222;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+
+    .bottom-nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: 0.3s;
+    }
+
+    .bottom-nav a:hover {
+      color: #fff;
+    }
+
+    .bottom-nav a.active {
+      color: #1db954;
+    }
+
+    .bottom-nav i {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/0f4b9cd9f0.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <main id="main-content">
-    <section id="home-section">
-      <h1>Welcome to Stream 🎬</h1>
-      <p>Your featured movies and shows will appear here.</p>
-    </section>
 
-    <section id="search-section" class="hidden">
-      <input type="text" placeholder="Search movies..." class="search-input"/>
-      <div class="categories">
-        <button>Action</button>
-        <button>Comedy</button>
-        <button>Romance</button>
-        <button>Horror</button>
-        <button>Drama</button>
-        <button>Kids</button>
-      </div>
-    </section>
+  <div class="content">
+    <h2 class="section-title">Welcome to Stream</h2>
+    <p>Your movies, shows, and live TV all in one place.</p>
+    <!-- Later we go add banners and carousels here -->
+  </div>
 
-    <section id="live-section" class="hidden">
-      <h2>Live TV</h2>
-      <p>This section is available only to HD+Live TV subscribers.</p>
-    </section>
+  <div class="bottom-nav">
+    <a href="#" class="active">
+      <i class="fas fa-film"></i>
+      <span>Home</span>
+    </a>
+    <a href="#">
+      <i class="fas fa-search"></i>
+      <span>Search</span>
+    </a>
+    <a href="#">
+      <i class="fas fa-tv"></i>
+      <span>Live TV</span>
+    </a>
+    <a href="#">
+      <i class="fas fa-cog"></i>
+      <span>Settings</span>
+    </a>
+  </div>
 
-    <section id="settings-section" class="hidden">
-      <h2>Settings ⚙️</h2>
-      <ul>
-        <li><a href="#">Manage Account</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Log Out</a></li>
-      </ul>
-    </section>
-  </main>
-
-  <nav class="bottom-nav">
-    <button onclick="switchTab('home')">🏠<br><span>Home</span></button>
-    <button onclick="switchTab('search')">🔍<br><span>Search</span></button>
-    <button onclick="switchTab('live')">📺<br><span>Live TV</span></button>
-    <button onclick="switchTab('settings')">⚙️<br><span>Settings</span></button>
-  </nav>
-
-  <script>
-    function switchTab(tab) {
-      document.querySelectorAll('main section').forEach(sec => sec.classList.add('hidden'));
-      document.getElementById(`${tab}-section`).classList.remove('hidden');
-    }
-  </script>
 </body>
-      </html>
+</html>
