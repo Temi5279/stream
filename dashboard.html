@@ -1,125 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StreamVerse</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
+  <title>Stream Home</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #0e0e10;
-      color: #ffffff;
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
     }
     header {
-      background-color: #1f1f23;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-size: 1.5rem;
+      padding: 20px;
+      font-size: 24px;
       font-weight: bold;
-      color: #e50914;
-    }
-    nav a {
-      color: #ffffff;
-      margin-left: 1.5rem;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-    nav a:hover {
-      color: #e50914;
-    }
-    .hero {
-      background: url('https://wallpaperaccess.com/full/2703652.jpg') center/cover no-repeat;
-      height: 50vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      background: rgba(0,0,0,0.6);
-      padding: 1rem 2rem;
-      border-radius: 10px;
     }
     .section-title {
-      padding: 2rem;
-      font-size: 1.5rem;
+      font-size: 18px;
+      margin: 20px 10px 10px;
     }
-    .movie-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5rem;
-      padding: 0 2rem 2rem;
+    .row {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 10px;
     }
-    .movie-card {
-      background-color: #1f1f23;
+    .card {
+      min-width: 150px;
+      height: 220px;
+      background-color: #222;
       border-radius: 10px;
+      margin-right: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
+      transition: transform 0.3s ease;
+      position: relative;
     }
-    .movie-card:hover {
-      transform: scale(1.05);
+    .card:hover {
+      transform: scale(1.08);
+      z-index: 2;
     }
-    .movie-card img {
+    .card img {
       width: 100%;
-      height: 270px;
+      height: 100%;
       object-fit: cover;
     }
-    .movie-card h4 {
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #111;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #333;
+    }
+    nav a {
+      text-decoration: none;
+      color: #aaa;
+      text-align: center;
+      font-size: 12px;
+    }
+    nav a:hover {
       color: #fff;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <div class="logo">StreamVerse ▶</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="search.html">Search</a>
-      <a href="livetv.html">Live TV</a>
-      <a href="kids.html">Kids</a>
-      <a href="settings.html">Settings</a>
-    </nav>
-  </header>
-
-  <div class="hero">
-    <h1>Welcome to StreamVerse</h1>
-  </div>
-
-  <div class="section-title">Popular Now</div>
-  <div class="movie-grid">
-    <div class="movie-card">
-      <img src="https://i.imgur.com/2DhmtJ4.jpg" alt="Movie 1" />
-      <h4>The Smurfs</h4>
-    </div>
-    <div class="movie-card">
-      <img src="https://i.imgur.com/EHyR2nP.png" alt="Movie 2" />
-      <h4>Spider-Man</h4>
-    </div>
-    <div class="movie-card">
-      <img src="https://i.imgur.com/3K3bZB3.jpg" alt="Movie 3" />
-      <h4>Fast X</h4>
-    </div>
-    <div class="movie-card">
-      <img src="https://i.imgur.com/0rKi2vG.jpg" alt="Movie 4" />
-      <h4>The Flash</h4>
-    </div>
-  </div>
-
+  <header>Stream</header>  <div class="section-title">Trending Now</div>
+  <div class="row">
+    <div class="card"><img src="https://placehold.co/150x220/111/fff?text=Movie+1" alt="Movie 1"></div>
+    <div class="card"><img src="https://placehold.co/150x220/222/fff?text=Movie+2" alt="Movie 2"></div>
+    <div class="card"><img src="https://placehold.co/150x220/333/fff?text=Movie+3" alt="Movie 3"></div>
+    <div class="card"><img src="https://placehold.co/150x220/444/fff?text=Movie+4" alt="Movie 4"></div>
+  </div>  <div class="section-title">Live TV</div>
+  <div class="row">
+    <div class="card"><img src="https://placehold.co/150x220/115/fff?text=BBC+News" alt="BBC News"></div>
+    <div class="card"><img src="https://placehold.co/150x220/252/fff?text=CNN+Live" alt="CNN Live"></div>
+    <div class="card"><img src="https://placehold.co/150x220/534/fff?text=ABC" alt="ABC"></div>
+    <div class="card"><img src="https://placehold.co/150x220/999/fff?text=Sky+News" alt="Sky News"></div>
+  </div>  <nav>
+    <a href="#"><div>🏠<br>Home</div></a>
+    <a href="#"><div>📺<br>Live TV</div></a>
+    <a href="#"><div>🔍<br>Search</div></a>
+    <a href="#"><div>👤<br>Profile</div></a>
+  </nav>
 </body>
 </html>
