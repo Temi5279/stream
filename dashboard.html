@@ -2,93 +2,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stream Home</title>
+  <title>Stream Site</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     body {
-      background-color: #000;
+      background: #0e0e0e;
       color: #fff;
-      overflow-x: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding-bottom: 70px;
     }
     header {
-      padding: 20px;
-      font-size: 24px;
-      font-weight: bold;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      background: linear-gradient(to right, #111, #222);
     }
-    .section-title {
-      font-size: 18px;
-      margin: 20px 10px 10px;
+    .content {
+      padding: 1.5rem;
     }
-    .row {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 10px;
-    }
-    .card {
-      min-width: 150px;
-      height: 220px;
-      background-color: #222;
-      border-radius: 10px;
-      margin-right: 10px;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-      position: relative;
-    }
-    .card:hover {
-      transform: scale(1.08);
-      z-index: 2;
-    }
-    .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    nav {
+    .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
-      right: 0;
-      background: #111;
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(to right, #1a1a1a, #0d0d0d);
       display: flex;
       justify-content: space-around;
-      padding: 10px 0;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
       border-top: 1px solid #333;
     }
-    nav a {
+    .bottom-nav a {
+      color: #bbb;
       text-decoration: none;
-      color: #aaa;
-      text-align: center;
-      font-size: 12px;
+      font-size: 1.6rem;
+      transition: transform 0.2s ease, color 0.2s ease;
     }
-    nav a:hover {
+    .bottom-nav a:hover {
+      color: #fff;
+      transform: scale(1.2);
+    }
+    .bottom-nav a.active {
       color: #fff;
     }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navLinks = document.querySelectorAll('.bottom-nav a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        });
+      });
+    });
+  </script>
 </head>
 <body>
-  <header>Stream</header>  <div class="section-title">Trending Now</div>
-  <div class="row">
-    <div class="card"><img src="https://placehold.co/150x220/111/fff?text=Movie+1" alt="Movie 1"></div>
-    <div class="card"><img src="https://placehold.co/150x220/222/fff?text=Movie+2" alt="Movie 2"></div>
-    <div class="card"><img src="https://placehold.co/150x220/333/fff?text=Movie+3" alt="Movie 3"></div>
-    <div class="card"><img src="https://placehold.co/150x220/444/fff?text=Movie+4" alt="Movie 4"></div>
-  </div>  <div class="section-title">Live TV</div>
-  <div class="row">
-    <div class="card"><img src="https://placehold.co/150x220/115/fff?text=BBC+News" alt="BBC News"></div>
-    <div class="card"><img src="https://placehold.co/150x220/252/fff?text=CNN+Live" alt="CNN Live"></div>
-    <div class="card"><img src="https://placehold.co/150x220/534/fff?text=ABC" alt="ABC"></div>
-    <div class="card"><img src="https://placehold.co/150x220/999/fff?text=Sky+News" alt="Sky News"></div>
-  </div>  <nav>
-    <a href="#"><div>🏠<br>Home</div></a>
-    <a href="#"><div>📺<br>Live TV</div></a>
-    <a href="#"><div>🔍<br>Search</div></a>
-    <a href="#"><div>👤<br>Profile</div></a>
+  <header>StreamBox</header>  <div class="content">
+    <p>Welcome to your redesigned streaming site!</p>
+    <p>Click the icons below to explore Live TV, Discover, More and Profile.</p>
+  </div>  <nav class="bottom-nav">
+    <a href="index.html" title="Home">🏠</a>
+    <a href="livetv.html" title="Live TV">📺</a>
+    <a href="discover.html" title="Discover">🔍</a>
+    <a href="more.html" title="More">📁</a>
+    <a href="profile.html" title="Profile">👤</a>
   </nav>
 </body>
 </html>
