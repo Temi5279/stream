@@ -1,81 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Live TV - Stream</title>
-<link rel="stylesheet" href="style.css">
-<style>
-  body { background: #111; color: #fff; font-family: Arial, sans-serif; margin:0; padding-bottom:70px; }
-  h1 { text-align: center; padding: 20px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); gap:20px; padding: 0 20px; }
-  .channel-card { background:#1a1a1a; border-radius:12px; overflow:hidden; cursor:pointer; transition:transform .3s; }
-  .channel-card:hover { transform:scale(1.05); }
-  .channel-card img { width:100%; height:100px; object-fit:cover; }
-  .channel-title { padding:10px; text-align:center; font-weight:600;}
-  video { display: block; width:100%; max-height:400px; margin:20px auto; background:#000; }
-  .bottom-nav { position:fixed; bottom:0; width:100%; background:#222; display:flex; justify-content:space-around; padding:10px 0; }
-  .bottom-nav a { color:#aaa; text-align:center; font-size:13px; text-decoration:none; transition:.3s; }
-  .bottom-nav a:hover, .bottom-nav .active { color:#fff; }
-</style>
-</head>
-<body>
-
-<h1>📺 Live TV & VOD</h1>
-
-<div class="grid">
-  <div class="channel-card" onclick="playStream('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8')">
-    <img src="https://img.icons8.com/color/256/vlc-media-player.png" alt="Big Buck Bunny">
-    <div class="channel-title">Big Buck Bunny</div>
-  </div>
-  <div class="channel-card" onclick="playStream('https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8')">
-    <img src="https://demo.unified-streaming.com/favicon.ico" alt="Tears of Steel">
-    <div class="channel-title">Tears of Steel</div>
-  </div>
-  <div class="channel-card" onclick="playStream('https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8')">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Akamai_Logo.svg" alt="Akamai Live">
-    <div class="channel-title">Akamai Live</div>
-  </div>
-  <div class="channel-card" onclick="playStream('https://skynewsau-live.akamaized.net/hls/live/2002689/skynewsau-extra1/master.m3u8')">
-    <img src="https://www.skynews.com.au/content/dam/brands/sky-news/partner/assets/logos/sky-news-australia.png" alt="Sky News AU">
-    <div class="channel-title">Sky News AU</div>
-  </div>
-  <div class="channel-card" onclick="playStream('https://test-streams.mux.dev/tos_ismc/main.m3u8')">
-    <img src="https://img.icons8.com/color/256/film.png" alt="Tears of Steel 2">
-    <div class="channel-title">Tears of Steel 2</div>
-  </div>
-  <div class="channel-card" onclick="playStream('https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8')">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/The_Sintel_Movie_logo.png" alt="Sintel">
-    <div class="channel-title">Sintel</div>
+<div class="px-4 py-6">
+  <h2 class="text-xl font-bold text-white mb-4">Live TV</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+    <!-- Channel Card -->
+    <div onclick="openPlayer('Channels TV', 'https://livetvcenter.com/Live/Channels_TV_Nigeria_1865.m3u8')" class="cursor-pointer bg-zinc-900 rounded-2xl p-2 shadow-md hover:scale-105 transition-all duration-300">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Channels_TV_logo.png/200px-Channels_TV_logo.png" alt="Channels TV" class="rounded-xl w-full h-28 object-contain bg-white p-2">
+      <div class="mt-2 text-white text-sm font-semibold flex items-center justify-between">
+        Channels TV <span class="text-red-500 text-xs ml-1">LIVE 🔴</span>
+      </div>
+    </div><div onclick="openPlayer('NTA News 24', 'https://livetvcenter.com/Live/NTA_News_24_3189.m3u8')" class="cursor-pointer bg-zinc-900 rounded-2xl p-2 shadow-md hover:scale-105 transition-all duration-300">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Nigerian_Television_Authority_Logo.svg/2560px-Nigerian_Television_Authority_Logo.svg.png" alt="NTA" class="rounded-xl w-full h-28 object-contain bg-white p-2">
+  <div class="mt-2 text-white text-sm font-semibold flex items-center justify-between">
+    NTA News 24 <span class="text-red-500 text-xs ml-1">LIVE 🔴</span>
   </div>
 </div>
 
-<video id="livevid" controls autoplay></video>
+<!-- Add more channels below in same format -->
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<script>
-  const video = document.getElementById('livevid');
-  let hls;
-
-  function playStream(url){
-    if(hls){ hls.destroy(); }
-    if(Hls.isSupported()){
-      hls = new Hls();
-      hls.loadSource(url);
-      hls.attachMedia(video);
-    } else {
-      video.src = url;
-    }
-    video.scrollIntoView({ behavior:'smooth' });
+  </div>
+</div><!-- Video Modal --><div id="playerModal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden">
+  <div class="bg-zinc-800 rounded-2xl p-4 w-full max-w-xl">
+    <div class="flex justify-between items-center mb-2">
+      <h3 id="playerTitle" class="text-white text-lg font-bold">Now Playing</h3>
+      <button onclick="closePlayer()" class="text-white text-xl">✖</button>
+    </div>
+    <div class="aspect-w-16 aspect-h-9">
+      <iframe id="playerIframe" class="w-full h-64 rounded-xl" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</div><script>
+  function openPlayer(title, url) {
+    document.getElementById('playerTitle').innerText = title;
+    document.getElementById('playerIframe').src = url;
+    document.getElementById('playerModal').classList.remove('hidden');
   }
-</script>
 
-<div class="bottom-nav">
-  <a href="dashboard.html">🏠<br>Home</a>
-  <a href="search.html">🔍<br>Search</a>
-  <a href="livetv.html" class="active">📺<br>Live TV</a>
-  <a href="settings.html">⚙️<br>Settings</a>
-</div>
-
-</body>
-</html>
+  function closePlayer() {
+    document.getElementById('playerModal').classList.add('hidden');
+    document.getElementById('playerIframe').src = '';
+  }
+                            </script>
