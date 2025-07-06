@@ -1,80 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Live TV - Stream</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0d0d0d;
-      color: #fff;
-    }
-    h1 {
-      text-align: center;
-      padding: 20px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .channel-card {
-      background: #1a1a1a;
-      border-radius: 12px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-    .channel-card:hover {
-      transform: scale(1.05);
-    }
-    .channel-card img {
-      width: 100%;
-      height: 100px;
-      object-fit: cover;
-    }
-    iframe {
-      width: 100%;
-      height: 400px;
-      border: none;
-      margin-top: 20px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live TV - Stream</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body { background: #111; color: #fff; font-family: Arial, sans-serif; margin:0; padding-bottom:70px; }
+  h1 { text-align: center; padding: 20px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); gap:20px; padding: 0 20px; }
+  .channel-card { background:#1a1a1a; border-radius:12px; overflow:hidden; cursor:pointer; transition:transform .3s; }
+  .channel-card:hover { transform:scale(1.05); }
+  .channel-card img { width:100%; height:100px; object-fit:cover; }
+  .channel-title { padding:10px; text-align:center; font-weight:600;}
+  video { display: block; width:100%; max-height:400px; margin:20px auto; background:#000; }
+  .bottom-nav { position:fixed; bottom:0; width:100%; background:#222; display:flex; justify-content:space-around; padding:10px 0; }
+  .bottom-nav a { color:#aaa; text-align:center; font-size:13px; text-decoration:none; transition:.3s; }
+  .bottom-nav a:hover, .bottom-nav .active { color:#fff; }
+</style>
 </head>
 <body>
 
-<h1>📺 Live TV</h1>
+<h1>📺 Live TV & VOD</h1>
 
 <div class="grid">
-  <div class="channel-card" onclick="playStream('https://iptv-org.github.io/channels/ng/AfricaMagicUrban#SD')">
-    <img src="https://upload.wikimedia.org/wikipedia/en/b/bd/Africa_Magic_Urban_Logo.png" alt="Africa Magic Urban">
+  <div class="channel-card" onclick="playStream('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8')">
+    <img src="https://img.icons8.com/color/256/vlc-media-player.png" alt="Big Buck Bunny">
+    <div class="channel-title">Big Buck Bunny</div>
   </div>
-
-  <div class="channel-card" onclick="playStream('https://iptv-org.github.io/channels/uk/AnimalPlanet#SD')">
-    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f4/Animal_Planet_2018.svg/2560px-Animal_Planet_2018.svg.png" alt="Animal Planet">
+  <div class="channel-card" onclick="playStream('https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8')">
+    <img src="https://demo.unified-streaming.com/favicon.ico" alt="Tears of Steel">
+    <div class="channel-title">Tears of Steel</div>
   </div>
-
-  <div class="channel-card" onclick="playStream('https://iptv-org.github.io/channels/uk/AfrobeatTVEntertainment#SD')">
-    <img src="https://via.placeholder.com/300x100.png?text=Afrobeat+TV+Entertainment" alt="Afrobeat TV Entertainment">
+  <div class="channel-card" onclick="playStream('https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Akamai_Logo.svg" alt="Akamai Live">
+    <div class="channel-title">Akamai Live</div>
   </div>
-
-  <div class="channel-card" onclick="playStream('https://iptv-org.github.io/channels/uk/BBCBrit#Africa')">
-    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c7/BBC_Brit_2022.svg/2560px-BBC_Brit_2022.svg.png" alt="BBC Brit">
+  <div class="channel-card" onclick="playStream('https://skynewsau-live.akamaized.net/hls/live/2002689/skynewsau-extra1/master.m3u8')">
+    <img src="https://www.skynews.com.au/content/dam/brands/sky-news/partner/assets/logos/sky-news-australia.png" alt="Sky News AU">
+    <div class="channel-title">Sky News AU</div>
+  </div>
+  <div class="channel-card" onclick="playStream('https://test-streams.mux.dev/tos_ismc/main.m3u8')">
+    <img src="https://img.icons8.com/color/256/film.png" alt="Tears of Steel 2">
+    <div class="channel-title">Tears of Steel 2</div>
+  </div>
+  <div class="channel-card" onclick="playStream('https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/The_Sintel_Movie_logo.png" alt="Sintel">
+    <div class="channel-title">Sintel</div>
   </div>
 </div>
 
-<iframe id="tvFrame" allowfullscreen></iframe>
+<video id="livevid" controls autoplay></video>
 
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script>
-  function playStream(url) {
-    document.getElementById("tvFrame").src = url;
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  const video = document.getElementById('livevid');
+  let hls;
+
+  function playStream(url){
+    if(hls){ hls.destroy(); }
+    if(Hls.isSupported()){
+      hls = new Hls();
+      hls.loadSource(url);
+      hls.attachMedia(video);
+    } else {
+      video.src = url;
+    }
+    video.scrollIntoView({ behavior:'smooth' });
   }
 </script>
+
+<div class="bottom-nav">
+  <a href="dashboard.html">🏠<br>Home</a>
+  <a href="search.html">🔍<br>Search</a>
+  <a href="livetv.html" class="active">📺<br>Live TV</a>
+  <a href="settings.html">⚙️<br>Settings</a>
+</div>
 
 </body>
 </html>
