@@ -3,167 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stream Dashboard</title>
+  <title>Stream App - Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #121212;
-      color: white;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #1a1a1a;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    .logo .play {
-      color: red;
-      font-size: 1.2rem;
-      margin-left: 4px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .hero {
-      background: url('https://wallpaperaccess.com/full/3063062.jpg') center/cover no-repeat;
-      height: 60vh;
-      display: flex;
-      align-items: flex-end;
-      padding: 2rem;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 1rem;
-      border-radius: 10px;
-    }
-
-    .section {
-      padding: 2rem;
-    }
-
-    .section h2 {
-      margin-bottom: 1rem;
-    }
-
-    .movie-row {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-    }
-
-    .movie-card {
-      min-width: 200px;
-      height: 300px;
-      background-color: #333;
-      border-radius: 10px;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .movie-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #1a1a1a;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-    }
-
-    /* Scrollbar hidden */
-    .movie-row::-webkit-scrollbar {
-      display: none;
-    }
-  </style>
 </head>
 <body>
+  <main id="main-content">
+    <section id="home-section">
+      <h1>Welcome to Stream 🎬</h1>
+      <p>Your featured movies and shows will appear here.</p>
+    </section>
 
-  <header>
-    <div class="logo">Stream<span class="play">&#9658;</span></div>
-    <nav>
+    <section id="search-section" class="hidden">
+      <input type="text" placeholder="Search movies..." class="search-input"/>
+      <div class="categories">
+        <button>Action</button>
+        <button>Comedy</button>
+        <button>Romance</button>
+        <button>Horror</button>
+        <button>Drama</button>
+        <button>Kids</button>
+      </div>
+    </section>
+
+    <section id="live-section" class="hidden">
+      <h2>Live TV</h2>
+      <p>This section is available only to HD+Live TV subscribers.</p>
+    </section>
+
+    <section id="settings-section" class="hidden">
+      <h2>Settings ⚙️</h2>
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#categories">Categories</a></li>
-        <li><a href="#live">Live TV</a></li>
-        <li><a href="#kids">Kids</a></li>
+        <li><a href="#">Manage Account</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Log Out</a></li>
       </ul>
-    </nav>
-  </header>
+    </section>
+  </main>
 
-  <section class="hero" id="home">
-    <h1>Welcome to Stream – Watch Anytime, Anywhere</h1>
-  </section>
+  <nav class="bottom-nav">
+    <button onclick="switchTab('home')">🏠<br><span>Home</span></button>
+    <button onclick="switchTab('search')">🔍<br><span>Search</span></button>
+    <button onclick="switchTab('live')">📺<br><span>Live TV</span></button>
+    <button onclick="switchTab('settings')">⚙️<br><span>Settings</span></button>
+  </nav>
 
-  <section class="section" id="categories">
-    <h2>Action</h2>
-    <div class="movie-row">
-      <div class="movie-card">
-        <img src="https://image.tmdb.org/t/p/w500/9JBEPLTPSm0d1mbEcLxULjJq9Eh.jpg" alt="Action Movie" />
-      </div>
-      <div class="movie-card">
-        <img src="https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg" alt="Action Movie 2" />
-      </div>
-    </div>
-  </section>
-  <div class="genre-card action-video">
-  <h3>Action</h3>
-  <iframe src="https://drive.google.com/file/d/1mh-Ky_ClNLCyXbixfICABhMkyoQnaN2y/preview" 
-          width="100%" height="315" allow="autoplay" allowfullscreen>
-  </iframe>
-  </div>
-
-  <section class="section" id="live">
-    <h2>Live TV</h2>
-    <div class="movie-row">
-      <div class="movie-card">
-        <img src="https://image.tmdb.org/t/p/w500/9O1Iy9od7gGbaKso6iyNH4P08pK.jpg" alt="Live Match" />
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="kids">
-    <h2>Kids</h2>
-    <div class="movie-row">
-      <div class="movie-card">
-        <img src="https://image.tmdb.org/t/p/w500/nx2ZxUoHk0tAxg7Xovn4R8q0bNB.jpg" alt="Kids Movie" />
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    &copy; 2025 Stream. All rights reserved.
-  </footer>
-
+  <script>
+    function switchTab(tab) {
+      document.querySelectorAll('main section').forEach(sec => sec.classList.add('hidden'));
+      document.getElementById(`${tab}-section`).classList.remove('hidden');
+    }
+  </script>
 </body>
-          </html>
+      </html>
