@@ -1,41 +1,53 @@
-<div class="px-4 py-6">
-  <h2 class="text-xl font-bold text-white mb-4">Live TV</h2>
-  <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-    <!-- Channel Card -->
-    <div onclick="openPlayer('Channels TV', 'https://livetvcenter.com/Live/Channels_TV_Nigeria_1865.m3u8')" class="cursor-pointer bg-zinc-900 rounded-2xl p-2 shadow-md hover:scale-105 transition-all duration-300">
-      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Channels_TV_logo.png/200px-Channels_TV_logo.png" alt="Channels TV" class="rounded-xl w-full h-28 object-contain bg-white p-2">
-      <div class="mt-2 text-white text-sm font-semibold flex items-center justify-between">
-        Channels TV <span class="text-red-500 text-xs ml-1">LIVE 🔴</span>
-      </div>
-    </div><div onclick="openPlayer('NTA News 24', 'https://livetvcenter.com/Live/NTA_News_24_3189.m3u8')" class="cursor-pointer bg-zinc-900 rounded-2xl p-2 shadow-md hover:scale-105 transition-all duration-300">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Nigerian_Television_Authority_Logo.svg/2560px-Nigerian_Television_Authority_Logo.svg.png" alt="NTA" class="rounded-xl w-full h-28 object-contain bg-white p-2">
-  <div class="mt-2 text-white text-sm font-semibold flex items-center justify-between">
-    NTA News 24 <span class="text-red-500 text-xs ml-1">LIVE 🔴</span>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live TV - str▶eam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-black text-white font-sans">
+    <!-- Header -->
+    <header class="flex items-center justify-between p-4 border-b border-gray-700">
+      <h1 class="text-xl font-bold">Live TV</h1>
+      <span class="text-sm opacity-75">str<span class="text-red-500">▶</span>eam</span>
+    </header>
 
-<!-- Add more channels below in same format -->
+    <!-- Video Section -->
+    <section class="p-4 flex flex-col items-center justify-center min-h-[70vh]">
+      <video
+        id="liveVideo"
+        controls
+        autoplay
+        class="w-full max-w-4xl rounded-2xl shadow-lg"
+        poster="https://placehold.co/800x450/000000/FFFFFF?text=Live+TV+Preview"
+      >
+        <source src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" type="application/x-mpegURL" />
+        Your browser does not support the video tag.
+      </video>
+      <p class="mt-4 text-sm text-gray-400">Streaming Live: Channel 1</p>
+    </section>
 
-  </div>
-</div><!-- Video Modal --><div id="playerModal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden">
-  <div class="bg-zinc-800 rounded-2xl p-4 w-full max-w-xl">
-    <div class="flex justify-between items-center mb-2">
-      <h3 id="playerTitle" class="text-white text-lg font-bold">Now Playing</h3>
-      <button onclick="closePlayer()" class="text-white text-xl">✖</button>
-    </div>
-    <div class="aspect-w-16 aspect-h-9">
-      <iframe id="playerIframe" class="w-full h-64 rounded-xl" src="" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-</div><script>
-  function openPlayer(title, url) {
-    document.getElementById('playerTitle').innerText = title;
-    document.getElementById('playerIframe').src = url;
-    document.getElementById('playerModal').classList.remove('hidden');
-  }
-
-  function closePlayer() {
-    document.getElementById('playerModal').classList.add('hidden');
-    document.getElementById('playerIframe').src = '';
-  }
-                            </script>
+    <!-- Bottom Nav (Optional if you already have this) -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-[#111] border-t border-gray-700 flex justify-around py-2 z-50">
+      <button class="flex flex-col items-center text-xs text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h4l3 10h8l3-10h4" />
+        </svg>
+        Home
+      </button>
+      <button class="flex flex-col items-center text-xs text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553 2.276A1 1 0 0120 13.118V18a1 1 0 01-1 1h-1M9 10L4.447 12.276A1 1 0 004 13.118V18a1 1 0 001 1h1m4-9v9m6-9v9" />
+        </svg>
+        Live TV
+      </button>
+      <button class="flex flex-col items-center text-xs text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2" />
+        </svg>
+        More
+      </button>
+    </nav>
+  </body>
+</html>
