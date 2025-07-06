@@ -1,58 +1,125 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stream App - Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://kit.fontawesome.com/0f4b9cd9f0.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreamVerse</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #0e0e10;
+      color: #ffffff;
+    }
+    header {
+      background-color: #1f1f23;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #e50914;
+    }
+    nav a {
+      color: #ffffff;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    nav a:hover {
+      color: #e50914;
+    }
+    .hero {
+      background: url('https://wallpaperaccess.com/full/2703652.jpg') center/cover no-repeat;
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      background: rgba(0,0,0,0.6);
+      padding: 1rem 2rem;
+      border-radius: 10px;
+    }
+    .section-title {
+      padding: 2rem;
+      font-size: 1.5rem;
+    }
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      padding: 0 2rem 2rem;
+    }
+    .movie-card {
+      background-color: #1f1f23;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    .movie-card:hover {
+      transform: scale(1.05);
+    }
+    .movie-card img {
+      width: 100%;
+      height: 270px;
+      object-fit: cover;
+    }
+    .movie-card h4 {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
-  <div class="main-content">
-    <!-- Discover Section -->
-    <section class="discover">
-      <h2>Discover</h2>
-      <div class="scroll-row">
-        <!-- 10 scrollable movies -->
-        <div class="movie-card" onclick="window.location.href='watch.html'">
-          <img src="movie1.jpg" alt="Movie 1">
-        </div>
-        <!-- Add 9 more movie-card divs like this with different image paths -->
-      </div>
-    </section><!-- Top Ten Worldwide Section -->
-<section class="top-ten">
-  <h2>Top 10 Worldwide</h2>
-  <div class="scroll-row">
-    <div class="top-movie">
-      <span class="rank">1</span>
-      <img src="top1.jpg" alt="Top 1" onclick="window.location.href='watch.html'">
-    </div>
-    <!-- Add 9 more top-movie divs with ranks 2-10 -->
-  </div>
-</section>
 
-<!-- Discover Movies (2 per row) -->
-<section class="all-movies">
-  <h2>All Movies</h2>
+  <header>
+    <div class="logo">StreamVerse ▶</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="search.html">Search</a>
+      <a href="livetv.html">Live TV</a>
+      <a href="kids.html">Kids</a>
+      <a href="settings.html">Settings</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Welcome to StreamVerse</h1>
+  </div>
+
+  <div class="section-title">Popular Now</div>
   <div class="movie-grid">
-    <div class="movie-card" onclick="window.location.href='watch.html'">
-      <img src="movieA.jpg" alt="Movie A">
+    <div class="movie-card">
+      <img src="https://i.imgur.com/2DhmtJ4.jpg" alt="Movie 1" />
+      <h4>The Smurfs</h4>
     </div>
-    <div class="movie-card" onclick="window.location.href='watch.html'">
-      <img src="movieB.jpg" alt="Movie B">
+    <div class="movie-card">
+      <img src="https://i.imgur.com/EHyR2nP.png" alt="Movie 2" />
+      <h4>Spider-Man</h4>
     </div>
-    <!-- Add more in pairs -->
+    <div class="movie-card">
+      <img src="https://i.imgur.com/3K3bZB3.jpg" alt="Movie 3" />
+      <h4>Fast X</h4>
+    </div>
+    <div class="movie-card">
+      <img src="https://i.imgur.com/0rKi2vG.jpg" alt="Movie 4" />
+      <h4>The Flash</h4>
+    </div>
   </div>
-</section>
-
-    <!-- More page content above here -->
-
-<!-- Bottom Navigation Bar -->
-<div class="bottom-nav" style="position: fixed; bottom: 0; width: 100%; background: #111; display: flex; justify-content: space-around; padding: 10px 0; color: white;">
-  <a href="dashboard.html" style="text-decoration: none; color: white; text-align: center;">🏠<br>Home</a>
-  <a href="search.html" style="text-decoration: none; color: white; text-align: center;">🔍<br>Search</a>
-  <a href="livetv.html" style="text-decoration: none; color: white; text-align: center;">📺<br>Live TV</a>
-  <a href="settings.html" style="text-decoration: none; color: white; text-align: center;">⚙️<br>Settings</a>
-</div>
 
 </body>
-  </html>
+</html>
