@@ -3,58 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>More | Stream</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>More</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: white;
+      font-family: 'Arial', sans-serif;
+    }
+    .nav-active {
+      color: red;
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+<body class="flex flex-col min-h-screen">
 
-  <header class="p-4 text-xl font-bold text-center bg-gray-800 shadow">
-    More
+  <!-- Header -->
+  <header class="text-center py-4 border-b border-gray-700">
+    <h1 class="text-xl font-bold">More</h1>
   </header>
 
+  <!-- Main content -->
   <main class="flex-grow p-4 space-y-4">
-    <a href="#" class="block p-4 bg-gray-800 rounded-xl hover:bg-gray-700 transition">Watch History</a>
-    <a href="#" class="block p-4 bg-gray-800 rounded-xl hover:bg-gray-700 transition">Trailers</a>
-    <a href="#" class="block p-4 bg-gray-800 rounded-xl hover:bg-gray-700 transition">Behind the Scenes</a>
-    <a href="#" class="block p-4 bg-gray-800 rounded-xl hover:bg-gray-700 transition">Contact Support</a>
-    <a href="#" class="block p-4 bg-gray-800 rounded-xl hover:bg-gray-700 transition">App Info</a>
-    <a href="#" class="block p-4 bg-gray-800 rounded-xl hover:bg-gray-700 transition">Terms & Conditions</a>
-    <a href="#" class="block p-4 bg-red-700 rounded-xl hover:bg-red-600 transition">Logout</a>
+    <div class="bg-gray-800 p-4 rounded-lg">
+      <h2 class="text-lg font-semibold mb-2">Help Centre</h2>
+      <p class="text-sm text-gray-300">Find answers to your questions and support options.</p>
+    </div>
+    <div class="bg-gray-800 p-4 rounded-lg">
+      <h2 class="text-lg font-semibold mb-2">Settings</h2>
+      <p class="text-sm text-gray-300">Adjust your preferences and account settings.</p>
+    </div>
+    <div class="bg-gray-800 p-4 rounded-lg">
+      <h2 class="text-lg font-semibold mb-2">About</h2>
+      <p class="text-sm text-gray-300">Learn more about our streaming platform.</p>
+    </div>
+    <div class="bg-gray-800 p-4 rounded-lg">
+      <h2 class="text-lg font-semibold mb-2">Terms & Privacy</h2>
+      <p class="text-sm text-gray-300">Read our terms of service and privacy policy.</p>
+    </div>
   </main>
 
-  <!-- Bottom Navigation -->
-  <nav class="flex justify-between items-center bg-gray-800 p-3 text-xs">
+  <!-- Bottom nav bar -->
+  <nav class="bg-black text-white fixed bottom-0 left-0 right-0 border-t border-gray-700 flex justify-around py-2">
     <a href="dashboard.html" class="flex flex-col items-center text-gray-400 hover:text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6" />
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M4 10v10h4v-6h8v6h4V10"/>
       </svg>
-      <span>Home</span>
+      <span class="text-xs">Home</span>
     </a>
     <a href="livetv.html" class="flex flex-col items-center text-gray-400 hover:text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553 2.276A1 1 0 0120 13.118V16a2 2 0 01-2 2H6a2 2 0 01-2-2v-2.882a1 1 0 01.447-.842L9 10" />
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M4 6h16M4 18h16"/>
       </svg>
-      <span>Live TV</span>
+      <span class="text-xs">Live TV</span>
     </a>
     <a href="discover.html" class="flex flex-col items-center text-gray-400 hover:text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-.832a1 1 0 01-.723-.723l-.832-3.197a1 1 0 011.168-1.168l3.197.832a1 1 0 01.723.723l.832 3.197a1 1 0 01-1.168 1.168z" />
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4z" />
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4 4-4m8 0l4 4-4 4"/>
       </svg>
-      <span>Discover</span>
+      <span class="text-xs">Discover</span>
     </a>
-    <a href="more.html" class="flex flex-col items-center text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6h6m-6 0H6m6 0v6" />
+    <a href="more.html" class="flex flex-col items-center nav-active">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v.01M12 12v.01M12 18v.01"/>
       </svg>
-      <span>More</span>
+      <span class="text-xs text-red-500">More</span>
     </a>
     <a href="profile.html" class="flex flex-col items-center text-gray-400 hover:text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A10.97 10.97 0 0112 15c2.21 0 4.24.892 5.879 2.336M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A6 6 0 0112 14a6 6 0 016.879 3.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
       </svg>
-      <span>Profile</span>
+      <span class="text-xs">Profile</span>
     </a>
   </nav>
+
 </body>
 </html>
