@@ -2,68 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Stream | Dashboard</title>
+  <title>Stream Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #111;
+      background: #111;
       color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      text-align: center;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    .box {
+      margin: 1rem auto;
+      max-width: 400px;
+      background: #222;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #000;
     }
 
-    p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-
-    .logo {
-      font-size: 3rem;
-      font-weight: bold;
-      color: #0af;
-      margin-bottom: 2rem;
-    }
-
-    .btn {
-      padding: 10px 20px;
-      background-color: #0af;
-      color: #111;
+    input {
+      width: 90%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border-radius: 4px;
       border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 20px;
     }
 
-    .btn:hover {
-      background-color: #08c;
+    button {
+      padding: 0.5rem 1rem;
+      background: #0f9d58;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      margin: 0.5rem;
+      cursor: pointer;
+    }
+
+    .logout-btn {
+      background: #ea4335;
+    }
+
+    #user-info {
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
 
-  <div class="logo">▶ Stream</div>
-  <h1>Welcome to Stream Dashboard</h1>
-  <p>This is your backend portal. Analytics are running...</p>
-  <button class="btn" onclick="alert('More features coming soon!')">Try Feature</button>
+  <h1>🎬 Welcome to Stream</h1>
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-analytics.js"></script>
+  <div class="box">
+    <h2>Sign Up</h2>
+    <input type="email" id="signup-email" placeholder="Email">
+    <input type="password" id="signup-password" placeholder="Password">
+    <button onclick="signUp()">Create Account</button>
+  </div>
 
-  <!-- Firebase Config & Init -->
-  <script>
+  <div class="box">
+    <h2>Log In</h2>
+    <input type="email" id="login-email" placeholder="Email">
+    <input type="password" id="login-password" placeholder="Password">
+    <button onclick="logIn()">Log In</button>
+  </div>
+
+  <div id="user-info" class="box" style="display:none;">
+    <h2>You are logged in as:</h2>
+    <p id="user-email"></p>
+    <button class="logout-btn" onclick="logOut()">Log Out</button>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    // Import Firebase libraries
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    // Your Firebase config (you can safely use it here – it's public by design)
     const firebaseConfig = {
       apiKey: "AIzaSyAQQbxDZYAgk2D-bOpV-WJna4jjeVS7yz8",
       authDomain: "stream-e1248.firebaseapp.com",
@@ -74,8 +90,54 @@
       measurementId: "G-3KZWZNY9V3"
     };
 
-    const app = firebase.initializeApp(firebaseConfig);
-    const analytics = firebase.analytics(app);
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Signup function
+    function signUp() {
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          alert("Account created successfully!");
+        })
+        .catch((error) => {
+          alert("Error: " + error.message);
+        });
+    }
+
+    // Login function
+    function logIn() {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          alert("Logged in successfully!");
+        })
+        .catch((error) => {
+          alert("Error: " + error.message);
+        });
+    }
+
+    // Logout function
+    function logOut() {
+      signOut(auth).then(() => {
+        alert("Logged out.");
+      });
+    }
+
+    // Track login state
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        document.getElementById('user-info').style.display = 'block';
+        document.getElementById('user-email').innerText = user.email;
+      } else {
+        document.getElementById('user-info').style.display = 'none';
+      }
+    });
   </script>
 
 </body>
