@@ -1,53 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Live TV - str▶eam</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-black text-white font-sans">
-    <!-- Header -->
-    <header class="flex items-center justify-between p-4 border-b border-gray-700">
-      <h1 class="text-xl font-bold">Live TV</h1>
-      <span class="text-sm opacity-75">str<span class="text-red-500">▶</span>eam</span>
-    </header>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live TV – Stream</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+    body { background: #0f0f0f; color: white; }
+    .channel { margin-bottom: 2rem; }
+    .channel h2 { font-size: 1.125rem; margin-bottom: 0.5rem; }
+    iframe { width: 100%; height: 240px; border: none; border-radius: 8px; }
+  </style>
+</head>
+<body class="min-h-screen pb-24">
 
-    <!-- Video Section -->
-    <section class="p-4 flex flex-col items-center justify-center min-h-[70vh]">
-      <video
-        id="liveVideo"
-        controls
-        autoplay
-        class="w-full max-w-4xl rounded-2xl shadow-lg"
-        poster="https://placehold.co/800x450/000000/FFFFFF?text=Live+TV+Preview"
-      >
-        <source src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" type="application/x-mpegURL" />
-        Your browser does not support the video tag.
-      </video>
-      <p class="mt-4 text-sm text-gray-400">Streaming Live: Channel 1</p>
-    </section>
+  <div class="p-4 text-xl font-bold">Live TV Channels</div>
 
-    <!-- Bottom Nav (Optional if you already have this) -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-[#111] border-t border-gray-700 flex justify-around py-2 z-50">
-      <button class="flex flex-col items-center text-xs text-gray-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h4l3 10h8l3-10h4" />
-        </svg>
-        Home
-      </button>
-      <button class="flex flex-col items-center text-xs text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553 2.276A1 1 0 0120 13.118V18a1 1 0 01-1 1h-1M9 10L4.447 12.276A1 1 0 004 13.118V18a1 1 0 001 1h1m4-9v9m6-9v9" />
-        </svg>
-        Live TV
-      </button>
-      <button class="flex flex-col items-center text-xs text-gray-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2" />
-        </svg>
-        More
-      </button>
-    </nav>
-  </body>
-</html>
+  <!-- Embed channels -->
+  <div class="p-4 space-y-6">
+    <div class="channel"><h2>ABC News (US)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/us.m3u#ABCNewsLive" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>CNN (US)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/us.m3u#CNN" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>BBC Brit (UK)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/uk.m3u#BBCBrit" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>Animal Planet (UK)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/uk.m3u#AnimalPlanet" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>Africa Magic Urban (NG)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/ng.m3u#AfricaMagicUrban" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>Afrobeat TV (UK)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/uk.m3u#AfrobeatTVEntertainment" allowfullscreen></iframe>
+    </div>
+
+    <!-- Add more from iptv-org -->
+    <div class="channel"><h2>Sports 24 (Global)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/channels/global/Sports24#SD" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>France 24 (France)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/fr.m3u#France24" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>NHK World (Japan)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/jp.m3u#NHKWorld" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>CCTV News (China)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/cn.m3u#CCTVNews" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>Telemundo (US)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/us.m3u#Telemundo" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>RTPi (Portugal)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/pt.m3u#RTPi" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>Rai News (Italy)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/it.m3u#RaiNews24" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>DW News (Germany)</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/de.m3u#DWNews" allowfullscreen></iframe>
+    </div>
+    <div class="channel"><h2>ABC Australia</h2>
+      <iframe src="https://iptv-org.github.io/iptv/countries/au.m3u#ABCAustralia" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Bottom nav -->
+  <nav class="bg-black text-white fixed bottom-0 left-0 right-0 border-t border-gray-700 flex justify-around py-2">
+    <a href="dashboard.html" class="flex flex-col items-center text-gray-400 hover:text-red-500"><span class="material-icons">home</span><span class="text-xs">Home</span></a>
+    <a href="livetv.html" class="flex flex-col items-center text-red-500"><span class="material-icons">live_tv</span><span class="text-xs">Live TV</span></a>
+    <a href="discover.html" class="flex flex-col items-center text-gray-400 hover:text-white"><span class="material-icons">explore</span><span class="text-xs">Discover</span></a>
+    <a href="more.html" class="flex flex-col items-center text-gray-400 hover:text-white"><span class="material-icons">menu</span><span class="text-xs">More</span></a>
+    <a href="profile.html" class="flex flex-col items-center text-gray-400 hover:text-white"><span class="material-icons">person</span><span class="text-xs">Profile</span></a>
+  </nav>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</body>
+  </html>
