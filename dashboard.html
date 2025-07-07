@@ -2,143 +2,148 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Stream Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Joining str▶eam</title>
   <style>
     body {
-      background: #111;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      padding: 2rem;
-      text-align: center;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f0f0f, #1f1f1f);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #00d8ff;
+      animation: slideDown 1s ease-out;
+    }
+
+    .container {
+      display: flex;
+      gap: 40px;
+      background: #1a1a1a;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      animation: fadeIn 1.2s ease-in-out;
     }
 
     .box {
-      margin: 1rem auto;
-      max-width: 400px;
-      background: #222;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 250px;
+    }
+
+    input, button {
+      padding: 12px;
+      margin: 8px 0;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
     }
 
     input {
-      width: 90%;
-      padding: 0.5rem;
-      margin: 0.5rem 0;
-      border-radius: 4px;
-      border: none;
+      background: #333;
+      color: white;
     }
 
     button {
-      padding: 0.5rem 1rem;
-      background: #0f9d58;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      margin: 0.5rem;
+      background: #00d8ff;
+      color: black;
+      font-weight: bold;
       cursor: pointer;
+      transition: background 0.3s;
     }
 
-    .logout-btn {
-      background: #ea4335;
+    button:hover {
+      background: #00b8e6;
     }
 
-    #user-info {
-      margin-top: 1rem;
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body>
+  <h1>Joining str▶eam</h1>
+  <div class="container">
+    <div class="box">
+      <h2>Sign Up</h2>
+      <input type="email" id="signup-email" placeholder="Email">
+      <input type="password" id="signup-password" placeholder="Password">
+      <button onclick="signUp()">Create Account</button>
+    </div>
 
-  <h1>🎬 Welcome to Stream</h1>
-
-  <div class="box">
-    <h2>Sign Up</h2>
-    <input type="email" id="signup-email" placeholder="Email">
-    <input type="password" id="signup-password" placeholder="Password">
-    <button onclick="signUp()">Create Account</button>
-  </div>
-
-  <div class="box">
-    <h2>Log In</h2>
-    <input type="email" id="login-email" placeholder="Email">
-    <input type="password" id="login-password" placeholder="Password">
-    <button onclick="logIn()">Log In</button>
-  </div>
-
-  <div id="user-info" class="box" style="display:none;">
-    <h2>You are logged in as:</h2>
-    <p id="user-email"></p>
-    <button class="logout-btn" onclick="logOut()">Log Out</button>
+    <div class="box">
+      <h2>Login</h2>
+      <input type="email" id="login-email" placeholder="Email">
+      <input type="password" id="login-password" placeholder="Password">
+      <button onclick="login()">Login</button>
+    </div>
   </div>
 
   <!-- Firebase SDK -->
   <script type="module">
-    // Import Firebase libraries
+    // Firebase configuration
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    // Your Firebase config (you can safely use it here – it's public by design)
     const firebaseConfig = {
       apiKey: "AIzaSyAQQbxDZYAgk2D-bOpV-WJna4jjeVS7yz8",
       authDomain: "stream-e1248.firebaseapp.com",
       projectId: "stream-e1248",
-      storageBucket: "stream-e1248.appspot.com",
+      storageBucket: "stream-e1248.firebasestorage.app",
       messagingSenderId: "911322587081",
       appId: "1:911322587081:web:3567b86bf75626ce33d218",
       measurementId: "G-3KZWZNY9V3"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
     const auth = getAuth(app);
 
-    // Signup function
-    function signUp() {
+    // Sign up
+    window.signUp = function () {
       const email = document.getElementById('signup-email').value;
       const password = document.getElementById('signup-password').value;
-
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          alert("Account created successfully!");
+          alert("Signup successful! Welcome to str▶eam.");
         })
         .catch((error) => {
-          alert("Error: " + error.message);
+          alert("Signup error: " + error.message);
         });
     }
 
-    // Login function
-    function logIn() {
+    // Login
+    window.login = function () {
       const email = document.getElementById('login-email').value;
       const password = document.getElementById('login-password').value;
-
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          alert("Logged in successfully!");
+          alert("Login successful!");
         })
         .catch((error) => {
-          alert("Error: " + error.message);
+          alert("Login error: " + error.message);
         });
     }
-
-    // Logout function
-    function logOut() {
-      signOut(auth).then(() => {
-        alert("Logged out.");
-      });
-    }
-
-    // Track login state
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        document.getElementById('user-info').style.display = 'block';
-        document.getElementById('user-email').innerText = user.email;
-      } else {
-        document.getElementById('user-info').style.display = 'none';
-      }
-    });
   </script>
-
 </body>
 </html>
