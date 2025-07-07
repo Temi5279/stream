@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover - str▶eam</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@1.6.5/dist/flowbite.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/all.css" />
+</head><body class="bg-gray-900 text-white">
+  <!-- Header -->
+  <header class="p-4 bg-gray-950 flex items-center justify-between">
+    <h1 class="text-2xl font-bold tracking-wide">str<span class="text-blue-500">▶</span>eam</h1>
+    <nav class="flex space-x-6 text-sm">
+      <a href="dashboard.html" class="hover:text-blue-400">Home</a>
+      <a href="discover.html" class="text-blue-500 font-semibold">Discover</a>
+      <a href="live tv.html" class="hover:text-blue-400">Live TV</a>
+      <a href="#" class="hover:text-blue-400">Kids</a>
+    </nav>
+  </header>  <!-- Discover Section -->  <section class="p-6 space-y-10 animate-fade-in">
+    <div>
+      <h2 class="text-xl font-semibold mb-4">Trending Now</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-cover bg-center h-40 rounded-xl shadow-md hover:scale-105 transition duration-300" style="background-image: url('https://placehold.co/300x170');"></div>
+        <div class="bg-cover bg-center h-40 rounded-xl shadow-md hover:scale-105 transition duration-300" style="background-image: url('https://placehold.co/300x170');"></div>
+        <div class="bg-cover bg-center h-40 rounded-xl shadow-md hover:scale-105 transition duration-300" style="background-image: url('https://placehold.co/300x170');"></div>
+        <div class="bg-cover bg-center h-40 rounded-xl shadow-md hover:scale-105 transition duration-300" style="background-image: url('https://placehold.co/300x170');"></div>
+      </div>
+    </div><div>
+  <h2 class="text-xl font-semibold mb-4">Just Added</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition duration-300">
+      <h3 class="text-lg font-medium mb-1">Movie Title</h3>
+      <p class="text-sm text-gray-400">Genre • 2025</p>
+    </div>
+    <div class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition duration-300">
+      <h3 class="text-lg font-medium mb-1">Movie Title</h3>
+      <p class="text-sm text-gray-400">Genre • 2025</p>
+    </div>
+    <div class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition duration-300">
+      <h3 class="text-lg font-medium mb-1">Movie Title</h3>
+      <p class="text-sm text-gray-400">Genre • 2025</p>
+    </div>
+    <div class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition duration-300">
+      <h3 class="text-lg font-medium mb-1">Movie Title</h3>
+      <p class="text-sm text-gray-400">Genre • 2025</p>
+    </div>
+  </div>
+</div>
+
+  </section>  <!-- Bottom Navigation -->  <div class="fixed bottom-0 w-full bg-gray-950 border-t border-gray-800 flex justify-around items-center py-3 text-sm">
+    <a href="dashboard.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+      <i class="fas fa-home text-lg"></i>
+      <span class="text-xs">Home</span>
+    </a>
+    <a href="discover.html" class="flex flex-col items-center text-white">
+      <i class="fas fa-compass text-lg"></i>
+      <span class="text-xs">Discover</span>
+    </a>
+    <a href="live tv.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+      <i class="fas fa-tv text-lg"></i>
+      <span class="text-xs">Live TV</span>
+    </a>
+    <a href="#" class="flex flex-col items-center text-gray-400 hover:text-white">
+      <i class="fas fa-child text-lg"></i>
+      <span class="text-xs">Kids</span>
+    </a>
+    <a href="#" class="flex flex-col items-center text-gray-400 hover:text-white">
+      <i class="fas fa-user text-lg"></i>
+      <span class="text-xs">Profile</span>
+    </a>
+  </div>  <style>
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.6s ease-in-out both;
+    }
+  </style></body></html>
