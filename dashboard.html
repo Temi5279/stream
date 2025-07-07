@@ -1,67 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stream | Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    .logo {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #0af;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #0af;
+      color: #111;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      background-color: #08c;
+    }
+  </style>
 </head>
-<body class="bg-black text-white">
+<body>
 
-  <!-- Main Content -->
-  <div class="min-h-screen pb-20 flex items-center justify-center">
-    <h1 class="text-3xl font-bold">Welcome to Stream</h1>
-  </div>
+  <div class="logo">▶ Stream</div>
+  <h1>Welcome to Stream Dashboard</h1>
+  <p>This is your backend portal. Analytics are running...</p>
+  <button class="btn" onclick="alert('More features coming soon!')">Try Feature</button>
 
-  <!-- Bottom Navigation -->
-  <nav class="fixed bottom-0 left-0 w-full bg-[#111] border-t border-gray-800 shadow-inner">
-    <div class="flex justify-between items-center px-4 py-2">
-      
-      <!-- Home -->
-      <a href="dashboard.html" class="flex flex-col items-center text-white hover:text-red-500 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-        </svg>
-        <span class="text-xs">Home</span>
-      </a>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-analytics.js"></script>
 
-      <!-- Live TV -->
-      <a href="livetv.html" class="flex flex-col items-center text-white hover:text-red-500 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14V10z"/>
-          <path d="M4 6h16a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z"/>
-        </svg>
-        <span class="text-xs">Live TV</span>
-      </a>
+  <!-- Firebase Config & Init -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAQQbxDZYAgk2D-bOpV-WJna4jjeVS7yz8",
+      authDomain: "stream-e1248.firebaseapp.com",
+      projectId: "stream-e1248",
+      storageBucket: "stream-e1248.appspot.com",
+      messagingSenderId: "911322587081",
+      appId: "1:911322587081:web:3567b86bf75626ce33d218",
+      measurementId: "G-3KZWZNY9V3"
+    };
 
-      <!-- Discover -->
-      <a href="discover.html" class="flex flex-col items-center text-white hover:text-red-500 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M13.828 10.172a4 4 0 11-5.656 5.656 4 4 0 015.656-5.656z"/>
-          <path d="M10.586 13.414l-6.293 6.293a1 1 0 001.414 1.414l6.293-6.293"/>
-        </svg>
-        <span class="text-xs">Discover</span>
-      </a>
-
-      <!-- More -->
-      <a href="more.html" class="flex flex-col items-center text-white hover:text-red-500 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M12 6.75a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM12 13.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM12 20.25a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
-        </svg>
-        <span class="text-xs">More</span>
-      </a>
-
-      <!-- Profile -->
-      <a href="profile.html" class="flex flex-col items-center text-white hover:text-red-500 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/>
-          <path d="M4 20v-1a4 4 0 014-4h8a4 4 0 014 4v1"/>
-        </svg>
-        <span class="text-xs">Profile</span>
-      </a>
-
-    </div>
-  </nav>
+    const app = firebase.initializeApp(firebaseConfig);
+    const analytics = firebase.analytics(app);
+  </script>
 
 </body>
-  </html>
+</html>
