@@ -1,125 +1,108 @@
-<!DOCTYPE html><html lang="en"><head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Live TV - Stream</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Live TV – Stream</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
-    }header {
-  background-color: #111;
-  padding: 1rem;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.channel-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.channel {
-  background-color: #1c1c1c;
-  padding: 0.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.channel h3 {
-  margin: 0.5rem 0;
-  font-size: 1rem;
-  color: #fff;
-}
-
-.channel video {
-  width: 100%;
-  height: 200px;
-  border-radius: 10px;
-}
-
-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #111;
-  display: flex;
-  justify-content: space-around;
-  padding: 0.5rem 0;
-  border-top: 1px solid #333;
-}
-
-nav a {
-  text-align: center;
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-nav img {
-  width: 24px;
-  height: 24px;
-  display: block;
-  margin: 0 auto 0.2rem;
-}
-
+    body { background-color: #0f0f0f; color: white; margin:0; }
+    header { background-color: #111; padding:1rem; text-align:center; font-size:1.5rem; font-weight:bold; }
+    .channel-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:1rem; padding:1rem; }
+    .channel { background:#1c1c1c; padding:.5rem; border-radius:10px; }
+    .channel img { width:100%; height:120px; object-fit:cover; border-radius:8px; }
+    .channel h3 { margin:.5rem 0; font-size:1rem; }
+    .channel video { width:100%; height:180px; border-radius:8px; background:black; }
+    nav { position:fixed; bottom:0; width:100%; background:#111; display:flex; justify-around; padding:.5rem 0; border-top:1px solid #333; }
+    nav a { text-align:center; color:white; font-size:.75rem; }
+    nav a.active { color:#e50914; }
+    nav a .material-icons { display:block; margin:0 auto; }
   </style>
-</head><body>
-  <header>Live TV</header>
-  <main class="channel-grid">
-    <!-- Repeat this block for 30 channels -->
-    <div class="channel">
-      <video controls autoplay muted src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"></video>
-      <h3>Live News 1</h3>
-    </div>
-    <div class="channel">
-      <video controls autoplay muted src="https://moiptvhls-i.akamaihd.net/hls/live/652317/moiptvhd/master.m3u8"></video>
-      <h3>Sports World</h3>
-    </div>
-    <div class="channel">
-      <video controls autoplay muted src="https://stream-cdn.orange.fr/live-mp4/video09/LIVE-1000188/index.m3u8"></video>
-      <h3>Entertainment Plus</h3>
-    </div>
-    <div class="channel">
-      <video controls autoplay muted src="https://bitcdn.xyz/king-iptv/bein_sports1.m3u8"></video>
-      <h3>Bein Sports</h3>
-    </div>
-    <div class="channel">
-      <video controls autoplay muted src="https://bitcdn.xyz/king-iptv/disney_channel.m3u8"></video>
-      <h3>Disney Channel</h3>
-    </div>
-    <!-- ...add more up to 30 -->
-    <!-- Add filler channels if real ones aren't available -->
-    <!-- Example filler -->
-    <div class="channel">
-      <video controls autoplay muted src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"></video>
-      <h3>Live TV 6</h3>
-    </div>
-    <!-- Repeat above filler up to 30 channels -->
-  </main>  <nav>
-    <a href="home.html">
-      <img src="/icons/home.png" alt="Home">
-      Home
-    </a>
-    <a href="live.html">
-      <img src="/icons/live.png" alt="Live TV">
-      Live TV
-    </a>
-    <a href="discover.html">
-      <img src="/icons/discover.png" alt="Discover">
-      Discover
-    </a>
-    <a href="more.html">
-      <img src="/icons/more.png" alt="More">
-      More
-    </a>
-    <a href="profile.html">
-      <img src="/icons/profile.png" alt="Profile">
-      Profile
-    </a>
-  </nav>
-</body></html>
+</head>
+<body>
+
+<header>Live TV</header>
+
+<main class="channel-grid">
+  <!-- CNN -->
+  <div class="channel">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/CNN_Logo.svg" alt="CNN"/>
+    <h3>CNN (US)</h3>
+    <video controls src="https://turnerlive.warnermediacdn.com/hls/live/586495/cnngo/cnn_slate/VIDEO_0_3564000.m3u8"></video>
+  </div>
+
+  <!-- BBC One HD -->
+  <div class="channel">
+    <img src="https://s4.postimg.org/k5xl5dmf1/bbc_one.png" alt="BBC One HD"/>
+    <h3>BBC One HD (UK)</h3>
+    <video controls src="http://a.files.bbci.co.uk/media/live/manifesto/audio_video/simulcast/hls/uk/abr_hdtv/ak/bbc_one_hd.m3u8"></video>
+  </div>
+
+  <!-- France 24 -->
+  <div class="channel">
+    <img src="https://i.imgur.com/u8N6uoj.png" alt="France 24"/>
+    <h3>France 24 (World)</h3>
+    <video controls src="https://live.france24.com/hls/live/2037222-b/F24_AR_HI_HLS/master_5000.m3u8"></video>
+  </div>
+
+  <!-- Sky News -->
+  <div class="channel">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/Sky_News_logo_2020.svg/512px-Sky_News_logo_2020.svg.png" alt="Sky News"/>
+    <h3>Sky News (UK)</h3>
+    <video controls src="https://skynewsau-live.akamaized.net/hls/live/2002689/skynewsau-extra1/master.m3u8"></video>
+  </div>
+
+  <!-- Bloomberg -->
+  <div class="channel">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Bloomberg_Television_2023.svg/512px-Bloomberg_Television_2023.svg.png" alt="Bloomberg"/>
+    <h3>Bloomberg (US)</h3>
+    <video controls src="http://fl2.moveonjoy.com/BLOOMBERG/index.m3u8"></video>
+  </div>
+
+  <!-- CNBC -->
+  <div class="channel">
+    <img src="https://848b3516657c-usatv.baby-beamup.club/public/logos/cnbc.png" alt="CNBC"/>
+    <h3>CNBC (US)</h3>
+    <video controls src="http://fl2.moveonjoy.com/CNBC/index.m3u8"></video>
+  </div>
+
+  <!-- Newsmax TV -->
+  <div class="channel">
+    <img src="https://i.imgur.com/Twkovic.gif" alt="Newsmax"/>
+    <h3>Newsmax TV (US)</h3>
+    <video controls src="https://nmxlive.akamaized.net/hls/live/529965/Live_1/index.m3u8"></video>
+  </div>
+
+  <!-- TRT World -->
+  <div class="channel">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/59/TRT_World_Logo.svg/512px-TRT_World_Logo.svg.png" alt="TRT World"/>
+    <h3>TRT World (Turkey)</h3>
+    <video controls src="https://trtworld-live.trt.net.tr/master_720.m3u8"></video>
+  </div>
+
+  <!-- Euronews -->
+  <div class="channel">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Euronews_2021_logo.svg/512px-Euronews_2021_logo.svg.png" alt="Euronews"/>
+    <h3>Euronews (EU)</h3>
+    <video controls src="https://rakuten-euronews-1-eu.rakuten.wurl.tv/playlist.m3u8"></video>
+  </div>
+
+  <!-- DW News -->
+  <div class="channel">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/Deutsche_Welle_Logo.svg/512px-Deutsche_Welle_Logo.svg.png" alt="DW News"/>
+    <h3>DW News (Germany)</h3>
+    <video controls src="https://iptv-org.github.io/iptv/countries/de.m3u#DWNews"></video>
+  </div>
+</main>
+
+<nav>
+  <a href="dashboard.html"><span class="material-icons">home</span>Home</a>
+  <a href="livetv.html" class="active"><span class="material-icons">live_tv</span>Live TV</a>
+  <a href="discover.html"><span class="material-icons">explore</span>Discover</a>
+  <a href="more.html"><span class="material-icons">menu</span>More</a>
+  <a href="profile.html"><span class="material-icons">person</span>Profile</a>
+</nav>
+
+</body>
+  </html>
