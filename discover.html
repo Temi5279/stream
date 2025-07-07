@@ -1,84 +1,78 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Discover - str▶eam</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/flowbite@1.6.5/dist/flowbite.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/all.css" />
-</head><body class="bg-gray-900 text-white">
-  <!-- Header -->
-  <header class="p-4 bg-gray-950 flex items-center justify-between">
-    <h1 class="text-2xl font-bold tracking-wide">str<span class="text-blue-500">▶</span>eam</h1>
-    <nav class="flex space-x-6 text-sm">
-      <a href="dashboard.html" class="hover:text-blue-400">Home</a>
-      <a href="discover.html" class="text-blue-500 font-semibold">Discover</a>
-      <a href="live tv.html" class="hover:text-blue-400">Live TV</a>
-      <a href="#" class="hover:text-blue-400">Kids</a>
-    </nav>
-  </header>  <!-- Discover Section -->  <section class="p-6 space-y-10 animate-fade-in">
-    <div>
-      <h2 class="text-xl font-semibold mb-4">Trending Now</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-cover bg-center h-40 rounded-xl shadow-md hover:scale-105 transition duration-300" style="background-image: url('https://placehold.co/300x170');"></div>
-        <div class="bg-cover bg-center h-40 rounded-xl shadow-md hover:scale-105 transition duration-300" style="background-image: url('https://placehold.co/300x170');"></div>
-        <div class="bg-cover bg-center h-40 rounded-xl shadow-md hover:scale-105 transition duration-300" style="background-image: url('https://placehold.co/300x170');"></div>
-        <div class="bg-cover bg-center h-40 rounded-xl shadow-md hover:scale-105 transition duration-300" style="background-image: url('https://placehold.co/300x170');"></div>
-      </div>
-    </div><div>
-  <h2 class="text-xl font-semibold mb-4">Just Added</h2>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-    <div class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition duration-300">
-      <h3 class="text-lg font-medium mb-1">Movie Title</h3>
-      <p class="text-sm text-gray-400">Genre • 2025</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition duration-300">
-      <h3 class="text-lg font-medium mb-1">Movie Title</h3>
-      <p class="text-sm text-gray-400">Genre • 2025</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition duration-300">
-      <h3 class="text-lg font-medium mb-1">Movie Title</h3>
-      <p class="text-sm text-gray-400">Genre • 2025</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition duration-300">
-      <h3 class="text-lg font-medium mb-1">Movie Title</h3>
-      <p class="text-sm text-gray-400">Genre • 2025</p>
-    </div>
-  </div>
-</div>
+  <title>Discover - Stream</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-black text-white pb-16">
 
-  </section>  <!-- Bottom Navigation -->  <div class="fixed bottom-0 w-full bg-gray-950 border-t border-gray-800 flex justify-around items-center py-3 text-sm">
-    <a href="dashboard.html" class="flex flex-col items-center text-gray-400 hover:text-white">
-      <i class="fas fa-home text-lg"></i>
+  <!-- Header -->
+  <header class="p-4">
+    <h1 class="text-2xl font-bold">Discover</h1>
+    <p class="text-sm text-gray-400">Trending and Recommended for You</p>
+  </header>
+
+  <!-- Discover Grid -->
+  <main class="px-4 grid grid-cols-2 gap-4">
+    <div class="bg-gray-800 rounded-xl overflow-hidden">
+      <img src="https://via.placeholder.com/300x180.png?text=Trending+1" class="w-full h-auto" alt="Trending 1" />
+      <p class="p-2 text-sm">The Smurfs</p>
+    </div>
+    <div class="bg-gray-800 rounded-xl overflow-hidden">
+      <img src="https://via.placeholder.com/300x180.png?text=Trending+2" class="w-full h-auto" alt="Trending 2" />
+      <p class="p-2 text-sm">Beast of No Nation</p>
+    </div>
+    <div class="bg-gray-800 rounded-xl overflow-hidden">
+      <img src="https://via.placeholder.com/300x180.png?text=Recommended+1" class="w-full h-auto" alt="Recommended 1" />
+      <p class="p-2 text-sm">The Sparkle in Your Eyes</p>
+    </div>
+    <div class="bg-gray-800 rounded-xl overflow-hidden">
+      <img src="https://via.placeholder.com/300x180.png?text=Recommended+2" class="w-full h-auto" alt="Recommended 2" />
+      <p class="p-2 text-sm">Trapped in Osaka</p>
+    </div>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="fixed bottom-0 left-0 w-full bg-black text-white flex justify-around py-2 border-t border-gray-700">
+    <a href="dashboard.html" class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4" />
+      </svg>
       <span class="text-xs">Home</span>
     </a>
-    <a href="discover.html" class="flex flex-col items-center text-white">
-      <i class="fas fa-compass text-lg"></i>
-      <span class="text-xs">Discover</span>
-    </a>
-    <a href="live tv.html" class="flex flex-col items-center text-gray-400 hover:text-white">
-      <i class="fas fa-tv text-lg"></i>
+    <a href="livetv.html" class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M15 10l4.553 2.276A1 1 0 0120 13.118V14a7.003 7.003 0 01-6 6.93V22h-4v-1.07A7.003 7.003 0 014 14v-.882a1 1 0 01.447-.842L9 10" />
+      </svg>
       <span class="text-xs">Live TV</span>
     </a>
-    <a href="#" class="flex flex-col items-center text-gray-400 hover:text-white">
-      <i class="fas fa-child text-lg"></i>
-      <span class="text-xs">Kids</span>
+    <a href="discover.html" class="flex flex-col items-center text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.5 5.5L11 13a1 1 0 01-1.9-.6L9.5 9l-2.9-.6a1 1 0 01.2-1.98l5-1a1 1 0 011.2 1.58z" />
+      </svg>
+      <span class="text-xs">Discover</span>
     </a>
-    <a href="#" class="flex flex-col items-center text-gray-400 hover:text-white">
-      <i class="fas fa-user text-lg"></i>
+    <a href="more.html" class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M12 6v.01M12 12v.01M12 18v.01" />
+      </svg>
+      <span class="text-xs">More</span>
+    </a>
+    <a href="profile.html" class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM4 20c0-2.21 3.58-4 8-4s8 1.79 8 4v1H4v-1z" />
+      </svg>
       <span class="text-xs">Profile</span>
     </a>
-  </div>  <style>
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .animate-fade-in {
-      animation: fade-in 0.6s ease-in-out both;
-    }
-  </style></body></html>
+  </nav>
+</body>
+        </html>
