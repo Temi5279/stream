@@ -1,70 +1,125 @@
-<!DOCTYPE html><html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stream - Live TV</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body class="bg-black text-white font-sans">
-  <div class="min-h-screen flex flex-col">
-    <!-- Top Bar -->
-    <header class="bg-gray-900 text-white p-4 text-center text-2xl font-bold">
-      📺 Live TV
-    </header><!-- Channels Grid -->
-<main class="flex-1 p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-  <!-- Repeat this block for each channel -->
-  <div class="bg-gray-800 p-3 rounded-xl shadow-md">
-    <img src="https://via.placeholder.com/300x150.png?text=Channel+1" class="rounded mb-2 w-full h-32 object-cover" />
-    <h3 class="text-lg font-semibold mb-1">Live Channel 1</h3>
-    <video controls class="w-full rounded" src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"></video>
-  </div>
+  <title>Live TV - Stream</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+    }header {
+  background-color: #111;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 
-  <div class="bg-gray-800 p-3 rounded-xl shadow-md">
-    <img src="https://via.placeholder.com/300x150.png?text=Channel+2" class="rounded mb-2 w-full h-32 object-cover" />
-    <h3 class="text-lg font-semibold mb-1">Live Channel 2</h3>
-    <video controls class="w-full rounded" src="https://moiptvhls-i.akamaihd.net/hls/live/652317/moiptvch11/master.m3u8"></video>
-  </div>
+.channel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
 
-  <!-- Add 13 more similar blocks -->
-  <!-- Just duplicate and update Channel numbers and src links -->
-  <!-- Example filler links below -->
-  <div class="bg-gray-800 p-3 rounded-xl shadow-md">
-    <img src="https://via.placeholder.com/300x150.png?text=Channel+3" class="rounded mb-2 w-full h-32 object-cover" />
-    <h3 class="text-lg font-semibold mb-1">Live Channel 3</h3>
-    <video controls class="w-full rounded" src="https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"></video>
-  </div>
+.channel {
+  background-color: #1c1c1c;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
 
-  <!-- Keep duplicating until 15 total -->
-  <!-- For simplicity, I’m using repeated placeholder videos -->
+.channel h3 {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #fff;
+}
 
-  <!-- Add more if needed -->
-</main>
+.channel video {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+}
 
-<!-- Bottom Nav Bar -->
-<nav class="bg-gray-900 text-white flex justify-around p-3 border-t border-gray-700">
-  <a href="home.html" class="flex flex-col items-center text-sm">
-    <span class="material-icons">home</span>
-    Home
-  </a>
-  <a href="livetv.html" class="flex flex-col items-center text-sm text-blue-500">
-    <span class="material-icons">live_tv</span>
-    Live TV
-  </a>
-  <a href="discover.html" class="flex flex-col items-center text-sm">
-    <span class="material-icons">explore</span>
-    Discover
-  </a>
-  <a href="more.html" class="flex flex-col items-center text-sm">
-    <span class="material-icons">menu</span>
-    More
-  </a>
-  <a href="profile.html" class="flex flex-col items-center text-sm">
-    <span class="material-icons">person</span>
-    Profile
-  </a>
-</nav>
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #111;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  border-top: 1px solid #333;
+}
 
-  </div>
-</body>
-</html>
+nav a {
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+nav img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin: 0 auto 0.2rem;
+}
+
+  </style>
+</head><body>
+  <header>Live TV</header>
+  <main class="channel-grid">
+    <!-- Repeat this block for 30 channels -->
+    <div class="channel">
+      <video controls autoplay muted src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"></video>
+      <h3>Live News 1</h3>
+    </div>
+    <div class="channel">
+      <video controls autoplay muted src="https://moiptvhls-i.akamaihd.net/hls/live/652317/moiptvhd/master.m3u8"></video>
+      <h3>Sports World</h3>
+    </div>
+    <div class="channel">
+      <video controls autoplay muted src="https://stream-cdn.orange.fr/live-mp4/video09/LIVE-1000188/index.m3u8"></video>
+      <h3>Entertainment Plus</h3>
+    </div>
+    <div class="channel">
+      <video controls autoplay muted src="https://bitcdn.xyz/king-iptv/bein_sports1.m3u8"></video>
+      <h3>Bein Sports</h3>
+    </div>
+    <div class="channel">
+      <video controls autoplay muted src="https://bitcdn.xyz/king-iptv/disney_channel.m3u8"></video>
+      <h3>Disney Channel</h3>
+    </div>
+    <!-- ...add more up to 30 -->
+    <!-- Add filler channels if real ones aren't available -->
+    <!-- Example filler -->
+    <div class="channel">
+      <video controls autoplay muted src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"></video>
+      <h3>Live TV 6</h3>
+    </div>
+    <!-- Repeat above filler up to 30 channels -->
+  </main>  <nav>
+    <a href="home.html">
+      <img src="/icons/home.png" alt="Home">
+      Home
+    </a>
+    <a href="live.html">
+      <img src="/icons/live.png" alt="Live TV">
+      Live TV
+    </a>
+    <a href="discover.html">
+      <img src="/icons/discover.png" alt="Discover">
+      Discover
+    </a>
+    <a href="more.html">
+      <img src="/icons/more.png" alt="More">
+      More
+    </a>
+    <a href="profile.html">
+      <img src="/icons/profile.png" alt="Profile">
+      Profile
+    </a>
+  </nav>
+</body></html>
