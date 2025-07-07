@@ -2,117 +2,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Live TV - Stream</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Stream - Live TV</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #fff;
-    }
-    header {
-      background-color: #1f1f1f;
-      padding: 1rem;
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      border-bottom: 1px solid #333;
-    }
-    .channel-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      padding: 1rem;
-    }
-    .channel {
-      background-color: #1e1e1e;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-    .channel h3 {
-      margin-top: 0;
-    }
-    iframe {
-      width: 100%;
-      height: 200px;
-      border: none;
-      border-radius: 10px;
-    }
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #1f1f1f;
-      display: flex;
-      justify-content: space-around;
-      padding: 0.5rem 0;
-      border-top: 1px solid #333;
-    }
-    .nav-item {
-      color: #aaa;
-      text-align: center;
-      flex: 1;
-    }
-    .nav-item i {
-      display: block;
-      font-size: 1.5rem;
-    }
-    .nav-item span {
-      font-size: 0.75rem;
-    }
-    .nav-item.active {
-      color: #fff;
-    }
+    }body {
+  background-color: #000;
+  color: white;
+  padding-bottom: 70px;
+}
+
+.section {
+  display: none;
+  padding: 20px;
+}
+
+.section.active {
+  display: block;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.channel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.channel {
+  background-color: #111;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #111;
+}
+
+.channel img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.channel-name {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 0.9em;
+}
+
+iframe {
+  width: 100%;
+  height: 200px;
+  border: none;
+  border-radius: 8px;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #111;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid #222;
+}
+
+.bottom-nav img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.7em;
+}
+
+.bottom-nav button.active {
+  color: #1db954;
+}
+
   </style>
 </head>
-<body>
-  <header>Live TV</header>
-  <div class="channel-list">
-    <div class="channel">
-      <h3>Al Jazeera</h3>
-      <iframe src="https://www.youtube.com/embed/live_stream?channel=UCNye-wNBqNL5ZzHSJj3l8Bg" allowfullscreen></iframe>
+<body>  <div id="home" class="section">
+    <h2>Home</h2>
+    <p>Welcome to the Home section.</p>
+  </div>  <div id="live" class="section active">
+    <h2>Live TV Channels</h2>
+    <div class="channel-grid">
+      <!-- Replace these with actual working m3u8 stream links -->
+      <div class="channel">
+        <iframe src="https://www.youtube.com/embed/live_stream?channel=UC4R8DWoMoI7CAwX8_LjQHig" allowfullscreen></iframe>
+        <div class="channel-name">NASA TV</div>
+      </div>
+      <div class="channel">
+        <iframe src="https://www.youtube.com/embed/live_stream?channel=UCvC4D8onUfXzvjTOM-dBfEA" allowfullscreen></iframe>
+        <div class="channel-name">Bloomberg</div>
+      </div>
+      <!-- Add more YouTube live links or replace with IPTV .m3u8 -->
+      <!-- Repeat this block up to 30 times with real links -->
     </div>
-    <div class="channel">
-      <h3>France 24</h3>
-      <iframe src="https://www.youtube.com/embed/live_stream?channel=UCCCPCZNChQdGa9EkATeye4g" allowfullscreen></iframe>
-    </div>
-    <div class="channel">
-      <h3>DW News</h3>
-      <iframe src="https://www.youtube.com/embed/live_stream?channel=UCknLrEdhRCp1aegoMqRaCZg" allowfullscreen></iframe>
-    </div>
-    <div class="channel">
-      <h3>NHK World Japan</h3>
-      <iframe src="https://www.youtube.com/embed/live_stream?channel=UCzI_WNFdZwZ0z4ONhITyLcw" allowfullscreen></iframe>
-    </div>
-    <div class="channel">
-      <h3>ABC News Australia</h3>
-      <iframe src="https://www.youtube.com/embed/live_stream?channel=UCGpzsZ0SaPVm0pqne8PB1-A" allowfullscreen></iframe>
-    </div>
-    <!-- Add more working channels with valid embed links here -->
+  </div>  <div id="discover" class="section">
+    <h2>Discover</h2>
+    <p>Explore new content.</p>
+  </div>  <div id="more" class="section">
+    <h2>More</h2>
+    <p>Settings, Help, Terms of Use, About, Account, and more.</p>
+  </div>  <div id="profile" class="section">
+    <h2>Profile</h2>
+    <p>User settings and account info will go here.</p>
   </div>  <div class="bottom-nav">
-    <div class="nav-item">
-      <i class="material-icons">home</i>
-      <span>Home</span>
-    </div>
-    <div class="nav-item active">
-      <i class="material-icons">live_tv</i>
-      <span>Live TV</span>
-    </div>
-    <div class="nav-item">
-      <i class="material-icons">explore</i>
-      <span>Discover</span>
-    </div>
-    <div class="nav-item">
-      <i class="material-icons">menu</i>
-      <span>More</span>
-    </div>
-    <div class="nav-item">
-      <i class="material-icons">person</i>
-      <span>Profile</span>
-    </div>
-  </div>
-</body>
-</html>
+    <button onclick="showSection('home')" id="btn-home">
+      <img src="https://img.icons8.com/ios-filled/50/home.png" /><span>Home</span>
+    </button>
+    <button onclick="showSection('live')" id="btn-live" class="active">
+      <img src="https://img.icons8.com/ios-filled/50/tv.png" /><span>Live TV</span>
+    </button>
+    <button onclick="showSection('discover')" id="btn-discover">
+      <img src="https://img.icons8.com/ios-filled/50/compass.png" /><span>Discover</span>
+    </button>
+    <button onclick="showSection('more')" id="btn-more">
+      <img src="https://img.icons8.com/ios-filled/50/menu.png" /><span>More</span>
+    </button>
+    <button onclick="showSection('profile')" id="btn-profile">
+      <img src="https://img.icons8.com/ios-filled/50/user.png" /><span>Profile</span>
+    </button>
+  </div>  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      document.querySelectorAll('.bottom-nav button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('btn-' + id).classList.add('active');
+    }
+  </script></body>
+    </html>
