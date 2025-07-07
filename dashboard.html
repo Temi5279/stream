@@ -1,121 +1,108 @@
 <!DOCTYPE html><html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>str▶eam</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-        background: linear-gradient(to bottom, #0f0f0f, #1c1c1c);
-        color: white;
-      }
-    </style>
-  </head>
-  <body class="min-h-screen">
-    <nav class="fixed bottom-0 left-0 right-0 bg-[#111] flex justify-around py-3 border-t border-gray-800 z-50">
-      <button class="flex flex-col items-center text-white hover:text-red-500 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h18M3 18h18" />
-        </svg>
-        <span class="text-xs">Home</span>
-      </button>
-      <button class="flex flex-col items-center text-white hover:text-red-500 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14" />
-        </svg>
-        <a href="livetv.html" class="flex flex-col items-center justify-center">
-  <!-- SVG icon here -->
-  </svg>
-  <span class="text-xs">Live TV</span>
-        <button onclick="location.href='livetv.html'" class="flex flex-col items-center text-white hover:text-red-500 transition">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14" />
-  </svg>
-        <span class="text-xs">Discover</span>
-      <button onclick="location.href='discover.html'" class="flex flex-col items-center text-white hover:text-red-500 transition">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4 4-4m8 8l4-4-4-4" />
-  </svg>
-        <span class="text-xs">More</span>
-      </button>
-      <button class="flex flex-col items-center text-white hover:text-red-500 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 15c2.45 0 4.747.662 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-        <span class="text-xs">Profile</span>
-      </button>
-    </nav><main class="p-4 pb-20 space-y-6">
-  <h1 class="text-3xl font-extrabold text-white">str▶eam</h1>
-
-  <section class="space-y-2">
-    <h2 class="text-xl font-bold">Continue Watching</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-gray-800 rounded-xl overflow-hidden hover:scale-105 transition">
-        <img src="/images/movie1.jpg" alt="Movie 1" class="w-full h-40 object-cover" />
-        <div class="p-2 text-white">Movie Title 1</div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>str▶eam</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: white;
+    }
+    header {
+      text-align: center;
+      padding: 20px 0 10px;
+      font-size: 2.5em;
+      font-weight: bold;
+    }
+    header span {
+      color: red;
+    }
+    section {
+      padding: 15px;
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    .row {
+      display: flex;
+      overflow-x: auto;
+      gap: 12px;
+    }
+    .movie {
+      background-color: #1e1e1e;
+      width: 130px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      padding: 5px;
+      text-align: center;
+    }
+    .movie img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #1f1f1f;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.5);
+    }
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 12px;
+      text-align: center;
+    }
+    nav a.active {
+      color: red;
+    }
+    nav i {
+      font-size: 18px;
+      display: block;
+      margin-bottom: 3px;
+    }
+  </style>
+</head>
+<body>
+  <header>str<span><i class="fas fa-play"></i></span>eam</header>  <section>
+    <h2>Continue Watching</h2>
+    <div class="row">
+      <div class="movie">
+        <img src="https://via.placeholder.com/130x180" alt="Movie 1">
+        <p>Movie Title 1</p>
       </div>
     </div>
-  </section>
-
-  <section class="space-y-2">
-    <h2 class="text-xl font-bold">Trending Now</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-gray-800 rounded-xl overflow-hidden hover:scale-105 transition">
-        <img src="/images/movie2.jpg" alt="Movie 2" class="w-full h-40 object-cover" />
-        <div class="p-2 text-white">Movie Title 2</div>
+  </section>  <section>
+    <h2>Trending Now</h2>
+    <div class="row">
+      <div class="movie">
+        <img src="https://via.placeholder.com/130x180" alt="Movie 2">
+        <p>Movie Title 2</p>
       </div>
     </div>
-  </section>
-
-  <section class="space-y-2">
-    <h2 class="text-xl font-bold">Top Picks For You</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-gray-800 rounded-xl overflow-hidden hover:scale-105 transition">
-        <img src="/images/movie3.jpg" alt="Movie 3" class="w-full h-40 object-cover" />
-        <div class="p-2 text-white">Movie Title 3</div>
+  </section>  <section>
+    <h2>Top Picks For You</h2>
+    <div class="row">
+      <div class="movie">
+        <img src="https://via.placeholder.com/130x180" alt="Movie 3">
+        <p>Movie Title 3</p>
       </div>
     </div>
-  </section>
-
-      <section class="space-y-2">
-    <h2 class="text-xl font-bold">Discover</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-gray-800 rounded-xl overflow-hidden hover:scale-105 transition">
-        <img src="/images/movie4.jpg" alt="Movie 4" class="w-full h-40 object-cover" />
-        <div class="p-2 text-white">Movie Title 4</div>
-      </div>
-    </div>
-  </section>
-    </main>
-
-    <!-- Bottom Navigation Bar -->
-<div class="fixed bottom-0 left-0 right-0 bg-black text-white flex justify-around items-center py-3 border-t border-gray-800 z-50">
-  <a href="dashboard.html" class="flex flex-col items-center hover:text-red-500 transition">
-    <i class="fas fa-home text-lg"></i>
-    <span class="text-xs mt-1">Home</span>
-  </a>
-  <a href="livetv.html" class="flex flex-col items-center hover:text-red-500 transition">
-    <i class="fas fa-tv text-lg"></i>
-    <span class="text-xs mt-1">Live TV</span>
-  </a>
-  <a href="discover.html" class="flex flex-col items-center hover:text-red-500 transition">
-    <i class="fas fa-compass text-lg"></i>
-    <span class="text-xs mt-1">Discover</span>
-  </a>
-  <a href="more.html" class="flex flex-col items-center hover:text-red-500 transition">
-    <i class="fas fa-ellipsis-h text-lg"></i>
-    <span class="text-xs mt-1">More</span>
-  </a>
-  <a href="profile.html" class="flex flex-col items-center hover:text-red-500 transition">
-    <i class="fas fa-user text-lg"></i>
-    <span class="text-xs mt-1">Profile</span>
-  </a>
-</div>
-
-  </body>
-      </html>
+  </section>  <nav>
+    <a href="#" class="active"><i class="fas fa-bars"></i>Home</a>
+    <a href="#"><i class="fas fa-tv"></i>Live TV</a>
+    <a href="#"><i class="fas fa-fire"></i>Discover</a>
+    <a href="#"><i class="fas fa-ellipsis-h"></i>More</a>
+    <a href="#"><i class="fas fa-user"></i>Profile</a>
+  </nav></body>
+</html>
