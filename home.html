@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home - str▶eam</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }body {
+  background-color: #000;
+  color: #fff;
+}
+
+header {
+  padding: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #00bfff;
+}
+
+.slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.slides {
+  display: flex;
+  width: 500%;
+  animation: slide 20s infinite;
+}
+
+.slides img {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-100%); }
+  40% { transform: translateX(-200%); }
+  60% { transform: translateX(-300%); }
+  80% { transform: translateX(-400%); }
+  100% { transform: translateX(0); }
+}
+
+.trending {
+  padding: 20px;
+}
+
+.trending h2 {
+  margin-bottom: 10px;
+}
+
+.trending-item {
+  margin-bottom: 15px;
+}
+
+.trending-item img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.discover {
+  padding: 20px;
+}
+
+.discover h2 {
+  margin-bottom: 10px;
+}
+
+.discover-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.discover img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #111;
+  padding: 10px 0;
+  border-top: 1px solid #333;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav a i {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+  </style>
+</head><body>
+  <header>
+    str▶eam
+  </header>  <section class="slider">
+    <div class="slides">
+      <img src="https://picsum.photos/id/1018/800/450" alt="Movie 1" />
+      <img src="https://picsum.photos/id/1015/800/450" alt="Movie 2" />
+      <img src="https://picsum.photos/id/1019/800/450" alt="Movie 3" />
+      <img src="https://picsum.photos/id/1020/800/450" alt="Movie 4" />
+      <img src="https://picsum.photos/id/1021/800/450" alt="Movie 5" />
+    </div>
+  </section>  <section class="trending">
+    <h2>🔥 Trending</h2>
+    <div class="trending-item">
+      <strong>#1</strong>
+      <img src="https://picsum.photos/id/1032/800/450" alt="Trending Movie 1" />
+    </div>
+    <div class="trending-item">
+      <strong>#2</strong>
+      <img src="https://picsum.photos/id/1033/800/450" alt="Trending Movie 2" />
+    </div>
+  </section>  <section class="discover">
+    <h2>Discover</h2>
+    <div class="discover-grid">
+      <img src="https://picsum.photos/id/1042/400/225" alt="Discover 1" />
+      <img src="https://picsum.photos/id/1043/400/225" alt="Discover 2" />
+      <img src="https://picsum.photos/id/1044/400/225" alt="Discover 3" />
+      <img src="https://picsum.photos/id/1045/400/225" alt="Discover 4" />
+    </div>
+  </section>  <nav>
+    <a href="#">
+      <i class="fas fa-home"></i>
+      Home
+    </a>
+    <a href="#">
+      <i class="fas fa-tv"></i>
+      Live TV
+    </a>
+    <a href="#">
+      <i class="fas fa-compass"></i>
+      Discover
+    </a>
+    <a href="#">
+      <i class="fas fa-user"></i>
+      Profile
+    </a>
+    <a href="#">
+      <i class="fas fa-bars"></i>
+      More
+    </a>
+  </nav>
+</body></html>
