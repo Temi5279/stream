@@ -30,23 +30,39 @@
   <title>str▶eam - More</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* COPY STYLES FROM HOMEPAGE (SAME DESIGN) */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica', Arial, sans-serif; }
-    body { background: #0F1C3F; color: white; padding-bottom: 70px; }
-    header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, #0F1C3F, transparent); position: fixed; width: 100%; z-index: 100; }
-    .logo { font-size: 28px; font-weight: bold; color: #E50914; }
-    main { padding-top: 80px; }
-    .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #0F1C3F; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1E3A8A; }
-    .nav-item { display: flex; flex-direction: column; align-items: center; color: #A0AEC0; text-decoration: none; font-size: 12px; }
-    .nav-item.active { color: white; }
-    .nav-icon { font-size: 18px; margin-bottom: 5px; }
-
-    /* MORE PAGE SPECIFIC STYLES */
-    .settings-card {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica', Arial, sans-serif;
+    }
+    body {
+      background: #0F1C3F;
+      color: white;
+      padding: 20px;
+    }
+    header {
+      padding: 15px 0;
+      border-bottom: 1px solid #1E3A8A;
+      margin-bottom: 20px;
+    }
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #E50914;
+    }
+    .settings-section {
       background: #1E3A8A;
-      margin: 15px 5%;
-      padding: 15px;
       border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .settings-section h3 {
+      margin-bottom: 15px;
+      color: #E50914;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .settings-item {
       display: flex;
@@ -58,126 +74,106 @@
     .settings-item:last-child {
       border-bottom: none;
     }
-    .toggle-switch {
-      position: relative;
-      width: 50px;
-      height: 24px;
-    }
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #E50914;
-      transition: .4s;
-      border-radius: 24px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 16px;
-      width: 16px;
-      left: 4px;
-      bottom: 4px;
-      background: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-    input:checked + .slider {
-      background: #0F1C3F;
-    }
-    input:checked + .slider:before {
-      transform: translateX(26px);
-    }
-    .logout-btn {
-      background: #E50914;
+    .settings-item a {
       color: white;
-      border: none;
+      text-decoration: none;
+    }
+    .btn {
       padding: 12px;
-      width: 100%;
-      border-radius: 8px;
-      margin-top: 20px;
+      border-radius: 5px;
+      border: none;
       font-weight: bold;
       cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .btn-logout {
+      background: #E50914;
+      color: white;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #0F1C3F;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      border-top: 1px solid #1E3A8A;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #A0AEC0;
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .nav-item.active {
+      color: white;
+    }
+    .nav-icon {
+      font-size: 18px;
+      margin-bottom: 5px;
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
   <header>
     <div class="logo">str▶eam</div>
-    <div class="search-icon"><i class="fas fa-search"></i></div>
   </header>
 
-  <!-- MAIN CONTENT -->
   <main>
-    <!-- SETTINGS -->
-    <div class="settings-card">
-      <h3><i class="fas fa-cog"></i> Settings</h3>
+    <!-- Notifications Section -->
+    <div class="settings-section">
+      <h3><i class="fas fa-bell"></i> Notifications</h3>
       <div class="settings-item">
-        <span>Dark Mode</span>
-        <label class="toggle-switch">
-          <input type="checkbox" checked>
-          <span class="slider"></span>
+        <span>Push Notifications</span>
+        <label class="switch">
+          <input type="checkbox" id="notificationsToggle" checked>
+          <span class="slider round"></span>
         </label>
-      </div>
-      <div class="settings-item">
-        <span>Notifications</span>
-        <label class="toggle-switch">
-          <input type="checkbox" checked>
-          <span class="slider"></span>
-        </label>
-      </div>
-      <div class="settings-item">
-        <span>Video Quality (Auto)</span>
-        <i class="fas fa-chevron-right"></i>
       </div>
     </div>
 
-    <!-- ACCOUNT -->
-    <div class="settings-card">
-      <h3><i class="fas fa-user-shield"></i> Account</h3>
-      <div class="settings-item">
-        <span>Change Password</span>
-        <i class="fas fa-chevron-right"></i>
-      </div>
-      <button class="logout-btn">Log Out</button>
-    </div>
-
-    <!-- HELP -->
-    <div class="settings-card">
+    <!-- Help Section -->
+    <div class="settings-section">
       <h3><i class="fas fa-question-circle"></i> Help</h3>
       <div class="settings-item">
-        <span>FAQ</span>
+        <a href="faq.html">FAQ</a>
         <i class="fas fa-chevron-right"></i>
       </div>
       <div class="settings-item">
-        <span>Contact Support</span>
+        <a href="contact.html">Contact Support</a>
         <i class="fas fa-chevron-right"></i>
       </div>
     </div>
 
-    <!-- ABOUT -->
-    <div class="settings-card">
+    <!-- About Section -->
+    <div class="settings-section">
       <h3><i class="fas fa-info-circle"></i> About</h3>
       <div class="settings-item">
         <span>App Version 1.0.0</span>
       </div>
       <div class="settings-item">
-        <span>Terms of Service</span>
+        <a href="terms.html">Terms of Service</a>
         <i class="fas fa-chevron-right"></i>
       </div>
     </div>
+
+    <!-- Account Section (Last Item) -->
+    <div class="settings-section">
+      <h3><i class="fas fa-user-shield"></i> Account</h3>
+      <div class="settings-item">
+        <a href="#" id="changePasswordBtn">Change Password</a>
+        <i class="fas fa-chevron-right"></i>
+      </div>
+      <button class="btn btn-logout" id="logoutBtn">Log Out</button>
+    </div>
   </main>
 
-  <!-- BOTTOM NAV (SAME AS OTHER PAGES) -->
+  <!-- Bottom Navigation -->
   <div class="bottom-nav">
     <a href="home.html" class="nav-item">
       <span class="nav-icon"><i class="fas fa-home"></i></span>
@@ -201,32 +197,55 @@
     </a>
   </div>
 
-  <!-- JAVASCRIPT -->
+  <!-- Firebase + JavaScript -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script>
-    // HIGHLIGHT CURRENT PAGE IN NAV
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAQQbxDZYAgk2D-bOpV-WJna4jjeVS7yz8",
+      authDomain: "stream-e1248.firebaseapp.com",
+      projectId: "stream-e1248",
+      storageBucket: "stream-e1248.appspot.com",
+      messagingSenderId: "911322587081",
+      appId: "1:911322587081:web:3567b86bf75626ce33d218"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Change Password Function
+    document.getElementById("changePasswordBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+      const user = firebase.auth().currentUser;
+      const newPassword = prompt("Enter your new password:");
+      
+      if (newPassword && newPassword.length >= 6) {
+        user.updatePassword(newPassword)
+          .then(() => alert("Password changed successfully!"))
+          .catch(error => alert("Error: " + error.message));
+      } else {
+        alert("Password must be at least 6 characters");
+      }
+    });
+
+    // Logout Function
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      firebase.auth().signOut()
+        .then(() => window.location.href = "signin.html");
+    });
+
+    // Notification Toggle
+    document.getElementById("notificationsToggle").addEventListener("change", (e) => {
+      alert("Notifications " + (e.target.checked ? "enabled" : "disabled"));
+      // Implement actual notification logic later
+    });
+
+    // Highlight current page in nav
     const currentPage = window.location.pathname.split('/').pop() || 'home.html';
     document.querySelectorAll('.nav-item').forEach(item => {
       if (item.getAttribute('href') === currentPage) {
         item.classList.add('active');
       }
     });
-
-    // TOGGLE SWITCHES (for Dark Mode/Notifications)
-    document.querySelectorAll('.toggle-switch input').forEach(toggle => {
-      toggle.addEventListener('change', (e) => {
-        if (e.target.parentElement.previousElementSibling.textContent === "Dark Mode") {
-          document.body.style.background = e.target.checked ? "#0F1C3F" : "#f5f5f5";
-        }
-        alert(`${e.target.parentElement.previousElementSibling.textContent} ${e.target.checked ? "ON" : "OFF"}`);
-      });
-    });
-
-    // LOGOUT BUTTON
-    document.querySelector('.logout-btn').addEventListener('click', () => {
-      if (confirm("Sure you want to log out?")) {
-        alert("Logged out successfully!"); // Replace with actual logout logic
-      }
-    });
   </script>
 </body>
-        </html>
+  </html>
