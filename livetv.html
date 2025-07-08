@@ -1,4 +1,28 @@
 <!DOCTYPE html>
+<!-- Add to <head> -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script>
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAQQbxDZYAgk2D-bOpV-WJna4jjeVS7yz8",
+    authDomain: "stream-e1248.firebaseapp.com",
+    projectId: "stream-e1248",
+    storageBucket: "stream-e1248.appspot.com",
+    messagingSenderId: "911322587081",
+    appId: "1:911322587081:web:3567b86bf75626ce33d218"
+  };
+  firebase.initializeApp(firebaseConfig);
+
+  // Auth check - ADD THIS TO ALL PROTECTED PAGES
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      window.location.href = "signin.html"; // Redirect if not logged in
+    } else {
+      console.log("Welcome back:", user.email);
+    }
+  });
+</script>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
