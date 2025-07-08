@@ -40,10 +40,10 @@
       background: #0F1C3F;
       color: white;
       padding: 20px;
+      padding-bottom: 80px;
     }
     header {
       padding: 15px 0;
-      border-bottom: 1px solid #1E3A8A;
       margin-bottom: 20px;
     }
     .logo {
@@ -74,9 +74,10 @@
     .settings-item:last-child {
       border-bottom: none;
     }
-    .settings-item a {
+    .settings-item a, .settings-item span {
       color: white;
       text-decoration: none;
+      flex-grow: 1;
     }
     .btn {
       padding: 12px;
@@ -90,6 +91,45 @@
     .btn-logout {
       background: #E50914;
       color: white;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #E50914;
+      transition: .4s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background: #0F1C3F;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
     }
     .bottom-nav {
       position: fixed;
@@ -132,7 +172,7 @@
         <span>Push Notifications</span>
         <label class="switch">
           <input type="checkbox" id="notificationsToggle" checked>
-          <span class="slider round"></span>
+          <span class="slider"></span>
         </label>
       </div>
     </div>
@@ -141,11 +181,11 @@
     <div class="settings-section">
       <h3><i class="fas fa-question-circle"></i> Help</h3>
       <div class="settings-item">
-        <a href="faq.html">FAQ</a>
+        <a href="#" id="faqBtn">FAQ</a>
         <i class="fas fa-chevron-right"></i>
       </div>
       <div class="settings-item">
-        <a href="contact.html">Contact Support</a>
+        <a href="#" id="contactBtn">Contact Support</a>
         <i class="fas fa-chevron-right"></i>
       </div>
     </div>
@@ -157,12 +197,12 @@
         <span>App Version 1.0.0</span>
       </div>
       <div class="settings-item">
-        <a href="terms.html">Terms of Service</a>
+        <a href="#" id="termsBtn">Terms of Service</a>
         <i class="fas fa-chevron-right"></i>
       </div>
     </div>
 
-    <!-- Account Section (Last Item) -->
+    <!-- Account Section -->
     <div class="settings-section">
       <h3><i class="fas fa-user-shield"></i> Account</h3>
       <div class="settings-item">
@@ -201,7 +241,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script>
-    // Firebase Config
+    // Firebase Config (USE YOUR OWN CONFIG)
     const firebaseConfig = {
       apiKey: "AIzaSyAQQbxDZYAgk2D-bOpV-WJna4jjeVS7yz8",
       authDomain: "stream-e1248.firebaseapp.com",
@@ -212,34 +252,64 @@
     };
     firebase.initializeApp(firebaseConfig);
 
-    // Change Password Function
-    document.getElementById("changePasswordBtn").addEventListener("click", (e) => {
+    // ===== AUTH CHECK =====
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        window.location.href = "signin.html";
+      }
+    });
+
+    // ===== PASSWORD CHANGE =====
+    document.getElementById("changePasswordBtn").addEventListener("click", async (e) => {
       e.preventDefault();
       const user = firebase.auth().currentUser;
-      const newPassword = prompt("Enter your new password:");
+      const newPassword = prompt("Enter your new password (min 6 characters):");
       
       if (newPassword && newPassword.length >= 6) {
-        user.updatePassword(newPassword)
-          .then(() => alert("Password changed successfully!"))
-          .catch(error => alert("Error: " + error.message));
+        try {
+          await user.updatePassword(newPassword);
+          alert("✅ Password changed successfully!");
+        } catch (error) {
+          alert("❌ Error: " + error.message);
+        }
       } else {
         alert("Password must be at least 6 characters");
       }
     });
 
-    // Logout Function
+    // ===== LOGOUT =====
     document.getElementById("logoutBtn").addEventListener("click", () => {
       firebase.auth().signOut()
         .then(() => window.location.href = "signin.html");
     });
 
-    // Notification Toggle
+    // ===== NOTIFICATIONS TOGGLE =====
     document.getElementById("notificationsToggle").addEventListener("change", (e) => {
-      alert("Notifications " + (e.target.checked ? "enabled" : "disabled"));
-      // Implement actual notification logic later
+      localStorage.setItem("notificationsEnabled", e.target.checked);
+      alert(`Notifications ${e.target.checked ? "enabled" : "disabled"}`);
     });
 
-    // Highlight current page in nav
+    // Load saved notification preference
+    document.getElementById("notificationsToggle").checked = 
+      localStorage.getItem("notificationsEnabled") !== "false";
+
+    // ===== PLACEHOLDER LINKS =====
+    document.getElementById("faqBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("FAQ page will be added soon!");
+    });
+
+    document.getElementById("contactBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("Contact support at: support@stream.com");
+    });
+
+    document.getElementById("termsBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("Terms page will be added soon!");
+    });
+
+    // ===== NAV HIGHLIGHT =====
     const currentPage = window.location.pathname.split('/').pop() || 'home.html';
     document.querySelectorAll('.nav-item').forEach(item => {
       if (item.getAttribute('href') === currentPage) {
@@ -248,4 +318,4 @@
     });
   </script>
 </body>
-  </html>
+            </html>
