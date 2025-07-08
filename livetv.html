@@ -2,129 +2,258 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Live TV</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>str▶eam - Live TV</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* COPY-PASTE FROM HOMEPAGE (SAME STYLE) */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica', Arial, sans-serif;
+    }
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Roboto', sans-serif;
-      margin-bottom: 80px;
+      background: #0F1C3F;
+      color: white;
     }
-    h2 {
-      margin-top: 20px;
-      margin-bottom: 10px;
-    }
-    iframe {
+    header {
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, #0F1C3F, transparent);
+      position: fixed;
       width: 100%;
-      height: 200px;
-      border: none;
-      border-radius: 10px;
-      margin-bottom: 20px;
+      z-index: 100;
     }
-    .channel {
-      display: none;
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #E50914;
     }
+    .search-icon {
+      font-size: 20px;
+      color: white;
+    }
+    main {
+      padding-top: 80px;
+      padding-bottom: 70px;
+    }
+    .movie-section {
+      padding: 20px 5%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .movie-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    /* LIVE TV SPECIFIC STYLES */
     .search-bar {
-      margin: 20px 0;
+      padding: 10px 5%;
+      background: #0F1C3F;
+      position: sticky;
+      top: 80px;
+      z-index: 90;
     }
-    .nav-bottom {
+    .search-bar input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 25px;
+      border: none;
+      background: #1E3A8A;
+      color: white;
+      font-size: 14px;
+    }
+    .channel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 15px;
+      padding: 10px 5%;
+    }
+    .channel-card {
+      background: #1E3A8A;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .channel-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .channel-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: white;
+      padding: 5px;
+    }
+    .channel-name {
+      font-size: 12px;
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    /* BOTTOM NAV BAR (SAME AS HOMEPAGE) */
+    .bottom-nav {
       position: fixed;
       bottom: 0;
       width: 100%;
-      background: #111;
+      background: #0F1C3F;
       display: flex;
       justify-content: space-around;
-      padding: 10px 0;
-      border-top: 1px solid #444;
-      z-index: 999;
+      padding: 12px 0;
+      border-top: 1px solid #1E3A8A;
     }
-    .nav-bottom a {
-      color: #fff;
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #A0AEC0;
       text-decoration: none;
-      font-size: 14px;
-      text-align: center;
+      font-size: 12px;
+      transition: color 0.3s;
     }
-    .nav-bottom a:hover {
-      color: #0f0;
+    .nav-item.active {
+      color: white;
     }
-    .nav-bottom a.active {
-      color: #0f0;
+    .nav-icon {
+      font-size: 18px;
+      margin-bottom: 5px;
     }
   </style>
 </head>
 <body>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">str▶eam</div>
+    <div class="search-icon"><i class="fas fa-search"></i></div>
+  </header>
 
-  <div class="container">
-    <h1 class="text-center mt-3">Live TV</h1>
-
-    <input type="text" id="search" class="form-control search-bar" placeholder="Search for a channel...">
-
-    <h2>📰 News</h2>
-    <div class="channel" data-name="France24">
-      <h5>France 24 English</h5>
-      <iframe src="https://static.france24.com/live/F24_EN_LO_HLS/live_web.m3u8" allowfullscreen></iframe>
-    </div>
-
-    <div class="channel" data-name="Al Jazeera">
-      <h5>Al Jazeera English</h5>
-      <iframe src="https://live-hls-web-aje.getaj.net/AJE/index.m3u8" allowfullscreen></iframe>
-    </div>
-
-    <div class="channel" data-name="Bloomberg">
-      <h5>Bloomberg Global</h5>
-      <iframe src="https://liveprodapnortheast.global.ssl.fastly.net/btv/desktop/us_live.m3u8" allowfullscreen></iframe>
-    </div>
-
-    <h2>🎮 Sports</h2>
-    <div class="channel" data-name="Red Bull">
-      <h5>Red Bull TV</h5>
-      <iframe src="https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master_6660.m3u8" allowfullscreen></iframe>
-    </div>
-
-    <h2>🔭 Science</h2>
-    <div class="channel" data-name="NASA">
-      <h5>NASA TV</h5>
-      <iframe src="https://cdn.streams.nasa.gov/nasa-live.m3u8" allowfullscreen></iframe>
-    </div>
+  <!-- SEARCH BAR -->
+  <div class="search-bar">
+    <input type="text" placeholder="Search channels..." id="searchInput">
   </div>
 
-  <div class="nav-bottom">
-    <a href="home.html"><div>🏠<br>Home</div></a>
-    <a href="live.html" class="active"><div>📺<br>Live TV</div></a>
-    <a href="discover.html"><div>🔍<br>Discover</div></a>
-    <a href="profile.html"><div>👤<br>Profile</div></a>
-    <a href="more.html"><div>☰<br>More</div></a>
+  <!-- LIVE TV CHANNELS -->
+  <main>
+    <!-- MOVIE CHANNELS -->
+    <div class="movie-section">
+      <h2 class="section-title">🎬 Movie Channels</h2>
+      <div class="channel-grid">
+        <div class="channel-card" data-name="HBO Max" data-category="movie">
+          <img src="https://logo.clearbit.com/hbo.com" class="channel-logo">
+          <p class="channel-name">HBO Max</p>
+        </div>
+        <div class="channel-card" data-name="AMC" data-category="movie">
+          <img src="https://logo.clearbit.com/amc.com" class="channel-logo">
+          <p class="channel-name">AMC</p>
+        </div>
+        <!-- ADD MORE CHANNELS HERE -->
+      </div>
+    </div>
+
+    <!-- SPORTS CHANNELS -->
+    <div class="movie-section">
+      <h2 class="section-title">⚽ Sports</h2>
+      <div class="channel-grid">
+        <div class="channel-card" data-name="ESPN" data-category="sports">
+          <img src="https://logo.clearbit.com/espn.com" class="channel-logo">
+          <p class="channel-name">ESPN</p>
+        </div>
+        <div class="channel-card" data-name="Supersport" data-category="sports">
+          <img src="https://logo.clearbit.com/supersport.com" class="channel-logo">
+          <p class="channel-name">Supersport</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- KIDS CHANNELS -->
+    <div class="movie-section">
+      <h2 class="section-title">🧸 Kids</h2>
+      <div class="channel-grid">
+        <div class="channel-card" data-name="Cartoon Network" data-category="kids">
+          <img src="https://logo.clearbit.com/cartoonnetwork.com" class="channel-logo">
+          <p class="channel-name">Cartoon Network</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- BOTTOM NAV BAR -->
+  <div class="bottom-nav">
+    <a href="home.html" class="nav-item">
+      <span class="nav-icon"><i class="fas fa-home"></i></span>
+      <span>Home</span>
+    </a>
+    <a href="livetv.html" class="nav-item active">
+      <span class="nav-icon"><i class="fas fa-tv"></i></span>
+      <span>Live TV</span>
+    </a>
+    <a href="discover.html" class="nav-item">
+      <span class="nav-icon"><i class="fas fa-compass"></i></span>
+      <span>Discover</span>
+    </a>
+    <a href="profile.html" class="nav-item">
+      <span class="nav-icon"><i class="fas fa-user-circle"></i></span>
+      <span>Profile</span>
+    </a>
+    <a href="more.html" class="nav-item">
+      <span class="nav-icon"><i class="fas fa-ellipsis-h"></i></span>
+      <span>More</span>
+    </a>
   </div>
 
+  <!-- JAVASCRIPT -->
   <script>
-    const search = document.getElementById("search");
-    const channels = document.querySelectorAll(".channel");
-
-    function showAllChannels() {
-      channels.forEach(channel => {
-        channel.style.display = "block";
-      });
-    }
-
-    search.addEventListener("input", () => {
-      const val = search.value.toLowerCase();
-      channels.forEach(channel => {
-        const name = channel.getAttribute("data-name").toLowerCase();
-        if (name.includes(val)) {
-          channel.style.display = "block";
-        } else {
-          channel.style.display = "none";
-        }
+    // SEARCH FUNCTION
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      document.querySelectorAll('.channel-card').forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        card.style.display = name.includes(searchTerm) ? 'block' : 'none';
       });
     });
 
-    // Show all by default
-    showAllChannels();
-  </script>
+    // CLICK CHANNEL TO WATCH (replace with your links)
+    document.querySelectorAll('.channel-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const channelName = card.getAttribute('data-name');
+        alert(`Loading ${channelName}... (Replace with actual stream link)`);
+        // window.open("YOUR_STREAM_LINK_HERE", "_blank");
+      });
+    });
 
+    // SCROLL ANIMATIONS (SAME AS HOMEPAGE)
+    const movieSections = document.querySelectorAll('.movie-section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    movieSections.forEach(section => observer.observe(section));
+
+    // HIGHLIGHT CURRENT PAGE IN NAV
+    const currentPage = window.location.pathname.split('/').pop() || 'home.html';
+    document.querySelectorAll('.nav-item').forEach(item => {
+      if (item.getAttribute('href') === currentPage) {
+        item.classList.add('active');
+      }
+    });
+  </script>
 </body>
-</html>
+  </html>
