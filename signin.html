@@ -4,74 +4,134 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>str▶eam - Sign In</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica', Arial, sans-serif;
+    }
     body {
       background: #0F1C3F;
       color: white;
-      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.png');
+      background-size: cover;
+      background-position: center;
     }
-    .signin-box {
-      background: rgba(0, 0, 0, 0.8);
-      padding: 20px;
+    .auth-box {
+      background: rgba(15, 28, 63, 0.9);
+      padding: 40px;
       border-radius: 8px;
-      max-width: 400px;
-      margin: 50px auto;
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     }
-    .signin-box a {
+    .logo {
+      font-size: 32px;
+      font-weight: bold;
+      color: #E50914;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+    .auth-box input {
+      width: 100%;
+      padding: 14px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 5px;
+      background: #1E3A8A;
+      color: white;
+      font-size: 16px;
+    }
+    .auth-box input:focus {
+      outline: 2px solid #E50914;
+    }
+    .auth-box button {
+      width: 100%;
+      padding: 14px;
+      background: #E50914;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    .auth-box button:hover {
+      background: #f40612;
+    }
+    .switch-auth {
+      margin-top: 25px;
+      font-size: 15px;
+      color: #d1d1d1;
+    }
+    .switch-auth a {
       color: #E50914;
       text-decoration: none;
+      font-weight: bold;
+    }
+    .switch-auth a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="signin-box">
-    <h2>Sign In</h2>
+  <div class="auth-box">
+    <div class="logo">str▶eam</div>
     <form id="signinForm">
       <input type="email" placeholder="Email" required>
       <input type="password" placeholder="Password" required>
       <button type="submit">Sign In</button>
     </form>
-    <p>Need an account? <a href="signup.html">Sign up</a></p>
+    <p class="switch-auth">New to str▶eam? <a href="signup.html">Sign Up Now</a></p>
   </div>
-  <!-- Firebase Auth Script -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-<script>
-  // Your Firebase Config (same as your stream project)
-  const firebaseConfig = {
-    apiKey: "AIzaSyAQQbxDZYAgk2D-bOpV-WJna4jjeVS7yz8",
-    authDomain: "stream-e1248.firebaseapp.com",
-    projectId: "stream-e1248",
-    storageBucket: "stream-e1248.appspot.com",
-    messagingSenderId: "911322587081",
-    appId: "1:911322587081:web:3567b86bf75626ce33d218"
-  };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
+  <!-- Firebase Auth -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script>
+    // Your Firebase Config (replace with yours)
+    const firebaseConfig = {
+      apiKey: "AIzaSyAQQbxDZYAgk2D-bOpV-WJna4jjeVS7yz8",
+      authDomain: "stream-e1248.firebaseapp.com",
+      projectId: "stream-e1248",
+      storageBucket: "stream-e1248.appspot.com",
+      messagingSenderId: "911322587081",
+      appId: "1:911322587081:web:3567b86bf75626ce33d218"
+    };
+    firebase.initializeApp(firebaseConfig);
 
-  // Sign Up (for signup.html)
-  document.getElementById("signupForm")?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
-    
-    auth.createUserWithEmailAndPassword(email, password)
-      .then(() => alert("Account created! Redirecting..."))
-      .catch((error) => alert("Error: " + error.message));
-  });
+    // Sign In + Redirect
+    document.getElementById("signinForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = e.target[0].value;
+      const password = e.target[1].value;
+      
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("Login successful! Redirecting...");
+          window.location.href = "home.html"; // Go to homepage
+        })
+        .catch((error) => {
+          alert("Error: " + error.message);
+        });
+    });
 
-  // Sign In (for signin.html)
-  document.getElementById("signinForm")?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
-    
-    auth.signInWithEmailAndPassword(email, password)
-      .then(() => alert("Logged in! Redirecting..."))
-      .catch((error) => alert("Error: " + error.message));
-  });
-    </script>
+    // Auto-redirect if already logged in
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        window.location.href = "home.html";
+      }
+    });
+  </script>
 </body>
-</html>
+  </html>
