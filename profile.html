@@ -1,77 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profile - Stream</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <style>
-    body {
-      background-color: #0f0f0f;
-      color: white;
-    }
-    .bottom-nav {
-      background-color: #1a1a1a;
-    }
-    .nav-icon {
-      font-size: 24px;
-    }
-    .nav-label {
-      font-size: 12px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 20px;
+            border: 3px solid #4285F4;
+        }
+        .edit-btn, .logout-btn {
+            background: #4285F4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .logout-btn {
+            background: #EA4335;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
 </head>
-<body class="flex flex-col min-h-screen justify-between">
-
-  <!-- Header -->
-  <header class="p-4 text-xl font-bold text-center bg-black text-white">
-    My Profile
-  </header>
-
-  <!-- Profile Info -->
-  <main class="flex-1 p-4">
-    <div class="bg-gray-800 p-4 rounded-xl shadow-md mb-6">
-      <h2 class="text-lg font-semibold mb-2">Account Info</h2>
-      <p>Email: user@example.com</p>
-      <p>Plan: Premium</p>
-      <p>Joined: Jan 2025</p>
+<body>
+    <h1>My Profile</h1>
+    
+    <img src="default-profile.png" class="profile-pic" id="profilePic">
+    <button class="edit-btn" onclick="document.getElementById('uploadPic').click()">
+        Change Photo
+    </button>
+    <input type="file" id="uploadPic" accept="image/*" style="display: none;">
+    
+    <div>
+        <label>Name:</label>
+        <input type="text" id="name" value="John Doe">
+        
+        <label>Email:</label>
+        <input type="email" id="email" value="john@example.com" readonly>
     </div>
+    
+    <button class="edit-btn">Save Changes</button>
+    <button class="logout-btn">Log Out</button>
 
-    <div class="bg-gray-800 p-4 rounded-xl shadow-md mb-6">
-      <h2 class="text-lg font-semibold mb-2">Settings</h2>
-      <ul class="space-y-2">
-        <li><a href="#" class="text-blue-400 hover:underline">Change Password</a></li>
-        <li><a href="#" class="text-blue-400 hover:underline">Subscription</a></li>
-        <li><a href="#" class="text-blue-400 hover:underline">Privacy Policy</a></li>
-        <li><a href="#" class="text-blue-400 hover:underline">Logout</a></li>
-      </ul>
-    </div>
-  </main>
-
-  <!-- Bottom Navigation -->
-  <nav class="bottom-nav fixed bottom-0 left-0 right-0 flex justify-around py-2 border-t border-gray-700">
-    <a href="index.html" class="flex flex-col items-center text-white hover:text-red-500 transition">
-      <span class="material-icons nav-icon">home</span>
-      <span class="nav-label">Home</span>
-    </a>
-    <a href="livetv.html" class="flex flex-col items-center text-white hover:text-red-500 transition">
-      <span class="material-icons nav-icon">live_tv</span>
-      <span class="nav-label">Live TV</span>
-    </a>
-    <a href="discover.html" class="flex flex-col items-center text-white hover:text-red-500 transition">
-      <span class="material-icons nav-icon">explore</span>
-      <span class="nav-label">Discover</span>
-    </a>
-    <a href="more.html" class="flex flex-col items-center text-white hover:text-red-500 transition">
-      <span class="material-icons nav-icon">menu</span>
-      <span class="nav-label">More</span>
-    </a>
-    <a href="profile.html" class="flex flex-col items-center text-red-500 transition">
-      <span class="material-icons nav-icon">person</span>
-      <span class="nav-label">Profile</span>
-    </a>
-  </nav>
-
+    <script>
+        // Simple JavaScript to change profile picture
+        document.getElementById('uploadPic').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('profilePic').src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 </body>
 </html>
