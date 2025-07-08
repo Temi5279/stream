@@ -2,159 +2,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stream - Live TV</title>
+  <title>Live TV | str▶eam</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
-    * {
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }body {
-  background-color: #000;
-  color: white;
-  padding-bottom: 70px;
-}
-
-.section {
-  display: none;
-  padding: 20px;
-}
-
-.section.active {
-  display: block;
-}
-
-h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-
-.channel-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-}
-
-.channel {
-  background-color: #111;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #111;
-}
-
-.channel img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.channel-name {
-  text-align: center;
-  margin-top: 5px;
-  font-size: 0.9em;
-}
-
-iframe {
-  width: 100%;
-  height: 200px;
-  border: none;
-  border-radius: 8px;
-}
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #111;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px 0;
-  border-top: 1px solid #222;
-}
-
-.bottom-nav img {
-  width: 24px;
-  height: 24px;
-  filter: invert(1);
-}
-
-.bottom-nav button {
-  background: none;
-  border: none;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 0.7em;
-}
-
-.bottom-nav button.active {
-  color: #1db954;
-}
-
-  </style>
-</head>
-<body>  <div id="home" class="section">
-    <h2>Home</h2>
-    <p>Welcome to the Home section.</p>
-  </div>  <div id="live" class="section active">
-    <h2>Live TV Channels</h2>
-    <div class="channel-grid">
-      <!-- Replace these with actual working m3u8 stream links -->
-      <div class="channel">
-        <iframe src="https://www.youtube.com/embed/live_stream?channel=UC4R8DWoMoI7CAwX8_LjQHig" allowfullscreen></iframe>
-        <div class="channel-name">NASA TV</div>
-      </div>
-      <div class="channel">
-        <iframe src="https://www.youtube.com/embed/live_stream?channel=UCvC4D8onUfXzvjTOM-dBfEA" allowfullscreen></iframe>
-        <div class="channel-name">Bloomberg</div>
-      </div>
-     <div class="channel">
-        <iframe src="https://thetvapp.to/tv/cartoon-network-live-stream/" allowfullscreen></iframe>
-        <div class="channel-name">Cartoon Network</div>
-    </div>
-    <div class="channel">
-        <iframe src="https://thetvapp.to/tv/espn-live-stream/" allowfullscreen></iframe>
-        <div class="channel-name">ESPN</div>
-      </div>
-    <div class="channel">
-        <iframe src="https://thetvapp.to/tv/nickelodeon-east-live-stream/" allowfullscreen></iframe>
-        <div class="channel-name">nickelodeon</div>
-      <!-- Add more YouTube live links or replace with IPTV .m3u8 -->
-      <!-- Repeat this block up to 30 times with real links -->
-    </div>
-  </div>  <div id="discover" class="section">
-    <h2>Discover</h2>
-    <p>Explore new content.</p>
-  </div>  <div id="more" class="section">
-    <h2>More</h2>
-    <p>Settings, Help, Terms of Use, About, Account, and more.</p>
-  </div>  <div id="profile" class="section">
-    <h2>Profile</h2>
-    <p>User settings and account info will go here.</p>
-  </div>  <div class="bottom-nav">
-    <button onclick="showSection('home')" id="btn-home">
-      <img src="https://img.icons8.com/ios-filled/50/home.png" /><span>Home</span>
-    </button>
-    <button onclick="showSection('live')" id="btn-live" class="active">
-      <img src="https://img.icons8.com/ios-filled/50/tv.png" /><span>Live TV</span>
-    </button>
-    <button onclick="showSection('discover')" id="btn-discover">
-      <img src="https://img.icons8.com/ios-filled/50/compass.png" /><span>Discover</span>
-    </button>
-    <button onclick="showSection('more')" id="btn-more">
-      <img src="https://img.icons8.com/ios-filled/50/menu.png" /><span>More</span>
-    </button>
-    <button onclick="showSection('profile')" id="btn-profile">
-      <img src="https://img.icons8.com/ios-filled/50/user.png" /><span>Profile</span>
-    </button>
-  </div>  <script>
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-
-      document.querySelectorAll('.bottom-nav button').forEach(btn => btn.classList.remove('active'));
-      document.getElementById('btn-' + id).classList.add('active');
+      font-family: 'Roboto', sans-serif;
+      background-color: #0d0d0d;
+      color: white;
     }
-  </script></body>
-    </html>
+    header {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+    .search-container {
+      padding: 0 1rem 1rem;
+    }
+    .search-input {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+    }
+    iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+    .categories {
+      display: flex;
+      justify-content: space-around;
+      margin: 1rem 0;
+    }
+    .category-btn {
+      padding: 0.5rem 1rem;
+      background-color: #1a1a1a;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+    nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #0d0d0d;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0.7rem 0;
+      border-top: 1px solid #222;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    nav a i {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+  </style>
+  <script>
+    function searchChannel() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const frame = document.getElementById("tvframe");
+      if (input.includes("sports")) {
+        frame.src = "https://thetvapp.to/embed/nbcsn";
+      } else if (input.includes("kids")) {
+        frame.src = "https://thetvapp.to/embed/disneychannel";
+      } else if (input.includes("movie")) {
+        frame.src = "https://thetvapp.to/embed/amc";
+      } else {
+        frame.src = "https://thetvapp.to/";
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">str▶eam</div>
+  </header>  <div class="search-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search Live TV..." onkeyup="searchChannel()" />
+  </div>  <div class="categories">
+    <button class="category-btn" onclick="document.getElementById('tvframe').src='https://thetvapp.to/embed/disneychannel'">Kids</button>
+    <button class="category-btn" onclick="document.getElementById('tvframe').src='https://thetvapp.to/embed/espn'">Sports</button>
+    <button class="category-btn" onclick="document.getElementById('tvframe').src='https://thetvapp.to/embed/amc'">Movies</button>
+    <button class="category-btn" onclick="document.getElementById('tvframe').src='https://thetvapp.to/embed/cnn'">News</button>
+    <button class="category-btn" onclick="document.getElementById('tvframe').src='https://thetvapp.to/embed/hgtv'">Others</button>
+  </div>  <iframe id="tvframe" src="https://thetvapp.to/" allowfullscreen></iframe>  <nav>
+    <a href="home.html">
+      <i class="fa fa-home"></i>
+      Home
+    </a>
+    <a href="livetv.html">
+      <i class="fa fa-tv"></i>
+      Live TV
+    </a>
+    <a href="discover.html">
+      <i class="fa fa-compass"></i>
+      Discover
+    </a>
+    <a href="profile.html">
+      <i class="fa fa-user"></i>
+      Profile
+    </a>
+    <a href="more.html">
+      <i class="fa fa-ellipsis-h"></i>
+      More
+    </a>
+  </nav>  <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script></body>
+      </html>
