@@ -1,78 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Discover - Stream</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>str▶eam - Discover</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      background-color: #000;
-      color: white;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    /* COPY STYLES FROM HOMEPAGE (SAME DESIGN) */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica', Arial, sans-serif; }
+    body { background: #0F1C3F; color: white; }
+    header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, #0F1C3F, transparent); position: fixed; width: 100%; z-index: 100; }
+    .logo { font-size: 28px; font-weight: bold; color: #E50914; }
+    main { padding-top: 80px; padding-bottom: 70px; }
+    .movie-row { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 15px; scrollbar-width: none; }
+    .movie-row::-webkit-scrollbar { display: none; }
+    .movie-poster { width: 150px; height: 225px; object-fit: cover; border-radius: 8px; transition: transform 0.3s; cursor: pointer; }
+    .movie-poster:hover { transform: scale(1.05); }
+    .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #0F1C3F; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1E3A8A; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; color: #A0AEC0; text-decoration: none; font-size: 12px; }
+    .nav-item.active { color: white; }
+    .nav-icon { font-size: 18px; margin-bottom: 5px; }
+
+    /* DISCOVER PAGE SPECIFIC STYLES */
+    .search-bar { padding: 15px 5%; position: sticky; top: 80px; z-index: 90; background: #0F1C3F; }
+    .search-bar input { width: 100%; padding: 12px 20px; border-radius: 25px; border: none; background: #1E3A8A; color: white; font-size: 14px; }
+    .genre-tabs { display: flex; gap: 10px; padding: 10px 5%; overflow-x: auto; }
+    .genre-tab { background: #1E3A8A; padding: 8px 15px; border-radius: 20px; font-size: 14px; cursor: pointer; white-space: nowrap; }
+    .genre-tab.active { background: #E50914; font-weight: bold; }
+    .section-title { padding: 5px 5%; font-size: 20px; }
   </style>
 </head>
-<body class="bg-black text-white pb-16">
-
-  <!-- Header -->
-  <header class="p-4">
-    <h1 class="text-2xl font-bold">Discover</h1>
-    <p class="text-sm text-gray-400">Trending and Recommended for You</p>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">str▶eam</div>
+    <div class="search-icon"><i class="fas fa-search"></i></div>
   </header>
 
-  <!-- Discover Grid -->
-  <main class="px-4 grid grid-cols-2 gap-4">
-    <div class="bg-gray-800 rounded-xl overflow-hidden">
-      <img src="https://via.placeholder.com/300x180.png?text=Trending+1" class="w-full h-auto" alt="Trending 1" />
-      <p class="p-2 text-sm">The Smurfs</p>
-    </div>
-    <div class="bg-gray-800 rounded-xl overflow-hidden">
-      <img src="https://via.placeholder.com/300x180.png?text=Trending+2" class="w-full h-auto" alt="Trending 2" />
-      <p class="p-2 text-sm">Beast of No Nation</p>
-    </div>
-    <div class="bg-gray-800 rounded-xl overflow-hidden">
-      <img src="https://via.placeholder.com/300x180.png?text=Recommended+1" class="w-full h-auto" alt="Recommended 1" />
-      <p class="p-2 text-sm">The Sparkle in Your Eyes</p>
-    </div>
-    <div class="bg-gray-800 rounded-xl overflow-hidden">
-      <img src="https://via.placeholder.com/300x180.png?text=Recommended+2" class="w-full h-auto" alt="Recommended 2" />
-      <p class="p-2 text-sm">Trapped in Osaka</p>
+  <!-- SEARCH BAR -->
+  <div class="search-bar">
+    <input type="text" placeholder="Search movies..." id="searchInput">
+  </div>
+
+  <!-- GENRE TABS -->
+  <div class="genre-tabs">
+    <div class="genre-tab active" data-genre="all">All</div>
+    <div class="genre-tab" data-genre="action">Action</div>
+    <div class="genre-tab" data-genre="thriller">Thriller</div>
+    <div class="genre-tab" data-genre="horror">Horror</div>
+    <div class="genre-tab" data-genre="comedy">Comedy</div>
+    <div class="genre-tab" data-genre="sci-fi">Sci-Fi</div>
+  </div>
+
+  <!-- MOVIE SECTIONS -->
+  <main>
+    <h2 class="section-title" id="genreTitle">All Movies</h2>
+    <div class="movie-row" id="movieRow">
+      <!-- MOVIES WILL LOAD HERE DYNAMICALLY -->
     </div>
   </main>
 
-  <!-- Bottom Navigation -->
-  <nav class="fixed bottom-0 left-0 w-full bg-black text-white flex justify-around py-2 border-t border-gray-700">
-    <a href="dashboard.html" class="flex flex-col items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4" />
-      </svg>
-      <span class="text-xs">Home</span>
+  <!-- BOTTOM NAV (SAME AS HOMEPAGE) -->
+  <div class="bottom-nav">
+    <a href="home.html" class="nav-item">
+      <span class="nav-icon"><i class="fas fa-home"></i></span>
+      <span>Home</span>
     </a>
-    <a href="livetv.html" class="flex flex-col items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M15 10l4.553 2.276A1 1 0 0120 13.118V14a7.003 7.003 0 01-6 6.93V22h-4v-1.07A7.003 7.003 0 014 14v-.882a1 1 0 01.447-.842L9 10" />
-      </svg>
-      <span class="text-xs">Live TV</span>
+    <a href="livetv.html" class="nav-item">
+      <span class="nav-icon"><i class="fas fa-tv"></i></span>
+      <span>Live TV</span>
     </a>
-    <a href="discover.html" class="flex flex-col items-center text-red-500">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.5 5.5L11 13a1 1 0 01-1.9-.6L9.5 9l-2.9-.6a1 1 0 01.2-1.98l5-1a1 1 0 011.2 1.58z" />
-      </svg>
-      <span class="text-xs">Discover</span>
+    <a href="discover.html" class="nav-item active">
+      <span class="nav-icon"><i class="fas fa-compass"></i></span>
+      <span>Discover</span>
     </a>
-    <a href="more.html" class="flex flex-col items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M12 6v.01M12 12v.01M12 18v.01" />
-      </svg>
-      <span class="text-xs">More</span>
+    <a href="profile.html" class="nav-item">
+      <span class="nav-icon"><i class="fas fa-user-circle"></i></span>
+      <span>Profile</span>
     </a>
-    <a href="profile.html" class="flex flex-col items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM4 20c0-2.21 3.58-4 8-4s8 1.79 8 4v1H4v-1z" />
-      </svg>
-      <span class="text-xs">Profile</span>
-    </a>
-  </nav>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // SAMPLE MOVIE DATA (Replace with your real movies!)
+    const movies = [
+      { title: "John Wick 4", genre: "action", image: "https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" },
+      { title: "The Nun 2", genre: "horror", image: "https://image.tmdb.org/t/p/w500/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg" },
+      { title: "Oppenheimer", genre: "thriller", image: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" },
+      { title: "Barbie", genre: "comedy", image: "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg" },
+      { title: "Dune", genre: "sci-fi", image: "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg" },
+    ];
+
+    // LOAD MOVIES BASED ON GENRE/SEARCH
+    function loadMovies(genre = "all", searchTerm = "") {
+      const movieRow = document.getElementById("movieRow");
+      movieRow.innerHTML = ""; // Clear current movies
+
+      const filteredMovies = movies.filter(movie => {
+        const matchesGenre = genre === "all" || movie.genre === genre;
+        const matchesSearch = movie.title.toLowerCase().includes(searchTerm.toLowerCase());
+        return matchesGenre && matchesSearch;
+      });
+
+      if (filteredMovies.length === 0) {
+        movieRow.innerHTML = "<p>No movies found!</p>";
+        return;
+      }
+
+      filteredMovies.forEach(movie => {
+        const poster = document.createElement("img");
+        poster.className = "movie-poster";
+        poster.src = movie.image;
+        poster.alt = movie.title;
+        poster.onclick = () => alert(`Selected: ${movie.title}`); // Replace with your player
+        movieRow.appendChild(poster);
+      });
+    }
+
+    // GENRE TAB CLICKS
+    document.querySelectorAll(".genre-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".genre-tab").forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        const genre = tab.getAttribute("data-genre");
+        document.getElementById("genreTitle").textContent = 
+          genre === "all" ? "All Movies" : `${genre.charAt(0).toUpperCase() + genre.slice(1)} Movies`;
+        loadMovies(genre);
+      });
+    });
+
+    // SEARCH FUNCTION
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+      const activeGenre = document.querySelector(".genre-tab.active").getAttribute("data-genre");
+      loadMovies(activeGenre, e.target.value);
+    });
+
+    // INITIAL LOAD
+    loadMovies();
+  </script>
 </body>
-        </html>
+</html>
