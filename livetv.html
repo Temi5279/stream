@@ -1,184 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Live TV | str▶eam</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live TV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-      box-sizing: border-box;
-    }
-
     body {
-      background-color: #0d0d0d;
+      background-color: #000;
       color: #fff;
-      padding-bottom: 80px;
+      font-family: 'Roboto', sans-serif;
+      margin-bottom: 80px;
     }
-
-    header {
-      padding: 1rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      background: #121212;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
+    h2 {
+      margin-top: 20px;
+      margin-bottom: 10px;
     }
-
-    header span {
-      color: red;
-      margin-left: 5px;
-    }
-
-    .search-container {
-      padding: 1rem;
-      background-color: #121212;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: none;
-      outline: none;
-      font-size: 1rem;
-    }
-
-    .channel-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1rem;
-      padding: 1rem;
-    }
-
-    .channel {
-      background-color: #1f1f1f;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-      transition: transform 0.2s ease;
-    }
-
-    .channel:hover {
-      transform: scale(1.01);
-    }
-
-    .channel iframe {
+    iframe {
       width: 100%;
       height: 200px;
       border: none;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
-
-    nav {
+    .channel {
+      display: none;
+    }
+    .search-bar {
+      margin: 20px 0;
+    }
+    .nav-bottom {
       position: fixed;
       bottom: 0;
-      left: 0;
-      right: 0;
-      background: #121212;
+      width: 100%;
+      background: #111;
       display: flex;
       justify-content: space-around;
-      align-items: center;
       padding: 10px 0;
-      border-top: 1px solid #333;
+      border-top: 1px solid #444;
+      z-index: 999;
     }
-
-    nav a {
+    .nav-bottom a {
       color: #fff;
       text-decoration: none;
-      font-size: 0.85rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      font-size: 14px;
+      text-align: center;
     }
-
-    nav a:hover {
-      color: red;
+    .nav-bottom a:hover {
+      color: #0f0;
     }
-
-    .icon {
-      font-size: 1.3rem;
-    }
-
-    @media (min-width: 768px) {
-      .channel iframe {
-        height: 250px;
-      }
+    .nav-bottom a.active {
+      color: #0f0;
     }
   </style>
 </head>
 <body>
 
-  <header>str<span>▶</span>eam Live TV</header>
+  <div class="container">
+    <h1 class="text-center mt-3">Live TV</h1>
 
-  <div class="search-container">
-    <input type="text" id="search" placeholder="Search channels..."/>
+    <input type="text" id="search" class="form-control search-bar" placeholder="Search for a channel...">
+
+    <h2>📰 News</h2>
+    <div class="channel" data-name="France24">
+      <h5>France 24 English</h5>
+      <iframe src="https://static.france24.com/live/F24_EN_LO_HLS/live_web.m3u8" allowfullscreen></iframe>
+    </div>
+
+    <div class="channel" data-name="Al Jazeera">
+      <h5>Al Jazeera English</h5>
+      <iframe src="https://live-hls-web-aje.getaj.net/AJE/index.m3u8" allowfullscreen></iframe>
+    </div>
+
+    <div class="channel" data-name="Bloomberg">
+      <h5>Bloomberg Global</h5>
+      <iframe src="https://liveprodapnortheast.global.ssl.fastly.net/btv/desktop/us_live.m3u8" allowfullscreen></iframe>
+    </div>
+
+    <h2>🎮 Sports</h2>
+    <div class="channel" data-name="Red Bull">
+      <h5>Red Bull TV</h5>
+      <iframe src="https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master_6660.m3u8" allowfullscreen></iframe>
+    </div>
+
+    <h2>🔭 Science</h2>
+    <div class="channel" data-name="NASA">
+      <h5>NASA TV</h5>
+      <iframe src="https://cdn.streams.nasa.gov/nasa-live.m3u8" allowfullscreen></iframe>
+    </div>
   </div>
 
-  <div class="channel-list" id="channels">
-    <!-- Example channels. Add more if needed -->
-    <div class="channel" data-name="ESPN">
-      <iframe src="https://thetvapp.to/embed/espn-us.php" allowfullscreen></iframe>
-    </div>
-    <div class="channel" data-name="CNN">
-      <iframe src="https://thetvapp.to/embed/cnn.php" allowfullscreen></iframe>
-    </div>
-    <div class="channel" data-name="Cartoon Network">
-      <iframe src="https://thetvapp.to/embed/cartoon-network.php" allowfullscreen></iframe>
-    </div>
-    <div class="channel" data-name="Sky Sports Main Event">
-      <iframe src="https://thetvapp.to/embed/sky-sports-main-event.php" allowfullscreen></iframe>
-    </div>
-    <div class="channel" data-name="BBC One">
-      <iframe src="https://thetvapp.to/embed/bbc-one.php" allowfullscreen></iframe>
-    </div>
-    <div class="channel" data-name="Nickelodeon">
-      <iframe src="https://thetvapp.to/embed/nickelodeon.php" allowfullscreen></iframe>
-    </div>
-    <!-- Add more channels as needed -->
+  <div class="nav-bottom">
+    <a href="home.html"><div>🏠<br>Home</div></a>
+    <a href="live.html" class="active"><div>📺<br>Live TV</div></a>
+    <a href="discover.html"><div>🔍<br>Discover</div></a>
+    <a href="profile.html"><div>👤<br>Profile</div></a>
+    <a href="more.html"><div>☰<br>More</div></a>
   </div>
-
-  <nav>
-    <a href="home.html">
-      <span class="icon">🏠</span>
-      <span>Home</span>
-    </a>
-    <a href="livetv.html">
-      <span class="icon">📺</span>
-      <span>Live TV</span>
-    </a>
-    <a href="discover.html">
-      <span class="icon">🔍</span>
-      <span>Discover</span>
-    </a>
-    <a href="profile.html">
-      <span class="icon">👤</span>
-      <span>Profile</span>
-    </a>
-    <a href="more.html">
-      <span class="icon">☰</span>
-      <span>More</span>
-    </a>
-  </nav>
 
   <script>
-    const searchInput = document.getElementById('search');
-    const channels = document.querySelectorAll('.channel');
+    const search = document.getElementById("search");
+    const channels = document.querySelectorAll(".channel");
 
-    searchInput.addEventListener('input', () => {
-      const searchTerm = searchInput.value.toLowerCase();
+    function showAllChannels() {
       channels.forEach(channel => {
-        const name = channel.getAttribute('data-name').toLowerCase();
-        if (name.includes(searchTerm)) {
-          channel.style.display = 'block';
+        channel.style.display = "block";
+      });
+    }
+
+    search.addEventListener("input", () => {
+      const val = search.value.toLowerCase();
+      channels.forEach(channel => {
+        const name = channel.getAttribute("data-name").toLowerCase();
+        if (name.includes(val)) {
+          channel.style.display = "block";
         } else {
-          channel.style.display = 'none';
+          channel.style.display = "none";
         }
       });
     });
+
+    // Show all by default
+    showAllChannels();
   </script>
+
 </body>
-  </html>
+</html>
