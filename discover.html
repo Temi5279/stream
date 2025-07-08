@@ -17,6 +17,7 @@
     body {
       background: #0F1C3F;
       color: white;
+      padding-bottom: 60px; /* Space for bottom nav */
     }
     
     /* HEADER */
@@ -45,7 +46,7 @@
     /* MAIN CONTENT */
     main {
       padding-top: 150px; /* Adjusted for search + genre tabs */
-      padding-bottom: 70px;
+      padding-bottom: 10px;
     }
     
     .movie-section {
@@ -130,7 +131,7 @@
       font-weight: bold;
     }
     
-    /* BOTTOM NAV BAR */
+    /* BOTTOM NAV BAR (FIXED WIDTH) */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -138,7 +139,7 @@
       background: #0F1C3F;
       display: flex;
       justify-content: space-around;
-      padding: 12px 0;
+      padding: 8px 0;
       border-top: 1px solid #1E3A8A;
       z-index: 100;
     }
@@ -149,8 +150,9 @@
       align-items: center;
       color: #A0AEC0;
       text-decoration: none;
-      font-size: 12px;
-      transition: color 0.3s;
+      font-size: 11px; /* Smaller font */
+      min-width: 50px; /* Ensures tabs don't squeeze */
+      padding: 0 2px; /* Spacing */
     }
     
     .nav-item.active {
@@ -158,8 +160,8 @@
     }
     
     .nav-icon {
-      font-size: 18px;
-      margin-bottom: 5px;
+      font-size: 16px; /* Slightly smaller icons */
+      margin-bottom: 2px;
     }
   </style>
 </head>
@@ -184,7 +186,6 @@
     <div class="genre-tab" data-genre="comedy">Comedy</div>
     <div class="genre-tab" data-genre="sci-fi">Sci-Fi</div>
     <div class="genre-tab" data-genre="romance">Romance</div>
-    <div class="genre-tab" data-genre="drama">Drama</div>
   </div>
 
   <!-- MOVIE SECTIONS -->
@@ -197,7 +198,7 @@
     </div>
   </main>
 
-  <!-- BOTTOM NAV BAR -->
+  <!-- UPDATED BOTTOM NAV BAR (NOW WITH "MORE" TAB) -->
   <div class="bottom-nav">
     <a href="home.html" class="nav-item">
       <span class="nav-icon"><i class="fas fa-home"></i></span>
@@ -214,6 +215,10 @@
     <a href="profile.html" class="nav-item">
       <span class="nav-icon"><i class="fas fa-user-circle"></i></span>
       <span>Profile</span>
+    </a>
+    <a href="more.html" class="nav-item">
+      <span class="nav-icon"><i class="fas fa-ellipsis-h"></i></span>
+      <span>More</span>
     </a>
   </div>
 
@@ -255,13 +260,6 @@
         image: "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
         year: 2021,
         rating: 4.7
-      },
-      { 
-        title: "Titanic", 
-        genre: "romance", 
-        image: "https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
-        year: 1997,
-        rating: 4.9
       },
     ];
 
