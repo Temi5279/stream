@@ -1,130 +1,124 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sign In | Stream</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(to right, #002347, #004080);
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      overflow: hidden;
-    }
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }body {
+  background: linear-gradient(to right, #0052cc, #003d99);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('https://images.unsplash.com/photo-1548092372-0d1bd40894a3?auto=format&fit=crop&w=1470&q=80');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
 
-    .container {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 30px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      animation: fadeInUp 0.8s ease forwards;
-    }
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
 
-    h2 {
-      text-align: center;
-      margin-bottom: 24px;
-      color: #ffffff;
-    }
+.container {
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1s ease-in-out;
+}
 
-    input[type="email"],
-    input[type="password"] {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 16px;
-      border: none;
-      border-radius: 8px;
-      background: #ffffff;
-      font-size: 1rem;
-      color: #333;
-    }
+.container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
 
-    input::placeholder {
-      color: #888;
-    }
+.container form {
+  display: flex;
+  flex-direction: column;
+}
 
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: #0055cc;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
+.container input {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+}
 
-    button:hover {
-      background-color: #003f99;
-    }
+.container button {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0052cc;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
 
-    .footer-text {
-      margin-top: 16px;
-      text-align: center;
-      font-size: 0.9rem;
-    }
+.container button:hover {
+  background-color: #003d99;
+}
 
-    .footer-text a {
-      color: #00bfff;
-      text-decoration: none;
-    }
+.container p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
 
-    .footer-text a:hover {
-      text-decoration: underline;
-    }
+.container p a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
+}
 
-    @keyframes fadeInUp {
-      from {
-        transform: translateY(40px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    @media (max-width: 480px) {
-      .container {
-        padding: 20px;
-      }
-    }
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+}
+
   </style>
-</head>
-<body>
+</head><body>
   <div class="container">
-    <h2>Welcome Back</h2>
-    <input type="email" id="login-email" placeholder="Email" />
-    <input type="password" id="login-password" placeholder="Password" />
-    <button onclick="login()">Sign In</button>
-
-    <div class="footer-text">
-      Don't have an account? <a href="signup.html">Sign up</a>
-    </div>
+    <h2>Sign In</h2>
+    <form action="#" method="post">
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Sign In</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
   </div>
-
-  <script>
-    function login() {
-      const email = document.getElementById("login-email").value;
-      const password = document.getElementById("login-password").value;
-
-      if (email && password) {
-        // Replace with your actual login logic
-        alert("Login successful!");
-        window.location.href = "dashboard.html"; // or homepage.html
-      } else {
-        alert("Please fill in both fields.");
-      }
-    }
-  </script>
-</body>
-</html>
+</body></html>
