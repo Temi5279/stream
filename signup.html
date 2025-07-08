@@ -5,96 +5,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sign Up - Stream</title>
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(rgba(0, 0, 128, 0.7), rgba(0, 0, 128, 0.7)), url('https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-      height: 100vh;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(rgba(0, 0, 50, 0.6), rgba(0, 0, 80, 0.8)),
+                  url('https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      height: 100vh;
     }
 
     .container {
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 12px;
+      background-color: rgba(0, 0, 80, 0.9);
+      padding: 40px 30px;
+      border-radius: 16px;
       width: 90%;
       max-width: 400px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease-in-out;
     }
 
-    h2 {
+    .container h2 {
       text-align: center;
-      margin-bottom: 1.5rem;
-      color: #fff;
+      margin-bottom: 24px;
+      color: #ffffff;
     }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
+    input[type="text"], input[type="email"], input[type="password"] {
       width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
+      padding: 14px;
+      margin: 10px 0;
       border: none;
-      border-radius: 8px;
-      background-color: rgba(255,255,255,0.9);
+      border-radius: 10px;
+      background-color: #f0f0f0;
+      color: #000;
+      font-size: 15px;
     }
 
     button {
       width: 100%;
-      padding: 0.75rem;
-      border: none;
+      padding: 14px;
       background-color: royalblue;
-      color: white;
-      font-size: 1rem;
-      border-radius: 8px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      color: #fff;
       cursor: pointer;
+      margin-top: 16px;
+      transition: background 0.3s ease;
     }
 
     button:hover {
-      background-color: #4169e1;
+      background-color: #2f5bd7;
     }
 
-    p {
+    .login-link {
+      margin-top: 18px;
       text-align: center;
-      margin-top: 1rem;
-      color: #fff;
+      font-size: 14px;
     }
 
-    a {
-      color: #ffd700;
+    .login-link a {
+      color: #00ccff;
       text-decoration: none;
-      font-weight: bold;
     }
 
-    a:hover {
+    .login-link a:hover {
       text-decoration: underline;
     }
 
-    @media (max-width: 500px) {
-      .container {
-        padding: 1.5rem;
-      }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-      h2 {
-        font-size: 1.5rem;
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 20px;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Create Account</h2>
+    <h2>Create Your Account</h2>
     <form>
       <input type="text" placeholder="Full Name" required />
-      <input type="email" placeholder="Email Address" required />
+      <input type="email" placeholder="Email" required />
       <input type="password" placeholder="Password" required />
       <button type="submit">Sign Up</button>
     </form>
-    <p>Already have an account? <a href="signin.html">Sign in</a></p>
+    <div class="login-link">
+      Already have an account? <a href="signin.html">Sign In</a>
+    </div>
   </div>
 </body>
 </html>
