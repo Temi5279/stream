@@ -1,129 +1,184 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Live TV | str▶eam</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
       font-family: 'Roboto', sans-serif;
-      background-color: #0d0d0d;
-      color: white;
+      box-sizing: border-box;
     }
+
+    body {
+      background-color: #0d0d0d;
+      color: #fff;
+      padding-bottom: 80px;
+    }
+
     header {
       padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
       font-size: 1.5rem;
       font-weight: bold;
-      color: #fff;
+      background: #121212;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
     }
+
+    header span {
+      color: red;
+      margin-left: 5px;
+    }
+
     .search-container {
-      padding: 0 1rem 1rem;
+      padding: 1rem;
+      background-color: #121212;
     }
-    .search-input {
+
+    input[type="text"] {
       width: 100%;
-      padding: 0.5rem;
-      border-radius: 10px;
+      padding: 10px;
+      border-radius: 6px;
       border: none;
+      outline: none;
       font-size: 1rem;
     }
-    iframe {
-      width: 100%;
-      height: 80vh;
-      border: none;
+
+    .channel-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .channel {
+      background-color: #1f1f1f;
       border-radius: 10px;
-      margin: 1rem 0;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+      transition: transform 0.2s ease;
     }
-    .categories {
-      display: flex;
-      justify-content: space-around;
-      margin: 1rem 0;
+
+    .channel:hover {
+      transform: scale(1.01);
     }
-    .category-btn {
-      padding: 0.5rem 1rem;
-      background-color: #1a1a1a;
-      color: #fff;
+
+    .channel iframe {
+      width: 100%;
+      height: 200px;
       border: none;
-      border-radius: 20px;
-      font-size: 0.9rem;
     }
+
     nav {
       position: fixed;
       bottom: 0;
-      width: 100%;
-      background-color: #0d0d0d;
+      left: 0;
+      right: 0;
+      background: #121212;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 0.7rem 0;
-      border-top: 1px solid #222;
+      padding: 10px 0;
+      border-top: 1px solid #333;
     }
+
     nav a {
-      color: white;
+      color: #fff;
       text-decoration: none;
-      text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    nav a i {
-      display: block;
-      font-size: 1.2rem;
-      margin-bottom: 4px;
+
+    nav a:hover {
+      color: red;
     }
-  </style>
-  <script>
-    function searchChannel() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const frame = document.getElementById("tvframe");
-      if (input.includes("sports")) {
-        frame.src = "https://thetvapp.to/embed/nbcsn";
-      } else if (input.includes("kids")) {
-        frame.src = "https://thetvapp.to/embed/disneychannel";
-      } else if (input.includes("movie")) {
-        frame.src = "https://thetvapp.to/embed/amc";
-      } else {
-        frame.src = "https://thetvapp.to/";
+
+    .icon {
+      font-size: 1.3rem;
+    }
+
+    @media (min-width: 768px) {
+      .channel iframe {
+        height: 250px;
       }
     }
-  </script>
+  </style>
 </head>
 <body>
-  <header>
-    <div class="logo">str▶eam</div>
-  </header>  <div class="search-container">
-    <input type="text" id="searchInput" class="search-input" placeholder="Search Live TV..." onkeyup="searchChannel()" />
-  </div>  <div class="categories">
-    <button class="category-btn" onclick="document.getElementById('tvframe').src='https://thetvapp.to/embed/disneychannel'">Kids</button>
-    <button class="category-btn" onclick="document.getElementById('tvframe').src='https://thetvapp.to/embed/espn'">Sports</button>
-    <button class="category-btn" onclick="document.getElementById('tvframe').src='https://thetvapp.to/embed/amc'">Movies</button>
-    <button class="category-btn" onclick="document.getElementById('tvframe').src='https://thetvapp.to/embed/cnn'">News</button>
-    <button class="category-btn" onclick="document.getElementById('tvframe').src='https://thetvapp.to/embed/hgtv'">Others</button>
-  </div>  <iframe id="tvframe" src="https://thetvapp.to/" allowfullscreen></iframe>  <nav>
+
+  <header>str<span>▶</span>eam Live TV</header>
+
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Search channels..."/>
+  </div>
+
+  <div class="channel-list" id="channels">
+    <!-- Example channels. Add more if needed -->
+    <div class="channel" data-name="ESPN">
+      <iframe src="https://thetvapp.to/embed/espn-us.php" allowfullscreen></iframe>
+    </div>
+    <div class="channel" data-name="CNN">
+      <iframe src="https://thetvapp.to/embed/cnn.php" allowfullscreen></iframe>
+    </div>
+    <div class="channel" data-name="Cartoon Network">
+      <iframe src="https://thetvapp.to/embed/cartoon-network.php" allowfullscreen></iframe>
+    </div>
+    <div class="channel" data-name="Sky Sports Main Event">
+      <iframe src="https://thetvapp.to/embed/sky-sports-main-event.php" allowfullscreen></iframe>
+    </div>
+    <div class="channel" data-name="BBC One">
+      <iframe src="https://thetvapp.to/embed/bbc-one.php" allowfullscreen></iframe>
+    </div>
+    <div class="channel" data-name="Nickelodeon">
+      <iframe src="https://thetvapp.to/embed/nickelodeon.php" allowfullscreen></iframe>
+    </div>
+    <!-- Add more channels as needed -->
+  </div>
+
+  <nav>
     <a href="home.html">
-      <i class="fa fa-home"></i>
-      Home
+      <span class="icon">🏠</span>
+      <span>Home</span>
     </a>
     <a href="livetv.html">
-      <i class="fa fa-tv"></i>
-      Live TV
+      <span class="icon">📺</span>
+      <span>Live TV</span>
     </a>
     <a href="discover.html">
-      <i class="fa fa-compass"></i>
-      Discover
+      <span class="icon">🔍</span>
+      <span>Discover</span>
     </a>
     <a href="profile.html">
-      <i class="fa fa-user"></i>
-      Profile
+      <span class="icon">👤</span>
+      <span>Profile</span>
     </a>
     <a href="more.html">
-      <i class="fa fa-ellipsis-h"></i>
-      More
+      <span class="icon">☰</span>
+      <span>More</span>
     </a>
-  </nav>  <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script></body>
-      </html>
+  </nav>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const channels = document.querySelectorAll('.channel');
+
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value.toLowerCase();
+      channels.forEach(channel => {
+        const name = channel.getAttribute('data-name').toLowerCase();
+        if (name.includes(searchTerm)) {
+          channel.style.display = 'block';
+        } else {
+          channel.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+  </html>
