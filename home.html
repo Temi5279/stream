@@ -1,164 +1,323 @@
-<!DOCTYPE html><html lang="en"><head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home - str▶eam</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>str▶eam</title>
   <style>
+    /* RESET & BASIC STYLES */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }body {
-  background-color: #000;
-  color: #fff;
-}
+      font-family: 'Helvetica', Arial, sans-serif;
+    }
+    
+    body {
+      background: #0F1C3F;
+      color: white;
+    }
+    
+    /* HEADER */
+    header {
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, #0F1C3F, transparent);
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #E50914;
+    }
+    
+    /* MAIN CONTENT */
+    main {
+      padding-top: 80px;
+      padding-bottom: 70px;
+    }
+    
+    .movie-section {
+      padding: 20px 5%;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    
+    .movie-row {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding-bottom: 15px;
+    }
+    
+    .movie-poster {
+      width: 150px;
+      height: 225px;
+      object-fit: cover;
+      border-radius: 5px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    
+    .movie-poster:hover {
+      transform: scale(1.05);
+    }
+    
+    /* BOTTOM NAV BAR */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #0F1C3F;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #1E3A8A;
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #A0AEC0;
+      text-decoration: none;
+      font-size: 12px;
+    }
+    
+    .nav-item.active {
+      color: white;
+    }
+    
+    .nav-icon {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
 
-header {
-  padding: 20px;
-  font-size: 28px;
-  font-weight: bold;
-  color: #00bfff;
-}
-
-.slider {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.slides {
-  display: flex;
-  width: 500%;
-  animation: slide 20s infinite;
-}
-
-.slides img {
-  width: 100%;
-  height: auto;
-}
-
-@keyframes slide {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-100%); }
-  40% { transform: translateX(-200%); }
-  60% { transform: translateX(-300%); }
-  80% { transform: translateX(-400%); }
-  100% { transform: translateX(0); }
-}
-
-.trending {
-  padding: 20px;
-}
-
-.trending h2 {
-  margin-bottom: 10px;
-}
-
-.trending-item {
-  margin-bottom: 15px;
-}
-
-.trending-item img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.discover {
-  padding: 20px;
-}
-
-.discover h2 {
-  margin-bottom: 10px;
-}
-
-.discover-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.discover img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  background-color: #111;
-  padding: 10px 0;
-  border-top: 1px solid #333;
-}
-
-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-nav a i {
-  font-size: 20px;
-  margin-bottom: 5px;
-}
-
+    /* MOVIE DETAIL MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 200;
+      overflow-y: auto;
+    }
+    
+    .modal-content {
+      background: #0F1C3F;
+      margin: 50px auto;
+      padding: 20px;
+      max-width: 800px;
+      border-radius: 10px;
+      position: relative;
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    
+    .movie-details {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .movie-cover {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    
+    .movie-info h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .movie-info p {
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+    
+    .play-btn {
+      background: #E50914;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    
+    .video-container {
+      width: 100%;
+      aspect-ratio: 16/9;
+      margin-top: 20px;
+      display: none;
+    }
   </style>
-</head><body>
+</head>
+<body>
+  <!-- HEADER -->
   <header>
-    str▶eam
-  </header>  <section class="slider">
-    <div class="slides">
-      <img src="https://picsum.photos/id/1018/800/450" alt="Movie 1" />
-      <img src="https://picsum.photos/id/1015/800/450" alt="Movie 2" />
-      <img src="https://picsum.photos/id/1019/800/450" alt="Movie 3" />
-      <img src="https://picsum.photos/id/1020/800/450" alt="Movie 4" />
-      <img src="https://picsum.photos/id/1021/800/450" alt="Movie 5" />
+    <div class="logo">str▶eam</div>
+    <div class="search-icon">🔍</div>
+  </header>
+  
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- TRENDING NOW -->
+    <div class="movie-section">
+      <h2 class="section-title">Trending Now</h2>
+      <div class="movie-row">
+        <img src="https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" alt="Spider-Man" class="movie-poster" data-title="Spider-Man: No Way Home" data-desc="With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.">
+        <img src="https://image.tmdb.org/t/p/w500/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg" alt="The Batman" class="movie-poster" data-title="The Batman" data-desc="When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.">
+        <img src="https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg" alt="Avatar 2" class="movie-poster" data-title="Avatar: The Way of Water" data-desc="Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.">
+      </div>
     </div>
-  </section>  <section class="trending">
-    <h2>🔥 Trending</h2>
-    <div class="trending-item">
-      <strong>#1</strong>
-      <img src="https://picsum.photos/id/1032/800/450" alt="Trending Movie 1" />
+    
+    <!-- POPULAR -->
+    <div class="movie-section">
+      <h2 class="section-title">Popular</h2>
+      <div class="movie-row">
+        <img src="https://image.tmdb.org/t/p/w500/pFlaoHTZeyNkG83vxsAJiGzfSsa.jpg" alt="Black Panther" class="movie-poster" data-title="Black Panther: Wakanda Forever" data-desc="Queen Ramonda, Shuri, M'Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T'Challa's death.">
+        <img src="https://image.tmdb.org/t/p/w500/1NqwE6LP9IEdOZ57NCT51ftHtWT.jpg" alt="Shang-Chi" class="movie-poster" data-title="Shang-Chi" data-desc="Shang-Chi, the master of weaponry-based Kung Fu, is forced to confront his past after being drawn into the Ten Rings organization.">
+        <img src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" alt="Loki" class="movie-poster" data-title="Loki" data-desc="The mercurial villain Loki resumes his role as the God of Mischief in a new series that takes place after the events of 'Avengers: Endgame'.">
+      </div>
     </div>
-    <div class="trending-item">
-      <strong>#2</strong>
-      <img src="https://picsum.photos/id/1033/800/450" alt="Trending Movie 2" />
+  </main>
+  
+  <!-- BOTTOM NAV BAR -->
+  <div class="bottom-nav">
+    <a href="home.html" class="nav-item active">
+      <span class="nav-icon">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="livetv.html" class="nav-item">
+      <span class="nav-icon">📺</span>
+      <span>Live TV</span>
+    </a>
+    <a href="discover.html" class="nav-item">
+      <span class="nav-icon">🔍</span>
+      <span>Discover</span>
+    </a>
+    <a href="profile.html" class="nav-item">
+      <span class="nav-icon">👤</span>
+      <span>Profile</span>
+    </a>
+    <a href="more.html" class="nav-item">
+      <span class="nav-icon">⋮</span>
+      <span>More</span>
+    </a>
+  </div>
+  
+  <!-- MOVIE DETAIL MODAL -->
+  <div class="modal" id="movieModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="movie-details">
+        <img id="modalCover" class="movie-cover" src="" alt="Movie Cover">
+        <div class="movie-info">
+          <h2 id="modalTitle">Movie Title</h2>
+          <p id="modalDesc">Movie description goes here...</p>
+          <button class="play-btn" id="playBtn">▶ Play</button>
+        </div>
+        <div class="video-container" id="videoContainer">
+          <!-- Embedded player will appear here -->
+        </div>
+      </div>
     </div>
-  </section>  <section class="discover">
-    <h2>Discover</h2>
-    <div class="discover-grid">
-      <img src="https://picsum.photos/id/1042/400/225" alt="Discover 1" />
-      <img src="https://picsum.photos/id/1043/400/225" alt="Discover 2" />
-      <img src="https://picsum.photos/id/1044/400/225" alt="Discover 3" />
-      <img src="https://picsum.photos/id/1045/400/225" alt="Discover 4" />
-    </div>
-  </section>  <nav>
-    <a href="#">
-      <i class="fas fa-home"></i>
-      Home
-    </a>
-    <a href="#">
-      <i class="fas fa-tv"></i>
-      Live TV
-    </a>
-    <a href="#">
-      <i class="fas fa-compass"></i>
-      Discover
-    </a>
-    <a href="#">
-      <i class="fas fa-user"></i>
-      Profile
-    </a>
-    <a href="#">
-      <i class="fas fa-bars"></i>
-      More
-    </a>
-  </nav>
-</body></html>
+  </div>
+  
+  <!-- JAVASCRIPT -->
+  <script>
+    // Bottom nav active state
+    const currentPage = window.location.pathname.split('/').pop() || 'home.html';
+    document.querySelectorAll('.nav-item').forEach(item => {
+      if (item.getAttribute('href') === currentPage) {
+        item.classList.add('active');
+      }
+    });
+
+    // Movie modal functionality
+    const modal = document.getElementById('movieModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalCover = document.getElementById('modalCover');
+    const videoContainer = document.getElementById('videoContainer');
+    const playBtn = document.getElementById('playBtn');
+    const closeModal = document.querySelector('.close-modal');
+    
+    // Movie data (title, trailer embed IDs)
+    const movieData = {
+      "Spider-Man: No Way Home": { embedId: "JfVOs4VSpmA" },
+      "The Batman": { embedId: "mqqft2x_Aa4" },
+      "Avatar: The Way of Water": { embedId: "d9MyW72ELq0" },
+      "Black Panther: Wakanda Forever": { embedId: "RlOB3UALvrQ" },
+      "Shang-Chi": { embedId: "8YjFbMbfXaQ" },
+      "Loki": { embedId: "nW948Va-l10" }
+    };
+
+    // Click on movie poster
+    document.querySelectorAll('.movie-poster').forEach(poster => {
+      poster.addEventListener('click', () => {
+        const title = poster.getAttribute('data-title');
+        const desc = poster.getAttribute('data-desc');
+        const imgSrc = poster.getAttribute('src');
+        
+        modalTitle.textContent = title;
+        modalDesc.textContent = desc;
+        modalCover.src = imgSrc;
+        videoContainer.style.display = 'none';
+        videoContainer.innerHTML = '';
+        modal.style.display = 'block';
+      });
+    });
+
+    // Play button
+    playBtn.addEventListener('click', () => {
+      const title = modalTitle.textContent;
+      const embedId = movieData[title]?.embedId;
+      
+      if (embedId) {
+        videoContainer.innerHTML = `
+          <iframe width="100%" height="100%" 
+          src="https://www.youtube.com/embed/${embedId}?autoplay=1" 
+          frameborder="0" allowfullscreen></iframe>
+        `;
+        videoContainer.style.display = 'block';
+      } else {
+        alert('Trailer not available');
+      }
+    });
+
+    // Close modal
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Close when clicking outside modal
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+  </html>
