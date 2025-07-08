@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>str▶eam</title>
+  <!-- Font Awesome for modern icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* RESET & BASIC STYLES */
     * {
@@ -36,6 +38,11 @@
       color: #E50914;
     }
     
+    .search-icon {
+      font-size: 20px;
+      color: white;
+    }
+    
     /* MAIN CONTENT */
     main {
       padding-top: 80px;
@@ -44,6 +51,14 @@
     
     .movie-section {
       padding: 20px 5%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    
+    .movie-section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .section-title {
@@ -54,21 +69,27 @@
     .movie-row {
       display: flex;
       overflow-x: auto;
-      gap: 10px;
+      gap: 15px;
       padding-bottom: 15px;
+      scrollbar-width: none; /* Hide scrollbar for Firefox */
+    }
+    
+    .movie-row::-webkit-scrollbar {
+      display: none; /* Hide scrollbar for Chrome/Safari */
     }
     
     .movie-poster {
       width: 150px;
       height: 225px;
       object-fit: cover;
-      border-radius: 5px;
+      border-radius: 8px;
       transition: transform 0.3s;
       cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
     
     .movie-poster:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
     
     /* BOTTOM NAV BAR */
@@ -79,7 +100,7 @@
       background: #0F1C3F;
       display: flex;
       justify-content: space-around;
-      padding: 10px 0;
+      padding: 12px 0;
       border-top: 1px solid #1E3A8A;
     }
     
@@ -90,6 +111,7 @@
       color: #A0AEC0;
       text-decoration: none;
       font-size: 12px;
+      transition: color 0.3s;
     }
     
     .nav-item.active {
@@ -97,10 +119,10 @@
     }
     
     .nav-icon {
-      font-size: 20px;
+      font-size: 18px;
       margin-bottom: 5px;
     }
-
+    
     /* MOVIE DETAIL MODAL */
     .modal {
       display: none;
@@ -117,10 +139,16 @@
     .modal-content {
       background: #0F1C3F;
       margin: 50px auto;
-      padding: 20px;
+      padding: 25px;
       max-width: 800px;
       border-radius: 10px;
       position: relative;
+      animation: fadeIn 0.3s;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
     
     .close-modal {
@@ -129,6 +157,14 @@
       right: 15px;
       font-size: 24px;
       cursor: pointer;
+      color: white;
+      background: rgba(255, 255, 255, 0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .movie-details {
@@ -142,27 +178,35 @@
       max-height: 400px;
       object-fit: cover;
       border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     }
     
     .movie-info h2 {
-      font-size: 24px;
+      font-size: 28px;
       margin-bottom: 10px;
     }
     
     .movie-info p {
       margin-bottom: 15px;
-      line-height: 1.5;
+      line-height: 1.6;
+      color: #d1d1d1;
     }
     
     .play-btn {
       background: #E50914;
       color: white;
       border: none;
-      padding: 12px 25px;
+      padding: 12px 30px;
       font-size: 16px;
       border-radius: 5px;
       cursor: pointer;
       margin-top: 10px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    
+    .play-btn:hover {
+      background: #f40612;
     }
     
     .video-container {
@@ -170,6 +214,23 @@
       aspect-ratio: 16/9;
       margin-top: 20px;
       display: none;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    /* METADATA ROW */
+    .meta-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+      color: #d1d1d1;
     }
   </style>
 </head>
@@ -177,52 +238,80 @@
   <!-- HEADER -->
   <header>
     <div class="logo">str▶eam</div>
-    <div class="search-icon">🔍</div>
+    <div class="search-icon"><i class="fas fa-search"></i></div>
   </header>
   
   <!-- MAIN CONTENT -->
   <main>
     <!-- TRENDING NOW -->
     <div class="movie-section">
-      <h2 class="section-title">Trending Now</h2>
+      <h2 class="section-title">Trending Now 🔥</h2>
       <div class="movie-row">
-        <img src="https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" alt="Spider-Man" class="movie-poster" data-title="Spider-Man: No Way Home" data-desc="With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.">
-        <img src="https://image.tmdb.org/t/p/w500/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg" alt="The Batman" class="movie-poster" data-title="The Batman" data-desc="When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.">
-        <img src="https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg" alt="Avatar 2" class="movie-poster" data-title="Avatar: The Way of Water" data-desc="Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.">
+        <img src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="Spider-Verse" class="movie-poster" 
+             data-title="Spider-Man: Across the Spider-Verse" 
+             data-desc="Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence. When the heroes clash on how to handle a new threat, Miles must redefine what it means to be a hero.">
+        <img src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" alt="Loki" class="movie-poster" 
+             data-title="Loki: Season 2" 
+             data-desc="The mercurial villain Loki resumes his role as the God of Mischief in a new series that takes place after the events of 'Avengers: Endgame'.">
+        <img src="https://image.tmdb.org/t/p/w500/5mzr6JZbrqnqD8rCEvPhuCE5Fw2.jpg" alt="The Marvels" class="movie-poster" 
+             data-title="The Marvels" 
+             data-desc="Carol Danvers, Kamala Khan, and Monica Rambeau team up to save the universe in this action-packed Marvel adventure.">
       </div>
     </div>
     
-    <!-- POPULAR -->
+    <!-- FOR YOU -->
     <div class="movie-section">
-      <h2 class="section-title">Popular</h2>
+      <h2 class="section-title">For You 👀</h2>
       <div class="movie-row">
-        <img src="https://image.tmdb.org/t/p/w500/pFlaoHTZeyNkG83vxsAJiGzfSsa.jpg" alt="Black Panther" class="movie-poster" data-title="Black Panther: Wakanda Forever" data-desc="Queen Ramonda, Shuri, M'Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T'Challa's death.">
-        <img src="https://image.tmdb.org/t/p/w500/1NqwE6LP9IEdOZ57NCT51ftHtWT.jpg" alt="Shang-Chi" class="movie-poster" data-title="Shang-Chi" data-desc="Shang-Chi, the master of weaponry-based Kung Fu, is forced to confront his past after being drawn into the Ten Rings organization.">
-        <img src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" alt="Loki" class="movie-poster" data-title="Loki" data-desc="The mercurial villain Loki resumes his role as the God of Mischief in a new series that takes place after the events of 'Avengers: Endgame'.">
+        <img src="https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" alt="Spider-Man" class="movie-poster" 
+             data-title="Spider-Man: No Way Home" 
+             data-desc="With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear.">
+        <img src="https://image.tmdb.org/t/p/w500/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg" alt="The Batman" class="movie-poster" 
+             data-title="The Batman" 
+             data-desc="When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption.">
+        <img src="https://image.tmdb.org/t/p/w500/pFlaoHTZeyNkG83vxsAJiGzfSsa.jpg" alt="Black Panther" class="movie-poster" 
+             data-title="Black Panther: Wakanda Forever" 
+             data-desc="Queen Ramonda, Shuri, M'Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers.">
+      </div>
+    </div>
+    
+    <!-- DISCOVER -->
+    <div class="movie-section">
+      <h2 class="section-title">Discover ✨</h2>
+      <div class="movie-row">
+        <img src="https://image.tmdb.org/t/p/w500/8Y43POKjjKDGI9MH89NW0NA5pIz.jpg" alt="Guardians 3" class="movie-poster" 
+             data-title="Guardians of the Galaxy Vol. 3" 
+             data-desc="Peter Quill, still reeling from the loss of Gamora, must rally his team to defend the universe along with protecting one of their own.">
+        <img src="https://image.tmdb.org/t/p/w500/1NqwE6LP9IEdOZ57NCT51ftHtWT.jpg" alt="Shang-Chi" class="movie-poster" 
+             data-title="Shang-Chi" 
+             data-desc="Shang-Chi, the master of weaponry-based Kung Fu, is forced to confront his past after being drawn into the Ten Rings organization.">
+        <img src="https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg" alt="Avatar 2" class="movie-poster" 
+             data-title="Avatar: The Way of Water" 
+             data-desc="Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started.">
       </div>
     </div>
   </main>
   
-  <!-- BOTTOM NAV BAR -->
+  <!-- BOTTOM NAV BAR (Modern Icons) -->
   <div class="bottom-nav">
     <a href="home.html" class="nav-item active">
-      <span class="nav-icon">🏠</span>
+      <span class="nav-icon"><i class="fas fa-home"></i></span>
       <span>Home</span>
     </a>
     <a href="livetv.html" class="nav-item">
-      <span class="nav-icon">📺</span>
+      <span class="nav-icon"><i class="fas fa-tv"></i></span>
       <span>Live TV</span>
     </a>
     <a href="discover.html" class="nav-item">
-      <span class="nav-icon">🔍</span>
+      <span class="nav-icon"><i class="fas fa-compass"></i></span>
       <span>Discover</span>
     </a>
     <a href="profile.html" class="nav-item">
-      <span class="nav-icon">👤</span>
+      <span class="nav-icon"><i class="fas fa-user-circle"></i></span>
       <span>Profile</span>
     </a>
     <a href="more.html" class="nav-item">
-      <span class="nav-icon">⋮</span>
+      <span class="nav-icon"><i class="fas fa-ellipsis-h"></i></span>
       <span>More</span>
     </a>
   </div>
@@ -235,8 +324,13 @@
         <img id="modalCover" class="movie-cover" src="" alt="Movie Cover">
         <div class="movie-info">
           <h2 id="modalTitle">Movie Title</h2>
+          <div class="meta-row">
+            <span class="meta-item"><i class="fas fa-star" style="color: gold;"></i> 4.8/5</span>
+            <span class="meta-item"><i class="fas fa-clock"></i> 2h 18m</span>
+            <span class="meta-item"><i class="fas fa-calendar-alt"></i> 2023</span>
+          </div>
           <p id="modalDesc">Movie description goes here...</p>
-          <button class="play-btn" id="playBtn">▶ Play</button>
+          <button class="play-btn" id="playBtn"><i class="fas fa-play"></i> Play Trailer</button>
         </div>
         <div class="video-container" id="videoContainer">
           <!-- Embedded player will appear here -->
@@ -255,6 +349,21 @@
       }
     });
 
+    // Scroll animations
+    const movieSections = document.querySelectorAll('.movie-section');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    movieSections.forEach(section => {
+      observer.observe(section);
+    });
+
     // Movie modal functionality
     const modal = document.getElementById('movieModal');
     const modalTitle = document.getElementById('modalTitle');
@@ -266,12 +375,15 @@
     
     // Movie data (title, trailer embed IDs)
     const movieData = {
-      "Spider-Man: No Way Home": { embedId: "JfVOs4VSpmA" },
-      "The Batman": { embedId: "mqqft2x_Aa4" },
-      "Avatar: The Way of Water": { embedId: "d9MyW72ELq0" },
-      "Black Panther: Wakanda Forever": { embedId: "RlOB3UALvrQ" },
-      "Shang-Chi": { embedId: "8YjFbMbfXaQ" },
-      "Loki": { embedId: "nW948Va-l10" }
+      "Spider-Man: Across the Spider-Verse": { embedId: "shW9i6k8cB0", year: "2023", duration: "2h 20m", rating: "4.9" },
+      "Loki: Season 2": { embedId: "nW948Va-l10", year: "2023", duration: "45m/ep", rating: "4.7" },
+      "The Marvels": { embedId: "wS_qbDztgVY", year: "2023", duration: "1h 45m", rating: "4.5" },
+      "Spider-Man: No Way Home": { embedId: "JfVOs4VSpmA", year: "2021", duration: "2h 28m", rating: "4.8" },
+      "The Batman": { embedId: "mqqft2x_Aa4", year: "2022", duration: "2h 56m", rating: "4.6" },
+      "Black Panther: Wakanda Forever": { embedId: "RlOB3UALvrQ", year: "2022", duration: "2h 41m", rating: "4.7" },
+      "Guardians of the Galaxy Vol. 3": { embedId: "u3V5KDHRQvk", year: "2023", duration: "2h 30m", rating: "4.9" },
+      "Shang-Chi": { embedId: "8YjFbMbfXaQ", year: "2021", duration: "2h 12m", rating: "4.5" },
+      "Avatar: The Way of Water": { embedId: "d9MyW72ELq0", year: "2022", duration: "3h 12m", rating: "4.8" }
     };
 
     // Click on movie poster
@@ -284,6 +396,15 @@
         modalTitle.textContent = title;
         modalDesc.textContent = desc;
         modalCover.src = imgSrc;
+        
+        // Update metadata
+        const movie = movieData[title];
+        if (movie) {
+          document.querySelector('.meta-item:nth-child(1)').innerHTML = `<i class="fas fa-star" style="color: gold;"></i> ${movie.rating}/5`;
+          document.querySelector('.meta-item:nth-child(2)').innerHTML = `<i class="fas fa-clock"></i> ${movie.duration}`;
+          document.querySelector('.meta-item:nth-child(3)').innerHTML = `<i class="fas fa-calendar-alt"></i> ${movie.year}`;
+        }
+        
         videoContainer.style.display = 'none';
         videoContainer.innerHTML = '';
         modal.style.display = 'block';
@@ -299,7 +420,7 @@
         videoContainer.innerHTML = `
           <iframe width="100%" height="100%" 
           src="https://www.youtube.com/embed/${embedId}?autoplay=1" 
-          frameborder="0" allowfullscreen></iframe>
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         `;
         videoContainer.style.display = 'block';
       } else {
@@ -320,4 +441,4 @@
     });
   </script>
 </body>
-  </html>
+          </html>
