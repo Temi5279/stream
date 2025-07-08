@@ -1,81 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>More</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>str▶eam - More</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      background-color: #0f0f0f;
-      color: white;
-      font-family: 'Arial', sans-serif;
+    /* COPY STYLES FROM HOMEPAGE (SAME DESIGN) */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica', Arial, sans-serif; }
+    body { background: #0F1C3F; color: white; padding-bottom: 70px; }
+    header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, #0F1C3F, transparent); position: fixed; width: 100%; z-index: 100; }
+    .logo { font-size: 28px; font-weight: bold; color: #E50914; }
+    main { padding-top: 80px; }
+    .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #0F1C3F; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1E3A8A; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; color: #A0AEC0; text-decoration: none; font-size: 12px; }
+    .nav-item.active { color: white; }
+    .nav-icon { font-size: 18px; margin-bottom: 5px; }
+
+    /* MORE PAGE SPECIFIC STYLES */
+    .settings-card {
+      background: #1E3A8A;
+      margin: 15px 5%;
+      padding: 15px;
+      border-radius: 10px;
     }
-    .nav-active {
-      color: red;
+    .settings-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #2D4A9E;
+    }
+    .settings-item:last-child {
+      border-bottom: none;
+    }
+    .toggle-switch {
+      position: relative;
+      width: 50px;
+      height: 24px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #E50914;
+      transition: .4s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background: #0F1C3F;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+    .logout-btn {
+      background: #E50914;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-weight: bold;
+      cursor: pointer;
     }
   </style>
 </head>
-<body class="flex flex-col min-h-screen">
-
-  <!-- Header -->
-  <header class="text-center py-4 border-b border-gray-700">
-    <h1 class="text-xl font-bold">More</h1>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">str▶eam</div>
+    <div class="search-icon"><i class="fas fa-search"></i></div>
   </header>
 
-  <!-- Main content -->
-  <main class="flex-grow p-4 space-y-4">
-    <div class="bg-gray-800 p-4 rounded-lg">
-      <h2 class="text-lg font-semibold mb-2">Help Centre</h2>
-      <p class="text-sm text-gray-300">Find answers to your questions and support options.</p>
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- SETTINGS -->
+    <div class="settings-card">
+      <h3><i class="fas fa-cog"></i> Settings</h3>
+      <div class="settings-item">
+        <span>Dark Mode</span>
+        <label class="toggle-switch">
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="settings-item">
+        <span>Notifications</span>
+        <label class="toggle-switch">
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="settings-item">
+        <span>Video Quality (Auto)</span>
+        <i class="fas fa-chevron-right"></i>
+      </div>
     </div>
-    <div class="bg-gray-800 p-4 rounded-lg">
-      <h2 class="text-lg font-semibold mb-2">Settings</h2>
-      <p class="text-sm text-gray-300">Adjust your preferences and account settings.</p>
+
+    <!-- ACCOUNT -->
+    <div class="settings-card">
+      <h3><i class="fas fa-user-shield"></i> Account</h3>
+      <div class="settings-item">
+        <span>Change Password</span>
+        <i class="fas fa-chevron-right"></i>
+      </div>
+      <button class="logout-btn">Log Out</button>
     </div>
-    <div class="bg-gray-800 p-4 rounded-lg">
-      <h2 class="text-lg font-semibold mb-2">About</h2>
-      <p class="text-sm text-gray-300">Learn more about our streaming platform.</p>
+
+    <!-- HELP -->
+    <div class="settings-card">
+      <h3><i class="fas fa-question-circle"></i> Help</h3>
+      <div class="settings-item">
+        <span>FAQ</span>
+        <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="settings-item">
+        <span>Contact Support</span>
+        <i class="fas fa-chevron-right"></i>
+      </div>
     </div>
-    <div class="bg-gray-800 p-4 rounded-lg">
-      <h2 class="text-lg font-semibold mb-2">Terms & Privacy</h2>
-      <p class="text-sm text-gray-300">Read our terms of service and privacy policy.</p>
+
+    <!-- ABOUT -->
+    <div class="settings-card">
+      <h3><i class="fas fa-info-circle"></i> About</h3>
+      <div class="settings-item">
+        <span>App Version 1.0.0</span>
+      </div>
+      <div class="settings-item">
+        <span>Terms of Service</span>
+        <i class="fas fa-chevron-right"></i>
+      </div>
     </div>
   </main>
 
-  <!-- Bottom nav bar -->
-  <nav class="bg-black text-white fixed bottom-0 left-0 right-0 border-t border-gray-700 flex justify-around py-2">
-    <a href="dashboard.html" class="flex flex-col items-center text-gray-400 hover:text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M4 10v10h4v-6h8v6h4V10"/>
-      </svg>
-      <span class="text-xs">Home</span>
+  <!-- BOTTOM NAV (SAME AS OTHER PAGES) -->
+  <div class="bottom-nav">
+    <a href="home.html" class="nav-item">
+      <span class="nav-icon"><i class="fas fa-home"></i></span>
+      <span>Home</span>
     </a>
-    <a href="livetv.html" class="flex flex-col items-center text-gray-400 hover:text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M4 6h16M4 18h16"/>
-      </svg>
-      <span class="text-xs">Live TV</span>
+    <a href="livetv.html" class="nav-item">
+      <span class="nav-icon"><i class="fas fa-tv"></i></span>
+      <span>Live TV</span>
     </a>
-    <a href="discover.html" class="flex flex-col items-center text-gray-400 hover:text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4 4-4m8 0l4 4-4 4"/>
-      </svg>
-      <span class="text-xs">Discover</span>
+    <a href="discover.html" class="nav-item">
+      <span class="nav-icon"><i class="fas fa-compass"></i></span>
+      <span>Discover</span>
     </a>
-    <a href="more.html" class="flex flex-col items-center nav-active">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v.01M12 12v.01M12 18v.01"/>
-      </svg>
-      <span class="text-xs text-red-500">More</span>
+    <a href="profile.html" class="nav-item">
+      <span class="nav-icon"><i class="fas fa-user-circle"></i></span>
+      <span>Profile</span>
     </a>
-    <a href="profile.html" class="flex flex-col items-center text-gray-400 hover:text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A6 6 0 0112 14a6 6 0 016.879 3.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-      </svg>
-      <span class="text-xs">Profile</span>
+    <a href="more.html" class="nav-item active">
+      <span class="nav-icon"><i class="fas fa-ellipsis-h"></i></span>
+      <span>More</span>
     </a>
-  </nav>
+  </div>
 
+  <!-- JAVASCRIPT -->
+  <script>
+    // HIGHLIGHT CURRENT PAGE IN NAV
+    const currentPage = window.location.pathname.split('/').pop() || 'home.html';
+    document.querySelectorAll('.nav-item').forEach(item => {
+      if (item.getAttribute('href') === currentPage) {
+        item.classList.add('active');
+      }
+    });
+
+    // TOGGLE SWITCHES (for Dark Mode/Notifications)
+    document.querySelectorAll('.toggle-switch input').forEach(toggle => {
+      toggle.addEventListener('change', (e) => {
+        if (e.target.parentElement.previousElementSibling.textContent === "Dark Mode") {
+          document.body.style.background = e.target.checked ? "#0F1C3F" : "#f5f5f5";
+        }
+        alert(`${e.target.parentElement.previousElementSibling.textContent} ${e.target.checked ? "ON" : "OFF"}`);
+      });
+    });
+
+    // LOGOUT BUTTON
+    document.querySelector('.logout-btn').addEventListener('click', () => {
+      if (confirm("Sure you want to log out?")) {
+        alert("Logged out successfully!"); // Replace with actual logout logic
+      }
+    });
+  </script>
 </body>
-</html>
+        </html>
