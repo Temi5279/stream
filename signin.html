@@ -121,4 +121,12 @@ body::before {
     </form>
     <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
   </div>
+  <script>
+  document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Simulate successful sign in
+    window.location.href = "home.html";
+  });
+  </script>
 </body></html>
