@@ -6,28 +6,161 @@
   <title>str▶eam - Discover</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* COPY STYLES FROM HOMEPAGE (SAME DESIGN) */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica', Arial, sans-serif; }
-    body { background: #0F1C3F; color: white; }
-    header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, #0F1C3F, transparent); position: fixed; width: 100%; z-index: 100; }
-    .logo { font-size: 28px; font-weight: bold; color: #E50914; }
-    main { padding-top: 80px; padding-bottom: 70px; }
-    .movie-row { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 15px; scrollbar-width: none; }
-    .movie-row::-webkit-scrollbar { display: none; }
-    .movie-poster { width: 150px; height: 225px; object-fit: cover; border-radius: 8px; transition: transform 0.3s; cursor: pointer; }
-    .movie-poster:hover { transform: scale(1.05); }
-    .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #0F1C3F; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1E3A8A; }
-    .nav-item { display: flex; flex-direction: column; align-items: center; color: #A0AEC0; text-decoration: none; font-size: 12px; }
-    .nav-item.active { color: white; }
-    .nav-icon { font-size: 18px; margin-bottom: 5px; }
-
-    /* DISCOVER PAGE SPECIFIC STYLES */
-    .search-bar { padding: 15px 5%; position: sticky; top: 80px; z-index: 90; background: #0F1C3F; }
-    .search-bar input { width: 100%; padding: 12px 20px; border-radius: 25px; border: none; background: #1E3A8A; color: white; font-size: 14px; }
-    .genre-tabs { display: flex; gap: 10px; padding: 10px 5%; overflow-x: auto; }
-    .genre-tab { background: #1E3A8A; padding: 8px 15px; border-radius: 20px; font-size: 14px; cursor: pointer; white-space: nowrap; }
-    .genre-tab.active { background: #E50914; font-weight: bold; }
-    .section-title { padding: 5px 5%; font-size: 20px; }
+    /* RESET & BASIC STYLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica', Arial, sans-serif;
+    }
+    
+    body {
+      background: #0F1C3F;
+      color: white;
+    }
+    
+    /* HEADER */
+    header {
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, #0F1C3F, transparent);
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #E50914;
+    }
+    
+    .search-icon {
+      font-size: 20px;
+      color: white;
+    }
+    
+    /* MAIN CONTENT */
+    main {
+      padding-top: 150px; /* Adjusted for search + genre tabs */
+      padding-bottom: 70px;
+    }
+    
+    .movie-section {
+      padding: 0 5% 20px;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+      padding-top: 10px;
+    }
+    
+    .movie-row {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding-bottom: 15px;
+      scrollbar-width: none;
+    }
+    
+    .movie-row::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .movie-poster {
+      width: 150px;
+      height: 225px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    
+    .movie-poster:hover {
+      transform: scale(1.05);
+    }
+    
+    /* SEARCH & GENRE TABS */
+    .search-bar {
+      padding: 15px 5%;
+      background: #0F1C3F;
+      position: fixed;
+      top: 80px;
+      width: 100%;
+      z-index: 90;
+    }
+    
+    .search-bar input {
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 25px;
+      border: none;
+      background: #1E3A8A;
+      color: white;
+      font-size: 14px;
+    }
+    
+    .genre-tabs {
+      display: flex;
+      gap: 10px;
+      padding: 15px 5%;
+      overflow-x: auto;
+      position: fixed;
+      top: 130px;
+      width: 100%;
+      background: #0F1C3F;
+      z-index: 90;
+    }
+    
+    .genre-tab {
+      background: #1E3A8A;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    
+    .genre-tab.active {
+      background: #E50914;
+      font-weight: bold;
+    }
+    
+    /* BOTTOM NAV BAR */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #0F1C3F;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      border-top: 1px solid #1E3A8A;
+      z-index: 100;
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #A0AEC0;
+      text-decoration: none;
+      font-size: 12px;
+      transition: color 0.3s;
+    }
+    
+    .nav-item.active {
+      color: white;
+    }
+    
+    .nav-icon {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
   </style>
 </head>
 <body>
@@ -50,17 +183,21 @@
     <div class="genre-tab" data-genre="horror">Horror</div>
     <div class="genre-tab" data-genre="comedy">Comedy</div>
     <div class="genre-tab" data-genre="sci-fi">Sci-Fi</div>
+    <div class="genre-tab" data-genre="romance">Romance</div>
+    <div class="genre-tab" data-genre="drama">Drama</div>
   </div>
 
   <!-- MOVIE SECTIONS -->
   <main>
-    <h2 class="section-title" id="genreTitle">All Movies</h2>
-    <div class="movie-row" id="movieRow">
-      <!-- MOVIES WILL LOAD HERE DYNAMICALLY -->
+    <div class="movie-section">
+      <h2 class="section-title" id="genreTitle">All Movies</h2>
+      <div class="movie-row" id="movieRow">
+        <!-- MOVIES WILL LOAD HERE DYNAMICALLY -->
+      </div>
     </div>
   </main>
 
-  <!-- BOTTOM NAV (SAME AS HOMEPAGE) -->
+  <!-- BOTTOM NAV BAR -->
   <div class="bottom-nav">
     <a href="home.html" class="nav-item">
       <span class="nav-icon"><i class="fas fa-home"></i></span>
@@ -82,19 +219,56 @@
 
   <!-- JAVASCRIPT -->
   <script>
-    // SAMPLE MOVIE DATA (Replace with your real movies!)
+    // SAMPLE MOVIE DATA (Replace with your movies!)
     const movies = [
-      { title: "John Wick 4", genre: "action", image: "https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" },
-      { title: "The Nun 2", genre: "horror", image: "https://image.tmdb.org/t/p/w500/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg" },
-      { title: "Oppenheimer", genre: "thriller", image: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" },
-      { title: "Barbie", genre: "comedy", image: "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg" },
-      { title: "Dune", genre: "sci-fi", image: "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg" },
+      { 
+        title: "John Wick 4", 
+        genre: "action", 
+        image: "https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
+        year: 2023,
+        rating: 4.8
+      },
+      { 
+        title: "The Nun 2", 
+        genre: "horror", 
+        image: "https://image.tmdb.org/t/p/w500/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg",
+        year: 2023,
+        rating: 4.1
+      },
+      { 
+        title: "Oppenheimer", 
+        genre: "thriller", 
+        image: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+        year: 2023,
+        rating: 4.9
+      },
+      { 
+        title: "Barbie", 
+        genre: "comedy", 
+        image: "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
+        year: 2023,
+        rating: 4.5
+      },
+      { 
+        title: "Dune", 
+        genre: "sci-fi", 
+        image: "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+        year: 2021,
+        rating: 4.7
+      },
+      { 
+        title: "Titanic", 
+        genre: "romance", 
+        image: "https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
+        year: 1997,
+        rating: 4.9
+      },
     ];
 
     // LOAD MOVIES BASED ON GENRE/SEARCH
     function loadMovies(genre = "all", searchTerm = "") {
       const movieRow = document.getElementById("movieRow");
-      movieRow.innerHTML = ""; // Clear current movies
+      movieRow.innerHTML = "";
 
       const filteredMovies = movies.filter(movie => {
         const matchesGenre = genre === "all" || movie.genre === genre;
@@ -103,7 +277,7 @@
       });
 
       if (filteredMovies.length === 0) {
-        movieRow.innerHTML = "<p>No movies found!</p>";
+        movieRow.innerHTML = `<p style="padding: 0 5%">No movies found!</p>`;
         return;
       }
 
@@ -112,7 +286,7 @@
         poster.className = "movie-poster";
         poster.src = movie.image;
         poster.alt = movie.title;
-        poster.onclick = () => alert(`Selected: ${movie.title}`); // Replace with your player
+        poster.onclick = () => alert(`Selected: ${movie.title}\nYear: ${movie.year}\nRating: ${movie.rating}/5`);
         movieRow.appendChild(poster);
       });
     }
@@ -133,6 +307,14 @@
     document.getElementById("searchInput").addEventListener("input", (e) => {
       const activeGenre = document.querySelector(".genre-tab.active").getAttribute("data-genre");
       loadMovies(activeGenre, e.target.value);
+    });
+
+    // HIGHLIGHT CURRENT PAGE IN NAV
+    const currentPage = window.location.pathname.split('/').pop() || 'home.html';
+    document.querySelectorAll('.nav-item').forEach(item => {
+      if (item.getAttribute('href') === currentPage) {
+        item.classList.add('active');
+      }
     });
 
     // INITIAL LOAD
