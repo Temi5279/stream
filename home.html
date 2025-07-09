@@ -1,4 +1,105 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- PWA Essentials -->
+  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>str▶eam | Preview Portal</title>
+  
+  <!-- Preconnect for faster CDN loading -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('serviceworker.js')
+          .then(reg => {
+            console.log('Service Worker registered');
+            // Enable periodic sync for background updates
+            if ('periodicSync' in reg) {
+              reg.periodicSync.register('content-update', {
+                minInterval: 24 * 60 * 60 * 1000 // Daily
+              });
+            }
+          });
+      });
+    }
+  </script>
+  
+  <!-- Critical CSS -->
+  <style>
+    /* Your existing styles + add this */
+    .network-status {
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+      z-index: 1000;
+    }
+    .offline .network-status {
+      display: block;
+      background: #f72585;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Your existing content... -->
+  
+  <!-- Offline Preview Teaser -->
+  <div class="feature-card">
+    <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+         alt="Offline Viewing" class="feature-img" loading="lazy">
+    <div class="feature-content">
+      <h3 class="feature-title">Watch Offline</h3>
+      <p>Download movies and watch without internet</p>
+      <a href="home.html" class="btn">Try Now</a>
+    </div>
+  </div>
+
+  <!-- Network Status Indicator -->
+  <div class="network-status" id="network-status">
+    <i class="fas fa-wifi"></i> <span>Slow connection detected</span>
+  </div>
+
+  <!-- Enhanced Service Worker Loader -->
+  <script>
+    // Network-aware loading
+    const networkStatus = document.getElementById('network-status');
+    
+    function updateNetworkStatus() {
+      if (navigator.connection) {
+        const { effectiveType, saveData } = navigator.connection;
+        if (effectiveType === 'slow-2g' || effectiveType === '2g' || saveData) {
+          document.body.classList.add('offline');
+          // Load low-res images
+          document.querySelectorAll('img[data-lowres]').forEach(img => {
+            img.src = img.dataset.lowres;
+          });
+        }
+      }
+    }
+    
+    window.addEventListener('online', updateNetworkStatus);
+    window.addEventListener('offline', () => {
+      networkStatus.innerHTML = '<i class="fas fa-wifi-slash"></i> You are offline';
+      document.body.classList.add('offline');
+    });
+    
+    updateNetworkStatus();
+  </script>
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</body>
+</html>
 <!-- Add to <head> -->
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
