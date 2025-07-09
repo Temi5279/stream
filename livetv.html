@@ -33,12 +33,12 @@
     <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #6a11cb;
-            --secondary: #2575fc;
-            --dark: #121212;
-            --dark-alt: #1e1e1e;
-            --light: #f1f1f1;
-            --light-alt: #b3b3b3;
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #6e0ad6;
+            --accent-secondary: #8a2be2;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
         }
 
         * {
@@ -49,56 +49,66 @@
         }
 
         body {
-            background-color: var(--dark);
-            color: var(--light);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
         }
 
-        .container {
-            display: flex;
+        /* Main Layout - Matches home.html */
+        .app-container {
+            display: grid;
+            grid-template-columns: 240px 1fr;
             min-height: 100vh;
         }
 
-        /* Sidebar Styles */
+        /* Sidebar - Identical to home.html */
         .sidebar {
-            width: 240px;
-            background-color: var(--dark-alt);
-            padding: 20px 0;
+            background-color: var(--bg-secondary);
+            padding: 25px 0;
             position: fixed;
-            height: 100%;
+            width: 240px;
+            height: 100vh;
             z-index: 100;
+            transition: transform 0.3s ease;
         }
 
-        .sidebar a {
-            display: block;
-            padding: 15px 25px;
-            color: var(--light-alt);
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0 15px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: var(--text-secondary);
             text-decoration: none;
-            font-size: 16px;
+            border-radius: 8px;
             transition: all 0.3s;
         }
 
-        .sidebar a:hover, .sidebar a.active {
-            color: var(--light);
-            background-color: rgba(106, 17, 203, 0.2);
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: rgba(110, 10, 214, 0.2);
+            color: var(--text-primary);
         }
 
-        .sidebar a i {
-            margin-right: 10px;
-        }
-
-        .logo {
+        .sidebar-menu a i {
+            margin-right: 12px;
+            font-size: 18px;
+            width: 24px;
             text-align: center;
-            margin-bottom: 30px;
-            padding: 0 20px;
         }
 
-        /* Main Content */
+        /* Main Content - Matches home.html */
         .main-content {
-            flex: 1;
+            grid-column: 2;
+            padding: 25px;
             margin-left: 240px;
-            padding: 20px;
         }
 
+        /* Header - Same as home.html */
         .header {
             display: flex;
             justify-content: space-between;
@@ -108,54 +118,64 @@
 
         .search-bar {
             position: relative;
-            width: 300px;
+            width: 350px;
         }
 
         .search-bar input {
             width: 100%;
-            padding: 10px 15px 10px 40px;
-            border-radius: 30px;
+            padding: 12px 20px 12px 45px;
+            border-radius: 25px;
             border: none;
-            background-color: var(--dark-alt);
-            color: var(--light);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 14px;
         }
 
         .search-bar i {
             position: absolute;
-            left: 15px;
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--light-alt);
+            color: var(--text-secondary);
         }
 
-        /* Player Section */
+        /* Player Section - Enhanced */
         .player-container {
             width: 100%;
-            margin-bottom: 30px;
             background: #000;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
-        #mainPlayer {
-            width: 100%;
-            height: auto;
-        }
-
-        .now-playing-info {
+        .now-playing {
             display: flex;
             align-items: center;
-            padding: 10px;
-            background: var(--dark-alt);
+            padding: 15px;
+            background: linear-gradient(90deg, var(--bg-secondary), transparent);
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .now-playing-info img {
-            width: 40px;
+        .now-playing img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
             margin-right: 15px;
+            object-fit: cover;
         }
 
-        /* Channel Grid */
+        .now-playing-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .now-playing-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Channel Grid - Matches home.html cards */
         .section-title {
             font-size: 22px;
             margin: 30px 0 20px;
@@ -164,37 +184,45 @@
         }
 
         .section-title i {
-            margin-right: 10px;
-            color: var(--primary);
+            margin-right: 12px;
+            color: var(--accent-primary);
         }
 
-        .channels-container {
+        .channels-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 20px;
+            margin-bottom: 40px;
         }
 
         .channel-card {
-            background: var(--dark-alt);
-            border-radius: 10px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
             overflow: hidden;
+            transition: all 0.3s;
             cursor: pointer;
-            transition: transform 0.3s;
         }
 
         .channel-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(110, 10, 214, 0.2);
         }
 
         .channel-thumbnail {
             position: relative;
-            height: 120px;
+            height: 110px;
+            overflow: hidden;
         }
 
         .channel-thumbnail img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .channel-card:hover .channel-thumbnail img {
+            transform: scale(1.05);
         }
 
         .live-badge {
@@ -203,10 +231,23 @@
             left: 10px;
             background: #ff0000;
             color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
             font-size: 12px;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .live-badge::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 1.5s infinite;
         }
 
         .channel-info {
@@ -223,64 +264,106 @@
 
         .channel-info p {
             font-size: 13px;
-            color: var(--light-alt);
+            color: var(--text-secondary);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 70px;
-            }
-            .sidebar a span {
-                display: none;
-            }
-            .sidebar a i {
-                margin-right: 0;
-                font-size: 20px;
-            }
-            .main-content {
-                margin-left: 70px;
-            }
-            .channels-container {
+        /* Mobile Responsiveness - Matches home.html */
+        @media (max-width: 992px) {
+            .channels-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
+        }
+
+        @media (max-width: 768px) {
+            .app-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px 15px;
+            }
+            
+            .search-bar {
+                width: 100%;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 24px;
+                cursor: pointer;
+                margin-right: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .channels-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 15px;
+            }
+            
+            .channel-thumbnail {
+                height: 90px;
+            }
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <h2>Stream</h2>
+    <div class="app-container">
+        <!-- Sidebar - Matches home.html exactly -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-menu">
+                <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="livetv.html" class="active"><i class="fas fa-tv"></i> Live TV</a>
+                <a href="#"><i class="fas fa-film"></i> Movies</a>
+                <a href="#"><i class="fas fa-trophy"></i> Sports</a>
+                <a href="#"><i class="fas fa-music"></i> Music</a>
+                <a href="#"><i class="fas fa-cog"></i> Settings</a>
             </div>
-            <a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a>
-            <a href="livetv.html" class="active"><i class="fas fa-tv"></i> <span>Live TV</span></a>
-            <a href="#"><i class="fas fa-film"></i> <span>Movies</span></a>
-            <a href="#"><i class="fas fa-trophy"></i> <span>Sports</span></a>
-            <a href="#"><i class="fas fa-music"></i> <span>Music</span></a>
         </div>
 
         <!-- Main Content -->
         <div class="main-content">
             <div class="header">
+                <div class="menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </div>
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Search channels..." id="searchInput">
+                </div>
+                <div class="user-avatar">
+                    <img src="https://i.imgur.com/JqYeZnV.png" alt="User" width="40">
                 </div>
             </div>
 
             <!-- Main Player -->
             <div class="player-container">
-                <div class="now-playing-info" id="nowPlaying">
-                    <img src="https://i.imgur.com/5Qz4ZmH.png" alt="Channel">
-                    <div>
+                <div class="now-playing" id="nowPlaying">
+                    <img src="https://i.imgur.com/5Qz4ZmH.png" alt="Bloomberg">
+                    <div class="now-playing-info">
                         <h3>Bloomberg TV</h3>
-                        <p>Business News</p>
+                        <p>Business News • LIVE</p>
                     </div>
                 </div>
                 <video id="mainPlayer" class="video-js vjs-default-skin" controls autoplay>
-                    <source src="https://cdn3.wowza.com/1/ejBGVnFIOW9ySndo/b3J3MFJv/hls/live/playlist.m3u8" type="application/x-mpegURL">
+                    <source src="https://liveproduseast.global.ssl.fastly.net/btv/desktop/us_live.m3u8" type="application/x-mpegURL">
                 </video>
             </div>
 
@@ -289,8 +372,8 @@
                 <i class="fas fa-newspaper"></i>
                 <h2>News Channels</h2>
             </div>
-            <div class="channels-container">
-                <div class="channel-card" onclick="changeChannel('Bloomberg', 'https://cdn3.wowza.com/1/ejBGVnFIOW9ySndo/b3J3MFJv/hls/live/playlist.m3u8', 'https://i.imgur.com/5Qz4ZmH.png', 'Business News')">
+            <div class="channels-grid">
+                <div class="channel-card" onclick="changeChannel('Bloomberg', 'https://liveproduseast.global.ssl.fastly.net/btv/desktop/us_live.m3u8', 'https://i.imgur.com/5Qz4ZmH.png', 'Business News')">
                     <div class="channel-thumbnail">
                         <img src="https://i.imgur.com/5Qz4ZmH.png" alt="Bloomberg">
                         <div class="live-badge">LIVE</div>
@@ -312,13 +395,13 @@
                     </div>
                 </div>
 
-                <div class="channel-card" onclick="changeChannel('DW', 'https://dwstream3-lh.akamaihd.net/i/dwstream3_live@124409/master.m3u8', 'https://i.imgur.com/8QZQZZn.png', 'German News')">
+                <div class="channel-card" onclick="changeChannel('DW News', 'https://dwstream3-lh.akamaihd.net/i/dwstream3_live@124409/master.m3u8', 'https://i.imgur.com/8QZQZZn.png', 'German News')">
                     <div class="channel-thumbnail">
-                        <img src="https://i.imgur.com/8QZQZZn.png" alt="DW">
+                        <img src="https://i.imgur.com/8QZQZZn.png" alt="DW News">
                         <div class="live-badge">LIVE</div>
                     </div>
                     <div class="channel-info">
-                        <h3>DW (English)</h3>
+                        <h3>DW News</h3>
                         <p>German News</p>
                     </div>
                 </div>
@@ -340,8 +423,8 @@
                 <i class="fas fa-trophy"></i>
                 <h2>Sports Channels</h2>
             </div>
-            <div class="channels-container">
-                <div class="channel-card" onclick="changeChannel('FIFA TV', 'https://fifasvod-it.akamaized.net/live/eds/FIFATV/sa_dash_vmx/FIFATV.mpd', 'https://i.imgur.com/1QZQZZn.png', 'FIFA Sports')">
+            <div class="channels-grid">
+                <div class="channel-card" onclick="changeChannel('FIFA TV', 'https://fifasvod-it.akamaized.net/live/eds/FIFATV/sa_dash_vmx/FIFATV.mpd', 'https://i.imgur.com/1QZQZZn.png', 'Football')">
                     <div class="channel-thumbnail">
                         <img src="https://i.imgur.com/1QZQZZn.png" alt="FIFA TV">
                         <div class="live-badge">LIVE</div>
@@ -352,7 +435,7 @@
                     </div>
                 </div>
 
-                <div class="channel-card" onclick="changeChannel('Olympics', 'https://ott-cdn.uproxx.com/olympics/master.m3u8', 'https://i.imgur.com/2QZQZZn.png', 'Olympic Sports')">
+                <div class="channel-card" onclick="changeChannel('Olympics', 'https://ott-cdn.uproxx.com/olympics/master.m3u8', 'https://i.imgur.com/2QZQZZn.png', 'Multi-sport')">
                     <div class="channel-thumbnail">
                         <img src="https://i.imgur.com/2QZQZZn.png" alt="Olympics">
                         <div class="live-badge">LIVE</div>
@@ -369,7 +452,7 @@
                 <i class="fas fa-music"></i>
                 <h2>Music Channels</h2>
             </div>
-            <div class="channels-container">
+            <div class="channels-grid">
                 <div class="channel-card" onclick="changeChannel('MTV', 'https://vod-progressive.akamaized.net/exp=1624453088~acl=%2A%2F1624453088%2Fexp%3D1624453088~hmac%3Dabcdef1234567890/vimeo-prod-skyfire-std-us/01/2400/14/362376850/1486620389.mp4', 'https://i.imgur.com/JqYeZnV.png', 'Music Videos')">
                     <div class="channel-thumbnail">
                         <img src="https://i.imgur.com/JqYeZnV.png" alt="MTV">
@@ -392,8 +475,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- More categories can be added here -->
         </div>
     </div>
 
@@ -404,25 +485,30 @@
         const player = videojs('mainPlayer', {
             controls: true,
             autoplay: true,
-            fluid: true
+            fluid: true,
+            responsive: true,
+            playbackRates: [0.5, 1, 1.5, 2]
         });
 
         // Change channel function
         function changeChannel(name, streamUrl, logoUrl, description) {
-            player.src({ src: streamUrl, type: 'application/x-mpegURL' });
-            player.play();
-            
-            // Update now playing info
-            const nowPlaying = document.getElementById('nowPlaying');
-            nowPlaying.innerHTML = `
-                <img src="${logoUrl}" alt="${name}">
-                <div>
-                    <h3>${name}</h3>
-                    <p>${description}</p>
-                </div>
-            `;
-            
-            document.title = `${name} - Stream`;
+            try {
+                player.src({ src: streamUrl, type: 'application/x-mpegURL' });
+                player.play();
+                
+                document.getElementById('nowPlaying').innerHTML = `
+                    <img src="${logoUrl}" alt="${name}">
+                    <div class="now-playing-info">
+                        <h3>${name}</h3>
+                        <p>${description} • LIVE</p>
+                    </div>
+                `;
+                
+                document.title = `${name} - Stream`;
+            } catch (e) {
+                console.error("Stream error:", e);
+                alert("Error loading stream. Please try another channel.");
+            }
         }
 
         // Search functionality
@@ -432,6 +518,16 @@
                 const title = card.querySelector('h3').textContent.toLowerCase();
                 card.style.display = title.includes(term) ? 'block' : 'none';
             });
+        });
+
+        // Mobile sidebar toggle
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        // Error handling
+        player.on('error', function() {
+            alert("Stream error. Please try another channel.");
         });
     </script>
 </body>
