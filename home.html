@@ -49,53 +49,6 @@
     }
   </style>
 </head>
-
-<body>
-  <!-- Your existing content... -->
-  
-  <!-- Offline Preview Teaser -->
-  <div class="feature-card">
-    <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-         alt="Offline Viewing" class="feature-img" loading="lazy">
-    <div class="feature-content">
-      <h3 class="feature-title">Watch Offline</h3>
-      <p>Download movies and watch without internet</p>
-      <a href="home.html" class="btn">Try Now</a>
-    </div>
-  </div>
-
-  <!-- Network Status Indicator -->
-  <div class="network-status" id="network-status">
-    <i class="fas fa-wifi"></i> <span>Slow connection detected</span>
-  </div>
-
-  <!-- Enhanced Service Worker Loader -->
-  <script>
-    // Network-aware loading
-    const networkStatus = document.getElementById('network-status');
-    
-    function updateNetworkStatus() {
-      if (navigator.connection) {
-        const { effectiveType, saveData } = navigator.connection;
-        if (effectiveType === 'slow-2g' || effectiveType === '2g' || saveData) {
-          document.body.classList.add('offline');
-          // Load low-res images
-          document.querySelectorAll('img[data-lowres]').forEach(img => {
-            img.src = img.dataset.lowres;
-          });
-        }
-      }
-    }
-    
-    window.addEventListener('online', updateNetworkStatus);
-    window.addEventListener('offline', () => {
-      networkStatus.innerHTML = '<i class="fas fa-wifi-slash"></i> You are offline';
-      document.body.classList.add('offline');
-    });
-    
-    updateNetworkStatus();
-  </script>
-  
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </body>
