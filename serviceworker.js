@@ -1,43 +1,98 @@
-// Service Worker for str▶eam (save as serviceworker.js)
-const CACHE_NAME = 'stream-cache-v2';
-const urlsToCache = [
-  '/stream/',
+// Network-optimized service worker
+const CACHE_NAME = 'stream-cache-v6';
+const OFFLINE_CACHE = 'offline-content';
+const MAX_CACHE_SIZE = 200; // MB
+
+// Pre-cache critical resources
+const CORE_ASSETS = [
   '/stream/index.html',
   '/stream/styles.css',
   '/stream/icon-192.png',
-  '/stream/icon-512.png',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
-  'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'
+  '/stream/fallback-video.jpg'
 ];
 
-// Install phase
-self.addEventListener('install', event => {
+// Install phase - cache core assets
+self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+      .then(cache => cache.addAll(CORE_ASSETS))
+      .then(() => self.skipWaiting())
   );
 });
 
-// Fetch phase
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
-  );
+// Network-optimized fetch
+self.addEventListener('fetch', (event) => {
+  const url = new URL(event.request.url);
+  
+  // Cache-first for static assets
+  if (isStaticAsset(url)) {
+    event.respondWith(
+      caches.match(event.request)
+        .then(cached => cached || fetchWithTimeout(event.request, 3000))
+    );
+  } 
+  // Stale-while-revalidate for API calls
+  else if (isAPIRequest(url)) {
+    event.respondWith(
+      fetchWithTimeout(event.request, 5000)
+        .catch(() => caches.match(event.request))
+    );
+  }
 });
 
-// Activate phase (clean up old caches)
-self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (!cacheWhitelist.includes(cacheName)) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
+// Helpers
+function fetchWithTimeout(request, timeout) {
+  return new Promise((resolve, reject) => {
+    const timeoutId = setTimeout(() => reject(new Error('Timeout')), timeout);
+    fetch(request)
+      .then(response => {
+        clearTimeout(timeoutId);
+        // Cache successful responses
+        if (response.ok && isCacheable(request)) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
+        }
+        resolve(response);
+      })
+      .catch(reject);
+  });
+}
+
+function isStaticAsset(url) {
+  return url.pathname.endsWith('.css') || 
+         url.pathname.endsWith('.js') || 
+         url.pathname.endsWith('.png');
+}
+
+function isAPIRequest(url) {
+  return url.pathname.startsWith('/api/');
+}
+
+function isCacheable(request) {
+  return request.method === 'GET' && 
+         !request.url.includes('no-cache');
+}
+
+// Background sync for failed requests
+self.addEventListener('sync', event => {
+  if (event.tag === 'retry-failed-requests') {
+    event.waitUntil(retryFailedRequests());
+  }
+});
+
+async function retryFailedRequests() {
+  const cache = await caches.open('failed-requests');
+  const requests = await cache.keys();
+  await Promise.all(
+    requests.map(async request => {
+      try {
+        const response = await fetch(request);
+        if (response.ok) {
+          await cache.delete(request);
+        }
+      } catch (err) {
+        console.log('Retry failed:', request.url);
+      }
     })
   );
-});
+                      }
