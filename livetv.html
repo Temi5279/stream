@@ -54,22 +54,27 @@
             overflow-x: hidden;
         }
 
-        /* Main Layout - Matches home.html */
+        /* Main Layout - Matches home.html exactly */
         .app-container {
-            display: grid;
-            grid-template-columns: 240px 1fr;
+            display: flex;
             min-height: 100vh;
         }
 
         /* Sidebar - Identical to home.html */
         .sidebar {
+            width: 240px;
             background-color: var(--bg-secondary);
             padding: 25px 0;
             position: fixed;
-            width: 240px;
             height: 100vh;
             z-index: 100;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 0 20px;
         }
 
         .sidebar-menu {
@@ -89,7 +94,8 @@
             transition: all 0.3s;
         }
 
-        .sidebar-menu a:hover, .sidebar-menu a.active {
+        .sidebar-menu a:hover, 
+        .sidebar-menu a.active {
             background-color: rgba(110, 10, 214, 0.2);
             color: var(--text-primary);
         }
@@ -103,9 +109,9 @@
 
         /* Main Content - Matches home.html */
         .main-content {
-            grid-column: 2;
-            padding: 25px;
+            flex: 1;
             margin-left: 240px;
+            padding: 25px;
         }
 
         /* Header - Same as home.html */
@@ -275,10 +281,6 @@
         }
 
         @media (max-width: 768px) {
-            .app-container {
-                grid-template-columns: 1fr;
-            }
-            
             .sidebar {
                 transform: translateX(-100%);
                 width: 280px;
@@ -328,6 +330,9 @@
     <div class="app-container">
         <!-- Sidebar - Matches home.html exactly -->
         <div class="sidebar" id="sidebar">
+            <div class="logo">
+                <h2>Stream</h2>
+            </div>
             <div class="sidebar-menu">
                 <a href="home.html"><i class="fas fa-home"></i> Home</a>
                 <a href="livetv.html" class="active"><i class="fas fa-tv"></i> Live TV</a>
@@ -373,7 +378,8 @@
                 <h2>News Channels</h2>
             </div>
             <div class="channels-grid">
-                <div class="channel-card" onclick="changeChannel('Bloomberg', 'https://liveproduseast.global.ssl.fastly.net/btv/desktop/us_live.m3u8', 'https://i.imgur.com/5Qz4ZmH.png', 'Business News')">
+                <!-- Bloomberg -->
+                <div class="channel-card" onclick="changeChannel('Bloomberg TV', 'https://liveproduseast.global.ssl.fastly.net/btv/desktop/us_live.m3u8', 'https://i.imgur.com/5Qz4ZmH.png', 'Business News')">
                     <div class="channel-thumbnail">
                         <img src="https://i.imgur.com/5Qz4ZmH.png" alt="Bloomberg">
                         <div class="live-badge">LIVE</div>
@@ -384,6 +390,7 @@
                     </div>
                 </div>
 
+                <!-- France 24 -->
                 <div class="channel-card" onclick="changeChannel('France 24', 'https://static.france24.com/live/F24_EN_LO_HLS/live_web.m3u8', 'https://i.imgur.com/7Y1QJbW.png', 'International News')">
                     <div class="channel-thumbnail">
                         <img src="https://i.imgur.com/7Y1QJbW.png" alt="France 24">
@@ -395,6 +402,7 @@
                     </div>
                 </div>
 
+                <!-- DW News -->
                 <div class="channel-card" onclick="changeChannel('DW News', 'https://dwstream3-lh.akamaihd.net/i/dwstream3_live@124409/master.m3u8', 'https://i.imgur.com/8QZQZZn.png', 'German News')">
                     <div class="channel-thumbnail">
                         <img src="https://i.imgur.com/8QZQZZn.png" alt="DW News">
@@ -406,6 +414,7 @@
                     </div>
                 </div>
 
+                <!-- Al Jazeera -->
                 <div class="channel-card" onclick="changeChannel('Al Jazeera', 'https://live-hls-web-aje.getaj.net/AJE/index.m3u8', 'https://i.imgur.com/9QZQZZn.png', 'Middle East News')">
                     <div class="channel-thumbnail">
                         <img src="https://i.imgur.com/9QZQZZn.png" alt="Al Jazeera">
@@ -416,6 +425,29 @@
                         <p>Middle East News</p>
                     </div>
                 </div>
+
+                <!-- More News Channels -->
+                <div class="channel-card" onclick="changeChannel('CGTN', 'https://news.cgtn.com/resource/live/english/cgtn-news.m3u8', 'https://i.imgur.com/CqYeZnV.png', 'Chinese News')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/CqYeZnV.png" alt="CGTN">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>CGTN</h3>
+                        <p>Chinese News</p>
+                    </div>
+                </div>
+
+                <div class="channel-card" onclick="changeChannel('RT News', 'https://rt-news.secure.footprint.net/1103.m3u8', 'https://i.imgur.com/DqYeZnV.png', 'Russian News')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/DqYeZnV.png" alt="RT News">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>RT News</h3>
+                        <p>Russian News</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Sports Channels -->
@@ -424,6 +456,7 @@
                 <h2>Sports Channels</h2>
             </div>
             <div class="channels-grid">
+                <!-- FIFA TV -->
                 <div class="channel-card" onclick="changeChannel('FIFA TV', 'https://fifasvod-it.akamaized.net/live/eds/FIFATV/sa_dash_vmx/FIFATV.mpd', 'https://i.imgur.com/1QZQZZn.png', 'Football')">
                     <div class="channel-thumbnail">
                         <img src="https://i.imgur.com/1QZQZZn.png" alt="FIFA TV">
@@ -435,7 +468,8 @@
                     </div>
                 </div>
 
-                <div class="channel-card" onclick="changeChannel('Olympics', 'https://ott-cdn.uproxx.com/olympics/master.m3u8', 'https://i.imgur.com/2QZQZZn.png', 'Multi-sport')">
+                <!-- Olympics -->
+                <div class="channel-card" onclick="changeChannel('Olympic Channel', 'https://ott-cdn.uproxx.com/olympics/master.m3u8', 'https://i.imgur.com/2QZQZZn.png', 'Multi-sport')">
                     <div class="channel-thumbnail">
                         <img src="https://i.imgur.com/2QZQZZn.png" alt="Olympics">
                         <div class="live-badge">LIVE</div>
@@ -443,6 +477,29 @@
                     <div class="channel-info">
                         <h3>Olympic Channel</h3>
                         <p>Multi-sport</p>
+                    </div>
+                </div>
+
+                <!-- More Sports Channels -->
+                <div class="channel-card" onclick="changeChannel('Red Bull TV', 'https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master.m3u8', 'https://i.imgur.com/3QZQZZn.png', 'Extreme Sports')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/3QZQZZn.png" alt="Red Bull TV">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>Red Bull TV</h3>
+                        <p>Extreme Sports</p>
+                    </div>
+                </div>
+
+                <div class="channel-card" onclick="changeChannel('NBA TV', 'https://nba-tv.akamaized.net/hls/live/2020597/nba-tv/atv/master.m3u8', 'https://i.imgur.com/4QZQZZn.png', 'Basketball')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/4QZQZZn.png" alt="NBA TV">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>NBA TV</h3>
+                        <p>Basketball</p>
                     </div>
                 </div>
             </div>
@@ -453,6 +510,7 @@
                 <h2>Music Channels</h2>
             </div>
             <div class="channels-grid">
+                <!-- MTV -->
                 <div class="channel-card" onclick="changeChannel('MTV', 'https://vod-progressive.akamaized.net/exp=1624453088~acl=%2A%2F1624453088%2Fexp%3D1624453088~hmac%3Dabcdef1234567890/vimeo-prod-skyfire-std-us/01/2400/14/362376850/1486620389.mp4', 'https://i.imgur.com/JqYeZnV.png', 'Music Videos')">
                     <div class="channel-thumbnail">
                         <img src="https://i.imgur.com/JqYeZnV.png" alt="MTV">
@@ -464,6 +522,7 @@
                     </div>
                 </div>
 
+                <!-- Trace Urban -->
                 <div class="channel-card" onclick="changeChannel('Trace Urban', 'https://d18fcqem4ebq37.cloudfront.net/v1/master/3fec3e5cac39a52b2132f04849af2a68d912e04d/cc-2v1qxfq6jqy07i/prod/public/TRACE_URBAN/playlist.m3u8', 'https://i.imgur.com/KqYeZnV.png', 'Hip-Hop/R&B')">
                     <div class="channel-thumbnail">
                         <img src="https://i.imgur.com/KqYeZnV.png" alt="Trace Urban">
@@ -474,6 +533,29 @@
                         <p>Hip-Hop/R&B</p>
                     </div>
                 </div>
+
+                <!-- More Music Channels -->
+                <div class="channel-card" onclick="changeChannel('VH1', 'https://vod-progressive.akamaized.net/exp=1624453088~acl=%2A%2F1624453088%2Fexp%3D1624453088~hmac%3Dabcdef1234567890/vimeo-prod-skyfire-std-us/01/2400/14/362376850/1486620389.mp4', 'https://i.imgur.com/LqYeZnV.png', 'Pop Music')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/LqYeZnV.png" alt="VH1">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>VH1</h3>
+                        <p>Pop Music</p>
+                    </div>
+                </div>
+
+                <div class="channel-card" onclick="changeChannel('MTV Hits', 'https://vod-progressive.akamaized.net/exp=1624453088~acl=%2A%2F1624453088%2Fexp%3D1624453088~hmac%3Dabcdef1234567890/vimeo-prod-skyfire-std-us/01/2400/14/362376850/1486620389.mp4', 'https://i.imgur.com/MqYeZnV.png', 'Chart Hits')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/MqYeZnV.png" alt="MTV Hits">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>MTV Hits</h3>
+                        <p>Chart Hits</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -481,54 +563,4 @@
     <!-- Video.js Script -->
     <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
     <script>
-        // Initialize player
-        const player = videojs('mainPlayer', {
-            controls: true,
-            autoplay: true,
-            fluid: true,
-            responsive: true,
-            playbackRates: [0.5, 1, 1.5, 2]
-        });
-
-        // Change channel function
-        function changeChannel(name, streamUrl, logoUrl, description) {
-            try {
-                player.src({ src: streamUrl, type: 'application/x-mpegURL' });
-                player.play();
-                
-                document.getElementById('nowPlaying').innerHTML = `
-                    <img src="${logoUrl}" alt="${name}">
-                    <div class="now-playing-info">
-                        <h3>${name}</h3>
-                        <p>${description} • LIVE</p>
-                    </div>
-                `;
-                
-                document.title = `${name} - Stream`;
-            } catch (e) {
-                console.error("Stream error:", e);
-                alert("Error loading stream. Please try another channel.");
-            }
-        }
-
-        // Search functionality
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const term = e.target.value.toLowerCase();
-            document.querySelectorAll('.channel-card').forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                card.style.display = title.includes(term) ? 'block' : 'none';
-            });
-        });
-
-        // Mobile sidebar toggle
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-        }
-
-        // Error handling
-        player.on('error', function() {
-            alert("Stream error. Please try another channel.");
-        });
-    </script>
-</body>
-  </html>
+        // Initia
