@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play.Stream | Official Blog</title>
+    <style>
+        :root {
+            --primary: #4361ee;    /* Match your streaming site */
+            --dark: #0f0f1b;       /* Dark background */
+            --accent: #f72585;     /* Pink accent like Tudum */
+            --text: #ffffff;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(15, 15, 27, 0.9);
+            padding: 20px 40px;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Featured Articles Grid */
+        .articles {
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">PLAY.STREAM</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Stream's Official Blog</h1>
+            <p>News, exclusives, and deep dives into your favorite shows</p>
+        </div>
+    </section>
+
+    <!-- Featured Articles -->
+    <section class="articles">
+        <div class="article-card">
+            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" 
+                 alt="New Releases" class="card-image">
+            <div class="card-content">
+                <h3>Coming Next Week</h3>
+                <p>5 new shows and movies arriving on Stream</p>
+            </div>
+        </div>
+
+        <div class="article-card">
+            <img src="https://images.unsplash.com/photo-1543536448-d209d2d13a1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" 
+                 alt="Behind the Scenes" class="card-image">
+            <div class="card-content">
+                <h3>Behind the Scenes</h3>
+                <p>How we filmed the epic battle in "Kingdom of Fire"</p>
+            </div>
+        </div>
+
+        <div class="article-card">
+            <img src="https://images.unsplash.com/photo-1574375927938-dfa5db63e8c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" 
+                 alt="Interview" class="card-image">
+            <div class="card-content">
+                <h3>Exclusive Interview</h3>
+                <p>Q&A with the director of "Midnight Detective"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+        <p>© 2024 Play.Stream. All rights reserved.</p>
+    </footer>
+</body>
+  </html>
