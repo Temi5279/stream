@@ -25,474 +25,414 @@
 </script>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>str▶eam | Live TV</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --primary: #4361ee;
-      --secondary: #3a0ca3;
-      --dark: #1a1a2e;
-      --light: #f8f9fa;
-      --accent: #f72585;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    body {
-      background-color: var(--dark);
-      color: white;
-      line-height: 1.6;
-      padding-bottom: 80px;
-    }
-    
-    /* Header (Matches Homepage Exactly) */
-    header {
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                  url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
-      background-size: cover;
-      background-position: center;
-      height: 30vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-    }
-    
-    .logo {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-      color: var(--accent);
-    }
-    
-    /* Search Bar (Matches Homepage) */
-    .search-container {
-      width: 90%;
-      max-width: 600px;
-      margin: 20px auto;
-      position: relative;
-    }
-    
-    .search-input {
-      width: 100%;
-      padding: 12px 20px;
-      border-radius: 30px;
-      border: none;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      font-size: 1rem;
-      padding-left: 45px;
-    }
-    
-    .search-input::placeholder {
-      color: rgba(255,255,255,0.7);
-    }
-    
-    .search-icon {
-      position: absolute;
-      left: 15px;
-      top: 12px;
-      color: rgba(255,255,255,0.7);
-    }
-    
-    /* Channel Grid */
-    .channel-container {
-      padding: 20px;
-    }
-    
-    .category {
-      margin: 30px 0;
-    }
-    
-    .category-title {
-      font-size: 1.5rem;
-      color: var(--accent);
-      margin-bottom: 15px;
-      padding-left: 10px;
-      border-left: 4px solid var(--accent);
-    }
-    
-    .channel-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 15px;
-    }
-    
-    .channel-card {
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      overflow: hidden;
-      transition: all 0.3s;
-    }
-    
-    .channel-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
-      background: rgba(67, 97, 238, 0.1);
-    }
-    
-    .channel-logo {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: contain;
-      padding: 15px;
-      background: rgba(0,0,0,0.3);
-    }
-    
-    .channel-name {
-      padding: 10px;
-      font-size: 0.9rem;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    
-    /* Video Player Modal */
-    .video-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.9);
-      z-index: 1000;
-      flex-direction: column;
-      padding: 20px;
-    }
-    
-    .video-player {
-      width: 100%;
-      height: 70vh;
-      margin-top: 20px;
-      background: black;
-    }
-    
-    .close-btn {
-      align-self: flex-end;
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-    
-    /* Bottom Navigation (Matches Homepage Exactly) */
-    .navbar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      display: flex;
-      justify-content: space-around;
-      padding: 12px 0;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-      z-index: 100;
-    }
-    
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #666;
-      text-decoration: none;
-      font-size: 12px;
-      transition: all 0.3s;
-    }
-    
-    .nav-item.active {
-      color: var(--primary);
-      transform: translateY(-5px);
-    }
-    
-    .nav-item i {
-      font-size: 22px;
-      margin-bottom: 4px;
-    }
-    
-    /* Loading and Error States */
-    .loader {
-      border: 4px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
-      border-top: 4px solid var(--accent);
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 50px auto;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    .error-message {
-      text-align: center;
-      margin-top: 50px;
-      color: var(--accent);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream - Live TV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --dark: #121212;
+            --dark-alt: #1e1e1e;
+            --light: #f1f1f1;
+            --light-alt: #b3b3b3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 240px;
+            background-color: var(--dark-alt);
+            padding: 20px 0;
+            position: fixed;
+            height: 100%;
+            z-index: 100;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px 25px;
+            color: var(--light-alt);
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .sidebar a:hover, .sidebar a.active {
+            color: var(--light);
+            background-color: rgba(106, 17, 203, 0.2);
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 30px;
+            border: none;
+            background-color: var(--dark-alt);
+            color: var(--light);
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--light-alt);
+        }
+
+        /* Player Section */
+        .player-container {
+            width: 100%;
+            margin-bottom: 30px;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #mainPlayer {
+            width: 100%;
+            height: auto;
+        }
+
+        .now-playing-info {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: var(--dark-alt);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .now-playing-info img {
+            width: 40px;
+            margin-right: 15px;
+        }
+
+        /* Channel Grid */
+        .section-title {
+            font-size: 22px;
+            margin: 30px 0 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .channels-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .channel-card {
+            background: var(--dark-alt);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .channel-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .channel-thumbnail {
+            position: relative;
+            height: 120px;
+        }
+
+        .channel-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .live-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff0000;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .channel-info {
+            padding: 15px;
+        }
+
+        .channel-info h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .channel-info p {
+            font-size: 13px;
+            color: var(--light-alt);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 70px;
+            }
+            .sidebar a span {
+                display: none;
+            }
+            .sidebar a i {
+                margin-right: 0;
+                font-size: 20px;
+            }
+            .main-content {
+                margin-left: 70px;
+            }
+            .channels-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header (Matches Homepage) -->
-  <header>
-    <div class="logo">str▶eam</div>
-    <h1>Live TV Channels</h1>
-  </header>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Stream</h2>
+            </div>
+            <a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a>
+            <a href="livetv.html" class="active"><i class="fas fa-tv"></i> <span>Live TV</span></a>
+            <a href="#"><i class="fas fa-film"></i> <span>Movies</span></a>
+            <a href="#"><i class="fas fa-trophy"></i> <span>Sports</span></a>
+            <a href="#"><i class="fas fa-music"></i> <span>Music</span></a>
+        </div>
 
-  <!-- Search Bar (Matches Homepage) -->
-  <div class="search-container">
-    <i class="fas fa-search search-icon"></i>
-    <input type="text" class="search-input" id="search-input" placeholder="Search channels...">
-  </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search channels..." id="searchInput">
+                </div>
+            </div>
 
-  <!-- Channel Container -->
-  <div class="channel-container" id="channel-container">
-    <div class="loader" id="loader"></div>
-  </div>
+            <!-- Main Player -->
+            <div class="player-container">
+                <div class="now-playing-info" id="nowPlaying">
+                    <img src="https://i.imgur.com/5Qz4ZmH.png" alt="Channel">
+                    <div>
+                        <h3>Bloomberg TV</h3>
+                        <p>Business News</p>
+                    </div>
+                </div>
+                <video id="mainPlayer" class="video-js vjs-default-skin" controls autoplay>
+                    <source src="https://cdn3.wowza.com/1/ejBGVnFIOW9ySndo/b3J3MFJv/hls/live/playlist.m3u8" type="application/x-mpegURL">
+                </video>
+            </div>
 
-  <!-- Video Player Modal -->
-  <div class="video-modal" id="video-modal">
-    <button class="close-btn" onclick="closeVideo()">
-      <i class="fas fa-times"></i> Close
-    </button>
-    <video controls autoplay class="video-player" id="video-player"></video>
-  </div>
+            <!-- News Channels -->
+            <div class="section-title">
+                <i class="fas fa-newspaper"></i>
+                <h2>News Channels</h2>
+            </div>
+            <div class="channels-container">
+                <div class="channel-card" onclick="changeChannel('Bloomberg', 'https://cdn3.wowza.com/1/ejBGVnFIOW9ySndo/b3J3MFJv/hls/live/playlist.m3u8', 'https://i.imgur.com/5Qz4ZmH.png', 'Business News')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/5Qz4ZmH.png" alt="Bloomberg">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>Bloomberg</h3>
+                        <p>Business News</p>
+                    </div>
+                </div>
 
-  <!-- Bottom Navigation (5 Items) -->
-  <nav class="navbar">
-    <a href="home.html" class="nav-item">
-      <i class="fas fa-home"></i>
-      <span>Home</span>
-    </a>
-    <a href="livetv.html" class="nav-item active">
-      <i class="fas fa-tv"></i>
-      <span>Live TV</span>
-    </a>
-    <a href="discover.html" class="nav-item">
-      <i class="fas fa-compass"></i>
-      <span>Discover</span>
-    </a>
-    <a href="profile.html" class="nav-item">
-      <i class="fas fa-user"></i>
-      <span>Profile</span>
-    </a>
-    <a href="more.html" class="nav-item">
-      <i class="fas fa-ellipsis-h"></i>
-      <span>More</span>
-    </a>
-  </nav>
+                <div class="channel-card" onclick="changeChannel('France 24', 'https://static.france24.com/live/F24_EN_LO_HLS/live_web.m3u8', 'https://i.imgur.com/7Y1QJbW.png', 'International News')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/7Y1QJbW.png" alt="France 24">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>France 24</h3>
+                        <p>International News</p>
+                    </div>
+                </div>
 
-  <script>
-    // 30 Tested Working Channels
-    const ALL_CHANNELS = [
-      // News
-      {
-        name: "France 24 (English)",
-        url: "https://static.france24.com/live/F24_EN_LO_HLS/live_web.m3u8",
-        logo: "https://i.imgur.com/3Be4qYt.png",
-        category: "News"
-      },
-      {
-        name: "DW English",
-        url: "https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/index.m3u8",
-        logo: "https://i.imgur.com/JYw9wY3.png",
-        category: "News"
-      },
-      {
-        name: "Al Jazeera English",
-        url: "https://live-hls-web-aje.getaj.net/AJE/index.m3u8",
-        logo: "https://i.imgur.com/9B5q7YF.png",
-        category: "News"
-      },
-      
-      // Entertainment
-      {
-        name: "NASA Public",
-        url: "https://ntv1.akamaized.net/hls/live/2014075/NASA-NTV1-HLS/master_2000.m3u8",
-        logo: "https://i.imgur.com/xxW3wEV.png",
-        category: "Education"
-      },
-      {
-        name: "Classic Arts",
-        url: "https://classicalartsnetwork3.akamaized.net/hls/live/2044283/can3live/playlist.m3u8",
-        logo: "https://i.imgur.com/8R4y7Wk.png",
-        category: "Entertainment"
-      },
-      {
-        name: "Retro Music",
-        url: "https://stream.retro.tv/retrotvlive/retrotv/playlist.m3u8",
-        logo: "https://i.imgur.com/VvKdW9B.png",
-        category: "Music"
-      },
-      
-      // Sports
-      {
-        name: "Fight Sports",
-        url: "https://dai2.xumo.com/xumocdn/p=roku/amagi_hls_data_xumo1212A-fightsports/CDN/playlist.m3u8",
-        logo: "https://i.imgur.com/LvQ0XQp.png",
-        category: "Sports"
-      },
-      {
-        name: "Red Bull TV",
-        url: "https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master.m3u8",
-        logo: "https://i.imgur.com/9Y4Z6yG.png",
-        category: "Sports"
-      },
-      
-      // International
-      {
-        name: "Arirang (Korea)",
-        url: "https://amdlive-ch01-ctnd-com.akamaized.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8",
-        logo: "https://i.imgur.com/7Jz2t2v.png",
-        category: "International"
-      },
-      {
-        name: "CGTN (China)",
-        url: "https://news.cgtn.com/resource/live/english/cgtn-news.m3u8",
-        logo: "https://i.imgur.com/5Wj5hYd.png",
-        category: "International"
-      },
-      
-      // Add more channels as needed...
-    ];
+                <div class="channel-card" onclick="changeChannel('DW', 'https://dwstream3-lh.akamaihd.net/i/dwstream3_live@124409/master.m3u8', 'https://i.imgur.com/8QZQZZn.png', 'German News')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/8QZQZZn.png" alt="DW">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>DW (English)</h3>
+                        <p>German News</p>
+                    </div>
+                </div>
 
-    // DOM Elements
-    const container = document.getElementById('channel-container');
-    const loader = document.getElementById('loader');
-    const searchInput = document.getElementById('search-input');
-    let filteredChannels = [];
+                <div class="channel-card" onclick="changeChannel('Al Jazeera', 'https://live-hls-web-aje.getaj.net/AJE/index.m3u8', 'https://i.imgur.com/9QZQZZn.png', 'Middle East News')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/9QZQZZn.png" alt="Al Jazeera">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>Al Jazeera</h3>
+                        <p>Middle East News</p>
+                    </div>
+                </div>
+            </div>
 
-    // Load and display channels
-    function loadChannels(channels = ALL_CHANNELS) {
-      loader.style.display = 'block';
-      container.innerHTML = '';
-      filteredChannels = channels;
+            <!-- Sports Channels -->
+            <div class="section-title">
+                <i class="fas fa-trophy"></i>
+                <h2>Sports Channels</h2>
+            </div>
+            <div class="channels-container">
+                <div class="channel-card" onclick="changeChannel('FIFA TV', 'https://fifasvod-it.akamaized.net/live/eds/FIFATV/sa_dash_vmx/FIFATV.mpd', 'https://i.imgur.com/1QZQZZn.png', 'FIFA Sports')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/1QZQZZn.png" alt="FIFA TV">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>FIFA TV</h3>
+                        <p>Football</p>
+                    </div>
+                </div>
 
-      // Simulate loading delay
-      setTimeout(() => {
-        // Group by category
-        const categories = {};
-        channels.forEach(channel => {
-          if (!categories[channel.category]) {
-            categories[channel.category] = [];
-          }
-          categories[channel.category].push(channel);
+                <div class="channel-card" onclick="changeChannel('Olympics', 'https://ott-cdn.uproxx.com/olympics/master.m3u8', 'https://i.imgur.com/2QZQZZn.png', 'Olympic Sports')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/2QZQZZn.png" alt="Olympics">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>Olympic Channel</h3>
+                        <p>Multi-sport</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music Channels -->
+            <div class="section-title">
+                <i class="fas fa-music"></i>
+                <h2>Music Channels</h2>
+            </div>
+            <div class="channels-container">
+                <div class="channel-card" onclick="changeChannel('MTV', 'https://vod-progressive.akamaized.net/exp=1624453088~acl=%2A%2F1624453088%2Fexp%3D1624453088~hmac%3Dabcdef1234567890/vimeo-prod-skyfire-std-us/01/2400/14/362376850/1486620389.mp4', 'https://i.imgur.com/JqYeZnV.png', 'Music Videos')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/JqYeZnV.png" alt="MTV">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>MTV</h3>
+                        <p>Music Videos</p>
+                    </div>
+                </div>
+
+                <div class="channel-card" onclick="changeChannel('Trace Urban', 'https://d18fcqem4ebq37.cloudfront.net/v1/master/3fec3e5cac39a52b2132f04849af2a68d912e04d/cc-2v1qxfq6jqy07i/prod/public/TRACE_URBAN/playlist.m3u8', 'https://i.imgur.com/KqYeZnV.png', 'Hip-Hop/R&B')">
+                    <div class="channel-thumbnail">
+                        <img src="https://i.imgur.com/KqYeZnV.png" alt="Trace Urban">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3>Trace Urban</h3>
+                        <p>Hip-Hop/R&B</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More categories can be added here -->
+        </div>
+    </div>
+
+    <!-- Video.js Script -->
+    <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
+    <script>
+        // Initialize player
+        const player = videojs('mainPlayer', {
+            controls: true,
+            autoplay: true,
+            fluid: true
         });
 
-        // Render channels
-        for (const [category, channelList] of Object.entries(categories)) {
-          const categoryHtml = `
-            <div class="category">
-              <h2 class="category-title">${category}</h2>
-              <div class="channel-grid">
-                ${channelList.map(channel => `
-                  <div class="channel-card" onclick="playChannel('${channel.url}', '${channel.name}')">
-                    <img src="${channel.logo}" 
-                         alt="${channel.name}" 
-                         class="channel-logo"
-                         onerror="this.src='https://via.placeholder.com/150?text=LOGO'">
-                    <div class="channel-name">${channel.name}</div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          `;
-          container.innerHTML += categoryHtml;
+        // Change channel function
+        function changeChannel(name, streamUrl, logoUrl, description) {
+            player.src({ src: streamUrl, type: 'application/x-mpegURL' });
+            player.play();
+            
+            // Update now playing info
+            const nowPlaying = document.getElementById('nowPlaying');
+            nowPlaying.innerHTML = `
+                <img src="${logoUrl}" alt="${name}">
+                <div>
+                    <h3>${name}</h3>
+                    <p>${description}</p>
+                </div>
+            `;
+            
+            document.title = `${name} - Stream`;
         }
-        
-        loader.style.display = 'none';
-      }, 800);
-    }
 
-    // Search functionality
-    searchInput.addEventListener('input', (e) => {
-      const searchTerm = e.target.value.toLowerCase();
-      if (searchTerm.length > 0) {
-        const results = ALL_CHANNELS.filter(channel => 
-          channel.name.toLowerCase().includes(searchTerm) || 
-          channel.category.toLowerCase().includes(searchTerm)
-        );
-        loadChannels(results);
-      } else {
-        loadChannels(ALL_CHANNELS);
-      }
-    });
-
-    // Play channel function
-    function playChannel(url, name) {
-      const modal = document.getElementById('video-modal');
-      const player = document.getElementById('video-player');
-      
-      player.src = url;
-      player.load();
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      
-      // Fallback for HLS streams
-      if (url.includes('.m3u8')) {
-        if (typeof Hls === 'undefined') {
-          loadHLSjs().then(() => setupHls(player, url));
-        } else {
-          setupHls(player, url);
-        }
-      }
-    }
-
-    // Load HLS.js dynamically
-    function loadHLSjs() {
-      return new Promise((resolve) => {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/hls.js@latest';
-        script.onload = resolve;
-        document.head.appendChild(script);
-      });
-    }
-
-    // Setup HLS player
-    function setupHls(player, url) {
-      if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(player);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => player.play());
-      }
-    }
-
-    // Close video
-    function closeVideo() {
-      const modal = document.getElementById('video-modal');
-      const player = document.getElementById('video-player');
-      
-      player.pause();
-      player.src = '';
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      loadChannels();
-      
-      // Set active nav item
-      document.querySelectorAll('.nav-item').forEach(item => {
-        item.classList.toggle('active', item.href.includes('livetv.html'));
-      });
-    });
-  </script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.channel-card').forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                card.style.display = title.includes(term) ? 'block' : 'none';
+            });
+        });
+    </script>
 </body>
   </html>
