@@ -18,53 +18,13 @@
       color: white;
       min-height: 100vh;
       line-height: 1.6;
-    }
-    
-    header {
-      padding: 15px 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(to bottom, #0F1C3F, transparent);
-      position: fixed;
-      width: 100%;
-      z-index: 100;
-    }
-    
-    .header-content {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      justify-content: space-between;
-    }
-    
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
-      color: #E50914;
-      text-decoration: none;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .back-btn {
-      color: white;
-      font-size: 20px;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      z-index: 101;
-    }
-    
-    .back-btn i {
-      margin-right: 8px;
+      padding-top: 20px; /* Small top padding instead of header */
     }
     
     .privacy-container {
       max-width: 800px;
-      margin: 80px auto;
-      padding: 40px 20px;
+      margin: 0 auto;
+      padding: 20px;
     }
     
     h1 {
@@ -125,8 +85,7 @@
 
     @media (max-width: 768px) {
       .privacy-container {
-        margin: 70px auto;
-        padding: 20px 15px;
+        padding: 15px;
       }
       
       h1 {
@@ -136,37 +95,11 @@
       h2 {
         font-size: 22px;
       }
-      
-      .logo {
-        position: static;
-        transform: none;
-        margin: 0 auto;
-      }
-      
-      .header-content {
-        flex-direction: column;
-        gap: 10px;
-      }
-      
-      .back-btn {
-        align-self: flex-start;
-      }
     }
   </style>
 </head>
 <body>
-  <!-- FIXED HEADER WITH PROPER BACK BUTTON -->
-  <header>
-    <div class="header-content">
-      <a href="index.html" class="back-btn">
-        <i class="fas fa-arrow-left"></i> Back
-      </a>
-      <a href="index.html" class="logo">str▶eam</a>
-      <div></div> <!-- Empty div for spacing -->
-    </div>
-  </header>
-  
-  <!-- COMPLETE PRIVACY POLICY CONTENT -->
+  <!-- MAIN CONTENT ONLY - NO HEADER -->
   <div class="privacy-container">
     <h1>Privacy Policy</h1>
     <p class="last-updated">Last Updated: July 10, 2025</p>
@@ -214,12 +147,11 @@
     
     <h2>5. Your Rights & Choices</h2>
     <p>You have control over your data:</p>
-    <ul> 
+    <ul>
       <li><strong>Correction:</strong> Update inaccurate information</li>
       <li><strong>Deletion:</strong> Request account and data removal</li>
       <li><strong>Opt-Out:</strong> Unsubscribe from marketing emails</li>
       <li><strong>Cookies:</strong> Manage preferences in browser settings</li>
-      <li><strong>Data Portability:</strong> Export your watch history</li>
     </ul>
     
     <h2>6. Children's Privacy</h2>
@@ -235,6 +167,7 @@
     <p>For privacy concerns or data requests:</p>
     <ul>
       <li>Email: <strong>privacy@stream.com</strong></li>
+      <li>In-App: Settings > Help Center</li>
     </ul>
   </div>
 
@@ -247,32 +180,5 @@
       <a href="cookies.html">Cookie Policy</a>
     </p>
   </footer>
-
-  <script>
-    // Robust back button handling
-    document.querySelector('.back-btn').addEventListener('click', function(e) {
-      e.preventDefault();
-      const basePaths = [
-        'index.html',
-        '../index.html',
-        '/stream/index.html',
-        '/index.html',
-        window.location.href.replace(/privacy\.html.*$/, '') + 'index.html'
-      ];
-      
-      // Try each possible path
-      for (let path of basePaths) {
-        fetch(path, { method: 'HEAD' })
-          .then(() => {
-            window.location.href = path;
-            return;
-          })
-          .catch(() => {});
-      }
-      
-      // Final fallback
-      window.location.href = '/';
-    });
-  </script>
 </body>
 </html>
