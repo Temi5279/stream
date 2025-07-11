@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stream - Help Center</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica', Arial, sans-serif;
+    }
+    
+    body {
+      background: #0F1C3F;
+      color: white;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    
+    header {
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, #0F1C3F, transparent);
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #E50914;
+      text-decoration: none;
+    }
+
+    .search-bar {
+      position: relative;
+      width: 40%;
+      max-width: 500px;
+    }
+    
+    .search-bar input {
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 25px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 16px;
+    }
+    
+    .search-bar i {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #A0AEC0;
+    }
+    
+    .help-container {
+      max-width: 1200px;
+      margin: 100px auto 50px;
+      padding: 0 20px;
+    }
+    
+    h1 {
+      color: #E50914;
+      margin-bottom: 30px;
+      font-size: 36px;
+    }
+    
+    h2 {
+      color: white;
+      margin: 40px 0 20px;
+      font-size: 24px;
+      border-bottom: 1px solid #E50914;
+      padding-bottom: 10px;
+    }
+    
+    h3 {
+      color: #E50914;
+      margin: 25px 0 15px;
+      font-size: 20px;
+    }
+    
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      margin: 30px 0;
+    }
+    
+    .category-card {
+      background: #1a1a2e;
+      border-radius: 10px;
+      padding: 25px;
+      transition: transform 0.3s;
+      border-left: 4px solid #E50914;
+    }
+    
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    
+    .category-card i {
+      font-size: 28px;
+      color: #E50914;
+      margin-bottom: 15px;
+    }
+    
+    .faq-item {
+      background: #1a1a2e;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 15px;
+      cursor: pointer;
+    }
+    
+    .faq-question {
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-answer {
+      display: none;
+      padding-top: 15px;
+      color: #d1d1d1;
+    }
+    
+    .contact-form {
+      background: #1a1a2e;
+      border-radius: 10px;
+      padding: 30px;
+      margin-top: 40px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 5px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+    
+    .form-group textarea {
+      min-height: 150px;
+    }
+    
+    .submit-btn {
+      background: #E50914;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    
+    .submit-btn:hover {
+      background: #f40612;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #d1d1d1;
+      font-size: 14px;
+      background: rgba(0,0,0,0.3);
+      margin-top: 60px;
+    }
+    
+    footer a {
+      color: #E50914;
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 768px) {
+      .search-bar {
+        width: 70%;
+      }
+      
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .help-container {
+        margin-top: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER WITH SEARCH -->
+  <header>
+    <a href="index.html" class="logo">str▶eam</a>
+    <div class="search-bar">
+      <input type="text" placeholder="Search help articles...">
+      <i class="fas fa-search"></i>
+    </div>
+  </header>
+  
+  <!-- HELP CENTER CONTENT -->
+  <div class="help-container">
+    <h1>Help Center</h1>
+    
+    <h2>Popular Topics</h2>
+    <div class="category-grid">
+      <div class="category-card">
+        <i class="fas fa-tv"></i>
+        <h3>Streaming Issues</h3>
+        <p>Troubleshoot playback, quality, and connection problems</p>
+      </div>
+      
+      <div class="category-card">
+        <i class="fas fa-user-circle"></i>
+        <h3>Account Help</h3>
+        <p>Password reset, profile settings, and subscription management</p>
+      </div>
+      
+      <div class="category-card">
+        <i class="fas fa-credit-card"></i>
+        <h3>Billing</h3>
+        <p>Payment methods, invoices, and refund requests</p>
+      </div>
+      
+      <div class="category-card">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Device Support</h3>
+        <p>Setup guides for all supported platforms and devices</p>
+      </div>
+      
+      <div class="category-card">
+        <i class="fas fa-lock"></i>
+        <h3>Privacy & Security</h3>
+        <p>Secure your account and understand data usage</p>
+      </div>
+      
+      <div class="category-card">
+        <i class="fas fa-question-circle"></i>
+        <h3>FAQs</h3>
+        <p>Answers to common questions about Stream</p>
+      </div>
+    </div>
+    
+    <h2>Frequently Asked Questions</h2>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Why is my video buffering?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>Buffering can occur due to internet speed fluctuations. Try:</p>
+        <ul>
+          <li>Checking your internet connection (minimum 5Mbps recommended)</li>
+          <li>Reducing video quality in settings</li>
+          <li>Restarting your router</li>
+          <li>Closing other bandwidth-intensive applications</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>How do I cancel my subscription?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>To cancel:</p>
+        <ol>
+          <li>Go to Account Settings</li>
+          <li>Select "Subscription"</li>
+          <li>Click "Cancel Plan"</li>
+          <li>Follow the confirmation prompts</li>
+        </ol>
+        <p>Your access will continue until the end of the current billing period.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Which devices are supported?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>Stream works on:</p>
+        <ul>
+          <li>Smartphones/Tablets (iOS & Android)</li>
+          <li>Web Browsers (Chrome, Firefox, Safari, Edge)</li>
+          <li>Smart TVs (Samsung, LG, Android TV)</li>
+          <li>Streaming Devices (Roku, Fire TV, Apple TV)</li>
+          <li>Game Consoles (PlayStation, Xbox)</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>How do I reset my password?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>Password reset steps:</p>
+        <ol>
+          <li>Click "Forgot Password" on the login page</li>
+          <li>Enter your account email</li>
+          <li>Check your email for a reset link</li>
+          <li>Create a new strong password</li>
+        </ol>
+      </div>
+    </div>
+    
+    <h2>Contact Support</h2>
+    <div class="contact-form">
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="issue">Issue Type</label>
+          <select id="issue">
+            <option>Select an option</option>
+            <option>Streaming Problems</option>
+            <option>Account Issues</option>
+            <option>Billing Questions</option>
+            <option>Content Requests</option>
+            <option>Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Description</label>
+          <textarea id="message" required></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Stream. All rights reserved.</p>
+    <p>
+      <a href="terms.html">Terms of Service</a> | 
+      <a href="privacy.html">Privacy Policy</a> | 
+      <a href="help.html">Help Center</a>
+    </p>
+  </footer>
+
+  <script>
+    // FAQ toggle functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const icon = question.querySelector('i');
+        
+        if (answer.style.display === 'block') {
+          answer.style.display = 'none';
+          icon.classList.remove('fa-chevron-up');
+          icon.classList.add('fa-chevron-down');
+        } else {
+          answer.style.display = 'block';
+          icon.classList.remove('fa-chevron-down');
+          icon.classList.add('fa-chevron-up');
+        }
+      });
+    });
+    
+    // Simple search functionality
+    document.querySelector('.search-bar input').addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      document.querySelectorAll('.faq-item').forEach(item => {
+        const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+        if (question.includes(searchTerm)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
