@@ -29,7 +29,13 @@
       position: fixed;
       width: 100%;
       z-index: 100;
-      gap: 15px;
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
     }
     
     .logo {
@@ -37,8 +43,9 @@
       font-weight: bold;
       color: #E50914;
       text-decoration: none;
-      text-align: center;
-      flex-grow: 1;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .back-btn {
@@ -47,6 +54,11 @@
       text-decoration: none;
       display: flex;
       align-items: center;
+      z-index: 101;
+    }
+    
+    .back-btn i {
+      margin-right: 8px;
     }
     
     .privacy-container {
@@ -124,20 +136,37 @@
       h2 {
         font-size: 22px;
       }
+      
+      .logo {
+        position: static;
+        transform: none;
+        margin: 0 auto;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .back-btn {
+        align-self: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- HEADER WITH BACK BUTTON -->
+  <!-- FIXED HEADER WITH PROPER BACK BUTTON -->
   <header>
-    <a href="index.html" class="back-btn">
-      <i class="fas fa-arrow-left"></i> Back
-    </a>
-    <a href="index.html" class="logo">str▶eam</a>
-    <div style="width: 60px;"></div> <!-- Spacer for balance -->
+    <div class="header-content">
+      <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+      <a href="index.html" class="logo">str▶eam</a>
+      <div></div> <!-- Empty div for spacing -->
+    </div>
   </header>
   
-  <!-- PRIVACY POLICY CONTENT -->
+  <!-- COMPLETE PRIVACY POLICY CONTENT -->
   <div class="privacy-container">
     <h1>Privacy Policy</h1>
     <p class="last-updated">Last Updated: July 10, 2025</p>
@@ -164,7 +193,7 @@
     </ul>
     
     <h2>3. Data Sharing & Disclosure</h2>
-    <p>We do not share information in these limited circumstances:</p>
+    <p>We may share information in these limited circumstances:</p>
     <ul>
       <li><strong>Service Providers:</strong> With trusted partners who assist in operations (e.g., hosting, analytics)</li>
       <li><strong>Legal Compliance:</strong> When required by law or to protect our rights</li>
@@ -185,7 +214,7 @@
     
     <h2>5. Your Rights & Choices</h2>
     <p>You have control over your data:</p>
-    <ul>
+    <ul> 
       <li><strong>Correction:</strong> Update inaccurate information</li>
       <li><strong>Deletion:</strong> Request account and data removal</li>
       <li><strong>Opt-Out:</strong> Unsubscribe from marketing emails</li>
@@ -217,7 +246,33 @@
       <a href="privacy.html">Privacy Policy</a> | 
       <a href="cookies.html">Cookie Policy</a>
     </p>
-    <p>Stream is a registered trademark.</p>
   </footer>
+
+  <script>
+    // Robust back button handling
+    document.querySelector('.back-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const basePaths = [
+        'index.html',
+        '../index.html',
+        '/stream/index.html',
+        '/index.html',
+        window.location.href.replace(/privacy\.html.*$/, '') + 'index.html'
+      ];
+      
+      // Try each possible path
+      for (let path of basePaths) {
+        fetch(path, { method: 'HEAD' })
+          .then(() => {
+            window.location.href = path;
+            return;
+          })
+          .catch(() => {});
+      }
+      
+      // Final fallback
+      window.location.href = '/';
+    });
+  </script>
 </body>
-  </html>
+</html>
