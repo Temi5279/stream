@@ -3,126 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stream | </title>
+    <title>stream | Preview</title>
     <style>
-        /* ===== PARAMOUNT+-INSPIRED THEME (DARK) ===== */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             background: #000;
             color: #fff;
+            text-align: center;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             line-height: 1.6;
         }
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), url('movie-banner.jpg') center/cover;
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin: 0;
-            color: #fff;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
+            margin: 50px 0;
         }
         .btn-signup {
-            background: #9d50bb; /* Purple accent (change to your color) */
+            background: #e50914; /* Netflix-like red */
             color: white;
-            padding: 12px 30px;
             border: none;
-            border-radius: 5px;
+            padding: 12px 30px;
             font-size: 1.1rem;
+            border-radius: 5px;
             cursor: pointer;
-            margin-top: 20px;
+            margin: 20px 0;
         }
         .content-section {
-            padding: 40px 20px;
+            margin: 40px 0;
         }
         .section-title {
             font-size: 1.5rem;
+            color: #e50914;
             margin-bottom: 20px;
-            color: #9d50bb;
         }
-        .thumbnails {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
+        .social-icons {
+            margin: 30px 0;
         }
-        .thumbnail {
-            min-width: 200px;
-            height: 300px;
-            background: #1a1a1a;
-            border-radius: 8px;
-        }
-        footer {
-            background: #1a1a1a;
-            padding: 20px;
-            text-align: center;
+        .social-icons a {
+            margin: 0 15px;
+            display: inline-block;
         }
         .social-icons img {
             width: 30px;
-            margin: 0 10px;
+            vertical-align: middle;
         }
-        .footer-links a {
-            color: #9d50bb;
-            margin: 0 10px;
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+        }
+        footer a {
+            color: #e50914;
             text-decoration: none;
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
-    <!-- HERO SECTION -->
-    <section class="hero">
+    <!-- Hero Section -->
+    <div class="hero">
         <h1>Welcome to stream</h1>
         <p>Stream exclusive movies, live TV, and content you won't find anywhere else.</p>
         <button class="btn-signup" onclick="window.location.href='signup.html'">SIGN UP NOW</button>
-    </section>
-
-    <!-- CONTENT PREVIEW -->
-    <section class="content-section">
-        <h2 class="section-title">Trending Now</h2>
-        <div class="thumbnails">
-            <div class="thumbnail"></div>
-            <div class="thumbnail"></div>
-            <div class="thumbnail"></div>
-        </div>
-    </section>
-
-    <section class="content-section">
-        <h2 class="section-title">Live TV Highlights</h2>
-        <div class="thumbnails">
-            <div class="thumbnail"></div>
-            <div class="thumbnail"></div>
-            <div class="thumbnail"></div>
-        </div>
-    </section>
-
-    <!-- SOCIAL MEDIA -->
-    <div style="text-align: center; padding: 20px;">
-        <a href="https://facebook.com/yourpage"><img src="facebook-icon.png" alt="Facebook"></a>
-        <a href="https://instagram.com/yourpage"><img src="instagram-icon.png" alt="Instagram"></a>
-        <a href="https://x.com/yourpage"><img src="x-icon.png" alt="X"></a>
     </div>
 
-    <!-- FOOTER -->
+    <!-- Content Sections -->
+    <div class="content-section">
+        <h2 class="section-title">Trending Now</h2>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">Live TV Highlights</h2>
+    </div>
+
+    <!-- Social Media -->
+    <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61559683975643&mibextid=ZbWKwL" target="_blank">
+            <img src="facebook-icon.svg" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/la_vie_en_vibe?igsh=cDVidzhtOXk5bnFt" target="_blank">
+            <img src="instagram-icon.svg" alt="Instagram">
+        </a>
+        <a href="https://x.com/LaVieEnVibe?t=xGlRbb9Z96rNApGngISQoQ&s=09" target="_blank">
+            <img src="x-icon.svg" alt="X">
+        </a>
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <div class="footer-links">
+        <div>
             <a href="privacy.html">Privacy Policy</a>
             <a href="term.html">Terms of Use</a>
             <a href="cookies.html">Cookie Policy</a>
             <a href="media.html">How we use other medias</a>
             <a href="legal.html">Legal</a>
-            <a href="page.html">Blog</a>
+            <a href="blog.html">Blog</a>
         </div>
         <p>&copy; 2025 stream. All rights reserved.</p>
     </footer>
 </body>
-            </html>
+</html>
