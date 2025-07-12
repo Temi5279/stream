@@ -3,104 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stream | Stream</title>
+    <title>stream | </title>
     <style>
+        /* ===== PARAMOUNT+-INSPIRED THEME (DARK) ===== */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
+            font-family: 'Arial', sans-serif;
+            background: #000;
             color: #fff;
-            text-align: center;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             line-height: 1.6;
         }
-        .container {
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), url('movie-banner.jpg') center/cover;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: #fff;
+        }
+        .hero p {
+            font-size: 1.2rem;
             max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
         }
-        h1 {
-            color: #9d50bb;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        p {
+        .btn-signup {
+            background: #9d50bb; /* Purple accent (change to your color) */
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
             font-size: 1.1rem;
-            opacity: 0.9;
+            cursor: pointer;
+            margin-top: 20px;
         }
-        /* Social Icons */
-        .social-icons {
-            margin: 30px 0;
+        .content-section {
+            padding: 40px 20px;
         }
-        .social-icons a {
-            display: inline-block;
-            margin: 0 10px;
-            transition: transform 0.3s;
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #9d50bb;
         }
-        .social-icons a:hover {
-            transform: scale(1.1);
+        .thumbnails {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+        }
+        .thumbnail {
+            min-width: 200px;
+            height: 300px;
+            background: #1a1a1a;
+            border-radius: 8px;
+        }
+        footer {
+            background: #1a1a1a;
+            padding: 20px;
+            text-align: center;
         }
         .social-icons img {
-            width: 32px;
-            height: 32px;
-        }
-        /* Signup Button */
-        .btn-signup {
-            background: #9d50bb;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 20px 0;
-            display: inline-block;
-            text-decoration: none;
-        }
-        /* Footer Links */
-        footer {
-            margin-top: 40px;
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
-        footer a {
-            color: #9d50bb;
-            text-decoration: none;
+            width: 30px;
             margin: 0 10px;
+        }
+        .footer-links a {
+            color: #9d50bb;
+            margin: 0 10px;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Stream</h1>
-        <p>Stream exclusive content in high quality. Anytime, anywhere.</p>
-        
-        <!-- Social Media Links -->
-        <div class="social-icons">
-            <a href="https://www.facebook.com/profile.php?id=61559683975643&mibextid=ZbWKwL" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
-            </a>
-            <a href="https://www.instagram.com/la_vie_en_vibe?igsh=cDVidzhtOXk5bnFt" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_logo_2016.svg" alt="Instagram">
-            </a>
-            <a href="https://x.com/LaVieEnVibe?t=xGlRbb9Z96rNApGngISQoQ&s=09" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/X_icon_2.svg" alt="X (Twitter)">
-            </a>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Welcome to stream</h1>
+        <p>Stream exclusive movies, live TV, and content you won't find anywhere else.</p>
+        <button class="btn-signup" onclick="window.location.href='signup.html'">SIGN UP NOW</button>
+    </section>
+
+    <!-- CONTENT PREVIEW -->
+    <section class="content-section">
+        <h2 class="section-title">Trending Now</h2>
+        <div class="thumbnails">
+            <div class="thumbnail"></div>
+            <div class="thumbnail"></div>
+            <div class="thumbnail"></div>
         </div>
-        
-        <!-- Signup Button -->
-        <a href="signup.html" class="btn-signup">Sign Up for Access</a>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Live TV Highlights</h2>
+        <div class="thumbnails">
+            <div class="thumbnail"></div>
+            <div class="thumbnail"></div>
+            <div class="thumbnail"></div>
+        </div>
+    </section>
+
+    <!-- SOCIAL MEDIA -->
+    <div style="text-align: center; padding: 20px;">
+        <a href="https://facebook.com/yourpage"><img src="facebook-icon.png" alt="Facebook"></a>
+        <a href="https://instagram.com/yourpage"><img src="instagram-icon.png" alt="Instagram"></a>
+        <a href="https://x.com/yourpage"><img src="x-icon.png" alt="X"></a>
     </div>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="cookies.html">Cookie Policy</a>
-        <a href="terms.html">Terms of Use</a>
-      <a href="legal.html">Legal</a>
-      <a href="media.html">How we use other medias</a>
-      <a href="play.html">Blog</a>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="term.html">Terms of Use</a>
+            <a href="cookies.html">Cookie Policy</a>
+            <a href="media.html">How we use other medias</a>
+            <a href="legal.html">Legal</a>
+            <a href="page.html">Blog</a>
+        </div>
         <p>&copy; 2025 stream. All rights reserved.</p>
     </footer>
 </body>
-</html>
+            </html>
