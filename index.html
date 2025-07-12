@@ -1,56 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Page Title</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* ===== PURE UI/Design (No Functional Changes) ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Helvetica', Arial, sans-serif;
-    }
-    body {
-      background: #0F1C3F; /* Royal blue background */
-      color: white;
-    }
-    header {
-      padding: 15px 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(to bottom, #0F1C3F, transparent);
-      position: fixed;
-      width: 100%;
-      z-index: 100;
-    }
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
-      color: #E50914; /* Netflix red */
-    }
-    main {
-      padding-top: 80px; /* Space for header */
-    }
-    /* Add other design elements from home.html as needed */
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream | Stream</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #9d50bb;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        /* Social Icons */
+        .social-icons {
+            margin: 30px 0;
+        }
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            transition: transform 0.3s;
+        }
+        .social-icons a:hover {
+            transform: scale(1.1);
+        }
+        .social-icons img {
+            width: 32px;
+            height: 32px;
+        }
+        /* Signup Button */
+        .btn-signup {
+            background: #9d50bb;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+            display: inline-block;
+            text-decoration: none;
+        }
+        /* Footer Links */
+        footer {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        footer a {
+            color: #9d50bb;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
 </head>
 <body>
-  <!-- Header (Keep your existing header content) -->
-  <header>
-    <div class="logo">str▶eam</div>
-    <!-- Keep your existing header elements -->
-  </header>
+    <div class="container">
+        <h1>Stream</h1>
+        <p>Stream exclusive content in high quality. Anytime, anywhere.</p>
+        
+        <!-- Social Media Links -->
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61559683975643&mibextid=ZbWKwL" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/la_vie_en_vibe?igsh=cDVidzhtOXk5bnFt" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_logo_2016.svg" alt="Instagram">
+            </a>
+            <a href="https://x.com/LaVieEnVibe?t=xGlRbb9Z96rNApGngISQoQ&s=09" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/X_icon_2.svg" alt="X (Twitter)">
+            </a>
+        </div>
+        
+        <!-- Signup Button -->
+        <a href="signup.html" class="btn-signup">Sign Up for Access</a>
+    </div>
 
-  <!-- Main Content (YOUR EXISTING CONTENT - UNTOUCHED) -->
-  <main>
-    <!-- ALL YOUR CURRENT CONTENT REMAINS HERE -->
-    <!-- No sections/words removed or added -->
-  </main>
-
-  <!-- No Bottom Nav (Removed as requested) -->
+    <!-- Footer -->
+    <footer>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="cookies.html">Cookie Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      <a href="legal.html">Legal</a>
+      <a href="media.html">How we use other medias</a>
+      <a href="play.html">Blog</a>
+        <p>&copy; 2025 stream. All rights reserved.</p>
+    </footer>
 </body>
 </html>
